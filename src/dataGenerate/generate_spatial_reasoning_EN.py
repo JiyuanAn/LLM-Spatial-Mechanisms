@@ -201,7 +201,7 @@ class SpatialReasoningGenerator:
         positions: Dict[str, np.ndarray],
         start_entity: str,
         end_entity: str
-    ) -> Tuple[str, str]:
+    ) -> Tuple[str, str, np.ndarray]:
         """
         生成问题和答案
         
@@ -214,6 +214,7 @@ class SpatialReasoningGenerator:
         Returns:
             question: 问题字符串
             answer: 答案字符串
+            target: 目标向量 (probe坐标系: [x, y, z] = [left/right, below/above, behind/front])
         """
         # 随机决定问哪个方向
         if random.random() < 0.5:
@@ -228,10 +229,15 @@ class SpatialReasoningGenerator:
         question = f"{premise}\nWhere is {query_subject} relative to {query_object}?"
         
         # 计算答案
+        # 在生成器坐标系中: [x, y, z] = [left/right, behind/front, below/above]
         relative_vector = positions[query_subject] - positions[query_object]
         answer = self.vector_to_relation(relative_vector)
         
-        return question, answer
+        # 转换到probe坐标系: [x, y, z] = [left/right, below/above, behind/front]
+        # target = [gen_x, gen_z, gen_y]
+        target = np.array([relative_vector[0], relative_vector[2], relative_vector[1]], dtype=np.float32)
+        
+        return question, answer, target
     
     def generate_dataset(
         self, 
@@ -268,7 +274,7 @@ class SpatialReasoningGenerator:
                     break
             
             # 生成问题和答案
-            question, answer = self.generate_question_answer(relations, positions, start_entity, end_entity)
+            question, answer, target = self.generate_question_answer(relations, positions, start_entity, end_entity)
             
             # 构建数据样本
             sample = {
@@ -276,6 +282,7 @@ class SpatialReasoningGenerator:
                 'num_steps': num_steps,
                 'question': question,
                 'answer': answer,
+                'target': target.tolist(),
                 'entities': list(positions.keys()),
                 'positions': {k: v.tolist() for k, v in positions.items()},
                 'query_entities': [start_entity, end_entity]
@@ -308,15 +315,15 @@ class SpatialReasoningGenerator:
 def main():
     """主函数"""
     # 创建生成器
-    generator = SpatialReasoningGenerator(seed=42)
+    generator = SpatialReasoningGenerator(seed=36)#42
     
     # 生成数据集
     print("Generating spatial reasoning dataset...")
     dataset = generator.generate_dataset(
-        num_samples=1000,
+        num_samples=100, #1000
         min_steps=3,
         max_steps=10,
-        output_file='spatial_reasoning_dataset.json'
+        output_file='spatial_reasoning_dataset_test.json' #
     )
     
     # 打印一些示例
