@@ -48,7 +48,7 @@ def test_single_sample():
                 has_direct = True
         
         if not has_direct:
-            print(f"  ✓ No direct relation between {start_entity} and {end_entity}")
+            print(f"  ✓ No direct   relation between {start_entity} and {end_entity}")
             print(f"  ✓ This question requires {num_steps}-step reasoning!")
 
 def test_batch_generation():
@@ -113,4 +113,5 @@ if __name__ == "__main__":
     print(f"\n{'='*70}")
     print("Testing complete!")
     print('='*70)
+
 
