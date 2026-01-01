@@ -1,0 +1,131 @@
+Loading model...                                           
+Model path: /home/s202507009/workspace/LLMs/Qwen2.5/Qwen2.5-7B-Instruct
+`torch_dtype` is deprecated! Use `dtype` instead!          
+Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.89it/s]
+Converting to HookedTransformer...                         
+Loaded pretrained model Qwen/Qwen2.5-7B-Instruct into HookedTransformer
+Loaded model with 28 layers, d_model=3584                  
+                                                                                                                                                                                                                                              
+===== Starting Layer Sweep =====                           
+                                                           
+Processing Layer 0/27...                                   
+Layer 00 | R² = 0.0614                                     
+                                                           
+Processing Layer 1/27...                                   
+Layer 01 | R² = 0.1107                                     
+                                                           
+Processing Layer 2/27...                                   
+Layer 02 | R² = 0.1784                                     
+                                                                                                                       
+Processing Layer 3/27...                                                                                               
+Layer 03 | R² = 0.2381                                                                                                 
+                                                           
+Processing Layer 4/27...                                   
+Layer 04 | R² = 0.2715                                     
+                                                           
+Processing Layer 5/27...                                   
+Layer 05 | R² = 0.2739                                     
+                                                           
+Processing Layer 6/27...                                   
+Layer 06 | R² = 0.2662                                                                                                                                                                                                                        
+                                                           
+Processing Layer 7/27...                                   
+Layer 07 | R² = 0.2706                                                                                                 
+                                                                                                                                                                                                                                              
+Processing Layer 8/27...                                                                                               
+Layer 08 | R² = 0.2743                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                              
+Processing Layer 9/27...                                                                                                                                                                                                                      
+Layer 09 | R² = 0.2387                                     
+                                                                                                                       
+Processing Layer 10/27...                                  
+Layer 10 | R² = 0.2437                                                                                                                                                                                                                        
+                                                           
+Processing Layer 11/27...                                                                                              
+Layer 11 | R² = 0.2589                                     
+                                                                                                                                                                                                                                              
+Processing Layer 12/27...                                  
+Layer 12 | R² = 0.2218                                     
+                                                           
+Processing Layer 13/27...                                  
+Layer 13 | R² = 0.2396                                     
+                                                           
+Processing Layer 14/27...                                  
+Layer 14 | R² = 0.2102                                     
+                                                           
+Processing Layer 15/27...                                  
+Layer 15 | R² = 0.2464
+
+Processing Layer 16/27...                                                                                              
+Layer 16 | R² = 0.1986                                     
+                                                           
+Processing Layer 17/27...                                  
+Layer 17 | R² = 0.1918                                     
+                                                           
+Processing Layer 18/27...                                  
+Layer 18 | R² = 0.1721                                     
+                                                           
+Processing Layer 19/27...                                                                                                                                                                                                                     
+Layer 19 | R² = 0.1245                                     
+                                                           
+Processing Layer 20/27...                                                                                              
+Layer 20 | R² = 0.1304                                                                                                                                                                                                                        
+                                                                                                                       
+Processing Layer 21/27...                                                                                                                                                                                                                     
+Layer 21 | R² = 0.1678                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                              
+Processing Layer 22/27...                                  
+Layer 22 | R² = 0.0626                                                                                                 
+                                                           
+Processing Layer 23/27...                                                                                                                                                                                                                     
+Layer 23 | R² = 0.0296                                     
+                                                                                                                       
+Processing Layer 24/27...                                  
+Layer 24 | R² = 0.0253                                     
+                                                           
+Processing Layer 25/27...                                  
+Layer 25 | R² = 0.0144                                     
+                                                           
+Processing Layer 26/27...                                  
+Layer 26 | R² = 0.0236                                     
+                                                           
+Processing Layer 27/27...                                  
+Layer 27 | R² = -0.0944                                    
+                                                                                                                       
+==================================================
+===== Layer Sweep Result =====                                                                                         
+==================================================         
+Layer 00: R² = 0.0614                                      
+Layer 01: R² = 0.1107                                      
+Layer 02: R² = 0.1784                                      
+Layer 03: R² = 0.2381                                      
+Layer 04: R² = 0.2715                                      
+Layer 05: R² = 0.2739                                      
+Layer 06: R² = 0.2662                                      
+Layer 07: R² = 0.2706                                                                                                                                                                                                                         
+Layer 08: R² = 0.2743                                      
+Layer 09: R² = 0.2387                                      
+Layer 10: R² = 0.2437                                                                                                  
+Layer 11: R² = 0.2589                                                                                                                                                                                                                         
+Layer 12: R² = 0.2218                                                                                                  
+Layer 13: R² = 0.2396                                                                                                                                                                                                                         
+Layer 14: R² = 0.2102                                                                                                                                                                                                                         
+Layer 15: R² = 0.2464                                                                                                                                                                                                                         
+Layer 16: R² = 0.1986                                      
+Layer 17: R² = 0.1918                                                                                                  
+Layer 18: R² = 0.1721                                      
+Layer 19: R² = 0.1245                                                                                                                                                                                                                         
+Layer 20: R² = 0.1304                                      
+Layer 21: R² = 0.1678                                                                                                  
+Layer 22: R² = 0.0626                                      
+Layer 23: R² = 0.0296                                                                                                                                                                                                                         
+Layer 24: R² = 0.0253                                      
+Layer 25: R² = 0.0144                                      
+Layer 26: R² = 0.0236                                      
+Layer 27: R² = -0.0944                                     
+                                                           
+==================================================         
+>>> Best layer: 8 (R²=0.2743)                              
+==================================================         
+                                                           
+Results saved to layer_sweep_results.json

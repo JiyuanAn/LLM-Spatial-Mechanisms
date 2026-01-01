@@ -69,26 +69,65 @@ print(f"Loaded model with {n_layers} layers, d_model={d_model}")
 # 3. 示例数据（请替换为你自己的）
 # =========================
 # 假设你已经有 train / test 数据
-train_data = [
-    {
-        "prompt": "A is left of B. B is above C. Where is A relative to C?",
-        "target": np.array([-1.0, 1.0])
-    },
-    {
-        "prompt": "A is right of B. B is below C. Where is A relative to C?",
-        "target": np.array([1.0, -1.0])
-    },
-    {
-        "prompt": "A is above B. B is left of C. Where is A relative to C?",
-        "target": np.array([-1.0, 1.0])
-    },
-    {
-        "prompt": "A is below B. B is right of C. Where is A relative to C?",
-        "target": np.array([1.0, -1.0])
-    },
-]
+# target 是三维向量：[x, y, z]
+# x: left (-1) / right (+1)
+# y: below (-1) / above (+1)
+# z: behind (-1) / front (+1)
+# train_data = [
+#     {
+#         "prompt": "A is left of B. B is above C. Where is A relative to C?",
+#         "target": np.array([-1.0, 1.0, 0.0])
+#     },
+#     {
+#         "prompt": "A is right of B. B is below C. Where is A relative to C?",
+#         "target": np.array([1.0, -1.0, 0.0])
+#     },
+#     {
+#         "prompt": "A is above B. B is left of C. Where is A relative to C?",
+#         "target": np.array([-1.0, 1.0, 0.0])
+#     },
+#     {
+#         "prompt": "A is below B. B is right of C. Where is A relative to C?",
+#         "target": np.array([1.0, -1.0, 0.0])
+#     },
+#     {
+#         "prompt": "A is front of B. B is above C. Where is A relative to C?",
+#         "target": np.array([0.0, 1.0, 1.0])
+#     },
+#     {
+#         "prompt": "A is behind B. B is below C. Where is A relative to C?",
+#         "target": np.array([0.0, -1.0, -1.0])
+#     },
+#     {
+#         "prompt": "A is left of B. B is front of C. Where is A relative to C?",
+#         "target": np.array([-1.0, 0.0, 1.0])
+#     },
+#     {
+#         "prompt": "A is right of B. B is behind C. Where is A relative to C?",
+#         "target": np.array([1.0, 0.0, -1.0])
+#     },
+# ]
 
-test_data = train_data  # demo 用，真实实验请分开
+# test_data = train_data  # demo 用，真实实验请分开
+
+import json
+train_data = []
+with open("../dataGenerate/spatial_reasoning_dataset.json", "r") as f:
+    data = json.load(f)
+    for sample in data:
+        train_data.append({
+            "prompt": sample["question"],
+            "target": np.array(sample["target"])
+        })
+
+test_data = []
+with open("../dataGenerate/spatial_reasoning_dataset_test.json", "r") as f:
+    data = json.load(f)
+    for sample in data:
+        test_data.append({
+            "prompt": sample["question"],
+            "target": np.array(sample["target"])
+        })
 
 # =========================
 # 4. 工具函数：提取 resid_post
@@ -98,7 +137,7 @@ def collect_hidden_states(data, layer_idx):
     对指定 layer_idx，收集 resid_post hidden states
     返回：
         X: [N, d_model]
-        Y: [N, 2]
+        Y: [N, 3]  # 三维：[x(left/right), y(below/above), z(behind/front)]
     """
     X, Y = [], []
 
@@ -132,7 +171,7 @@ for layer in range(n_layers):
     X_train, Y_train = collect_hidden_states(train_data, layer)
     X_test, Y_test = collect_hidden_states(test_data, layer)
 
-    # Ridge 回归（预测 Δx, Δy）
+    # Ridge 回归（预测 Δx, Δy, Δz）
     probe = Ridge(alpha=RIDGE_ALPHA)
     probe.fit(X_train, Y_train)
 
