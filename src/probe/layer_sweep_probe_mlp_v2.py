@@ -234,7 +234,7 @@ def train_mlp_probe(X_train, Y_train, X_test, Y_test, input_dim):
     
     # 学习率调度器
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, mode='min', factor=0.5, patience=10, verbose=False
+        optimizer, mode='min', factor=0.5, patience=10
     )
     
     # 早停机制
