@@ -15,13 +15,13 @@ OUT_DIR="./sae_experiment_$(date +%Y%m%d_%H%M%S)"
 LAYER=8
 
 # Token 策略 - last, question_mark, 或 answer_prefix
-TOKEN_STRATEGY="last"
+TOKEN_STRATEGY="question_mark"
 
 # SAE 特征数 - 通常是模型维度的 1-16 倍
 N_FEATURES=4096
 
-# L1 正则化系数 - 控制稀疏度，值越大越稀疏
-L1_COEF=3e-4
+# L1 正则化系数 - 控制稀疏度，值越大越稀疏 (可选 1e-3 或 2e-3)
+L1_COEF=1e-3
 
 # 学习率
 LR=2e-4
@@ -29,8 +29,8 @@ LR=2e-4
 # 批次大小
 BATCH_SIZE=4
 
-# 训练步数
-MAX_STEPS=5000
+# 训练步数 (推荐 2000-3000)
+MAX_STEPS=2500
 
 # 评估频率
 EVAL_EVERY=500
