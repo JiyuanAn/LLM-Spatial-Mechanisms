@@ -1,0 +1,50 @@
+# SAE 实验输出文件
+
+# 结果目录
+sae_results/
+sae_results_grid/
+analysis/
+
+# 模型 checkpoints
+*.pt
+*.pth
+*.ckpt
+
+# 数据文件
+*.npz
+*.npy
+
+# 日志
+*.log
+
+# 图片（除了示例）
+*.png
+!example_*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+

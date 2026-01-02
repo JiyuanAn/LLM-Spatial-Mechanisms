@@ -1,596 +1,487 @@
+"""
+SAE Training for Layer 8 Spatial Reasoning Features
+
+科学目标：
+- 验证 Layer 8 是否包含稀疏、可分离、与空间状态强相关的内部特征
+- 寻找方向/位置选择性 feature
+- 寻找状态保持型 feature（空间 working memory）
+
+配置：
+- Model: Qwen2.5-7B-Instruct
+- Layer: 8 (probe 峰值层)
+- Hook: mlp_out (空间/状态特征更稀疏)
+- Token: 最后一个 token（与 probe 一致）
+- Features: 2048 (第一轮)
+"""
+
+import sys
+sys.path.append("./")
+sys.path.append("../../")
+from config import PATHS
+
 import os
 import json
-import math
-import random
-import argparse
-from dataclasses import asdict, dataclass
-from typing import List, Dict, Any, Tuple, Optional
-
-import numpy as np
+import time
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from torch.optim import AdamW
+import argparse
+import numpy as np
 from tqdm import tqdm
-
+from pathlib import Path
+from typing import Dict, List, Tuple, Optional
+import matplotlib.pyplot as plt
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformer_lens import HookedTransformer
 
+# 导入 SAE 模型
+from sae_model import SparseAutoencoder
 
-# --------------------------
-# Config
-# --------------------------
-@dataclass
-class TrainConfig:
-    model_path: str
-    data_path: str
-    out_dir: str
+# =========================
+# 命令行参数
+# =========================
+parser = argparse.ArgumentParser(description='Train SAE on Layer 8 MLP activations')
+parser.add_argument("--model_name", "-m", type=str, default="Qwen/Qwen2.5-7B-Instruct")
+parser.add_argument("--train_data_file_path", "-tr", type=str, required=True)
+parser.add_argument("--test_data_file_path", "-te", type=str, required=True)
+parser.add_argument("--output_dir", "-o", type=str, default="./sae_results")
+parser.add_argument("--layer", type=int, default=8, help="Target layer (default: 8)")
+parser.add_argument("--n_features", type=int, default=2048, help="Number of SAE features")
+parser.add_argument("--l1_coeff", type=float, default=1e-3, help="L1 sparsity coefficient")
+parser.add_argument("--batch_size", type=int, default=128)
+parser.add_argument("--lr", type=float, default=3e-4)
+parser.add_argument("--num_epochs", type=int, default=5)
+parser.add_argument("--max_samples", type=int, default=None, help="Max training samples (None=all)")
+parser.add_argument("--seed", type=int, default=42)
+args = parser.parse_args()
 
-    layer: int = 8
-    hook_name: str = "hook_mlp_out"  # fixed by request
-    token_strategy: str = "last"     # last | question_mark | answer_prefix
+# =========================
+# 基本配置
+# =========================
+MODEL_NAME = args.model_name
+MODEL_PATH = PATHS[MODEL_NAME]
+DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
+DTYPE = torch.float16
+LAYER_IDX = args.layer
+N_FEATURES = args.n_features
+L1_COEFF = args.l1_coeff
+BATCH_SIZE = args.batch_size
+LR = args.lr
+NUM_EPOCHS = args.num_epochs
+SEED = args.seed
 
-    # SAE hyperparams
-    n_features: int = 4096
-    l1_coef: float = 3e-4
-    lr: float = 2e-4
-    weight_decay: float = 0.0
-    grad_clip: float = 1.0
+torch.manual_seed(SEED)
+np.random.seed(SEED)
 
-    # training
-    batch_size: int = 4
-    max_steps: int = 5000
-    log_every: int = 50
-    eval_every: int = 500
-    seed: int = 42
+# 创建输出目录
+output_dir = Path(args.output_dir)
+output_dir.mkdir(parents=True, exist_ok=True)
+timestamp = time.strftime('%Y%m%d_%H%M%S')
+exp_name = f"L{LAYER_IDX}_F{N_FEATURES}_L1{L1_COEFF}_{timestamp}"
+exp_dir = output_dir / exp_name
+exp_dir.mkdir(parents=True, exist_ok=True)
 
-    # misc
-    device: str = "cuda"
-    dtype: str = "float16"  # model dtype
-    max_prompt_tokens: int = 2048
-    num_workers: int = 0
+print(f"Experiment directory: {exp_dir}")
 
+# =========================
+# 加载模型
+# =========================
+print("="*50)
+print("Loading model...")
+print(f"Model: {MODEL_NAME}")
+print(f"Path: {MODEL_PATH}")
+print("="*50)
 
-# --------------------------
-# Dataset (JSONL or JSON)
-# JSONL: Each line: {"prompt": "...", ...}
-# JSON: Array of objects with "prompt" or "question" field
-# --------------------------
-def load_jsonl(path: str) -> List[Dict[str, Any]]:
-    """
-    Load data from JSONL or JSON file.
-    Auto-detects format and normalizes field names.
-    """
-    data = []
+hf_model = AutoModelForCausalLM.from_pretrained(
+    MODEL_PATH,
+    torch_dtype=DTYPE,
+    trust_remote_code=True
+)
+hf_model = hf_model.to(DEVICE)
+
+tokenizer = AutoTokenizer.from_pretrained(
+    MODEL_PATH,
+    trust_remote_code=True
+)
+
+print("Converting to HookedTransformer...")
+model = HookedTransformer.from_pretrained(
+    MODEL_NAME,
+    hf_model=hf_model,
+    tokenizer=tokenizer,
+    dtype=DTYPE,
+    device=DEVICE,
+    fold_ln=False,
+    center_writing_weights=False,
+    center_unembed=False,
+    fold_value_biases=False,
+)
+model.eval()
+
+n_layers = model.cfg.n_layers
+d_model = model.cfg.d_model
+
+# 获取指定层的 MLP 维度（不同层可能不同）
+# 通过运行一个 dummy forward pass 来确定实际维度
+dummy_tokens = model.to_tokens("test", truncate=True)
+with torch.no_grad():
+    _, cache = model.run_with_cache(
+        dummy_tokens,
+        names_filter=f"blocks.{LAYER_IDX}.hook_mlp_out"
+    )
+    d_mlp = cache[f"blocks.{LAYER_IDX}.hook_mlp_out"].shape[-1]
+
+print(f"Model loaded: {n_layers} layers, d_model={d_model}")
+print(f"Layer {LAYER_IDX} d_mlp={d_mlp}")
+
+# =========================
+# 数据加载
+# =========================
+def load_spatial_data(file_path: str, max_samples: Optional[int] = None) -> List[Dict]:
+    """加载空间推理数据"""
+    with open(file_path, 'r') as f:
+        data = json.load(f)
     
-    with open(path, "r", encoding="utf-8") as f:
-        content = f.read().strip()
-    
-    # Try to parse as complete JSON first (array format)
-    try:
-        parsed = json.loads(content)
-        if isinstance(parsed, list):
-            data = parsed
-        elif isinstance(parsed, dict):
-            # Single object, wrap in list
-            data = [parsed]
-        else:
-            raise ValueError(f"Unexpected JSON type: {type(parsed)}")
-    except json.JSONDecodeError:
-        # Fall back to JSONL format (line by line)
-        for line in content.split('\n'):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                data.append(json.loads(line))
-            except json.JSONDecodeError as e:
-                print(f"Warning: Skipping invalid JSON line: {line[:100]}... Error: {e}")
-                continue
-    
-    # Normalize field names: ensure "prompt" field exists
-    for item in data:
-        if "prompt" not in item:
-            # Try common alternatives
-            if "question" in item:
-                item["prompt"] = item["question"]
-            elif "text" in item:
-                item["prompt"] = item["text"]
-            elif "input" in item:
-                item["prompt"] = item["input"]
-            else:
-                raise ValueError(f"Data item missing 'prompt' field and no alternative found: {list(item.keys())}")
+    if max_samples is not None:
+        data = data[:max_samples]
     
     return data
 
+print("\n" + "="*50)
+print("Loading data...")
+print("="*50)
 
-def set_seed(seed: int):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
+train_data_raw = load_spatial_data(args.train_data_file_path, args.max_samples)
+test_data_raw = load_spatial_data(args.test_data_file_path, min(1000, len(train_data_raw)//10))
 
+print(f"Train samples: {len(train_data_raw)}")
+print(f"Test samples: {len(test_data_raw)}")
 
-def load_hooked_transformer(
-    model_path: str,
-    device: str = "cuda",
-    dtype: torch.dtype = torch.float16
-) -> HookedTransformer:
+# =========================
+# 激活收集（关键步骤）
+# =========================
+def collect_mlp_activations(
+    model: HookedTransformer,
+    data: List[Dict],
+    layer_idx: int,
+    hook_point: str = "hook_mlp_out",
+) -> Tuple[torch.Tensor, np.ndarray]:
     """
-    Load HookedTransformer from either official model name or local path.
+    收集指定 layer 的 MLP 激活
     
-    For local paths, this function:
-    1. Loads the model using transformers
-    2. Converts it to HookedTransformer with the appropriate official name
-    
-    Args:
-        model_path: Official model name (e.g., "Qwen/Qwen2.5-7B-Instruct") 
-                    or local path (e.g., "/path/to/model")
-        device: Device to load model on
-        dtype: Data type for model weights
-    
-    Returns:
-        HookedTransformer instance
+    返回：
+        activations: [N, d_mlp] tensor
+        targets: [N, 3] array (spatial targets)
     """
-    import os
+    activations = []
+    targets = []
     
-    # Check if it's a local path
-    is_local = os.path.exists(model_path) and os.path.isdir(model_path)
-    
-    if is_local:
-        print(f"Loading model from local path: {model_path}")
+    for sample in tqdm(data, desc=f"Collecting Layer {layer_idx} {hook_point}"):
+        prompt = sample["question"]
+        target = np.array(sample["target"])
         
-        # Load with transformers first
-        hf_model = AutoModelForCausalLM.from_pretrained(
-            model_path,
-            torch_dtype=dtype,
-            trust_remote_code=True
-        )
-        hf_model = hf_model.to(device)
+        tokens = model.to_tokens(prompt, truncate=True)
         
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_path,
-            trust_remote_code=True
-        )
-        
-        # Infer official model name from local path or config
-        # Try to read from config.json
-        config_path = os.path.join(model_path, "config.json")
-        official_name = None
-        if os.path.exists(config_path):
-            with open(config_path, "r") as f:
-                config = json.load(f)
-                # Common fields that might contain the model name
-                for key in ["_name_or_path", "model_type", "architectures"]:
-                    if key in config:
-                        value = config[key]
-                        if isinstance(value, list):
-                            value = value[0] if value else None
-                        if value and ("qwen" in value.lower() or "Qwen" in value):
-                            # Try to construct official name
-                            if "2.5" in model_path and "7B" in model_path:
-                                if "Instruct" in model_path or "instruct" in model_path:
-                                    official_name = "Qwen/Qwen2.5-7B-Instruct"
-                                else:
-                                    official_name = "Qwen/Qwen2.5-7B"
-                            break
-        
-        # Fallback: try to infer from path
-        if official_name is None:
-            path_lower = model_path.lower()
-            if "qwen2.5" in path_lower or "qwen-2.5" in path_lower:
-                if "7b" in path_lower:
-                    official_name = "Qwen/Qwen2.5-7B-Instruct" if "instruct" in path_lower else "Qwen/Qwen2.5-7B"
-                elif "14b" in path_lower:
-                    official_name = "Qwen/Qwen2.5-14B-Instruct" if "instruct" in path_lower else "Qwen/Qwen2.5-14B"
-                elif "3b" in path_lower:
-                    official_name = "Qwen/Qwen2.5-3B-Instruct" if "instruct" in path_lower else "Qwen/Qwen2.5-3B"
-            elif "qwen2" in path_lower:
-                if "7b" in path_lower:
-                    official_name = "Qwen/Qwen2-7B-Instruct" if "instruct" in path_lower else "Qwen/Qwen2-7B"
-        
-        if official_name is None:
-            raise ValueError(
-                f"Could not infer official model name from local path: {model_path}\n"
-                f"Please use an official model name instead, or ensure the path contains model info."
+        with torch.no_grad():
+            _, cache = model.run_with_cache(
+                tokens,
+                names_filter=f"blocks.{layer_idx}.{hook_point}"
             )
         
-        print(f"Converting to HookedTransformer (using official name: {official_name})...")
-        model = HookedTransformer.from_pretrained(
-            official_name,
-            hf_model=hf_model,
-            tokenizer=tokenizer,
-            dtype=dtype,
-            device=device,
-            fold_ln=False,
-            center_writing_weights=False,
-            center_unembed=False,
-            fold_value_biases=False,
-        )
-    else:
-        # Load directly from official name
-        print(f"Loading model from HuggingFace: {model_path}")
-        model = HookedTransformer.from_pretrained(
-            model_path,
-            device=device,
-            dtype=dtype,
-        )
+        # 取最后一个 token 的激活（与 probe 一致）
+        mlp_out = cache[f"blocks.{layer_idx}.{hook_point}"][0, -1]
+        
+        activations.append(mlp_out.float().cpu())
+        targets.append(target)
     
-    model.eval()
-    return model
+    return torch.stack(activations), np.stack(targets)
 
+print("\n" + "="*50)
+print(f"Collecting MLP activations from Layer {LAYER_IDX}...")
+print("="*50)
 
-# --------------------------
-# SAE Model
-# --------------------------
-class SparseAutoencoder(nn.Module):
-    """
-    SAE: x -> h = ReLU(W_enc x + b_enc)
-         x_hat = W_dec h + b_dec
+X_train, Y_train = collect_mlp_activations(model, train_data_raw, LAYER_IDX)
+X_test, Y_test = collect_mlp_activations(model, test_data_raw, LAYER_IDX)
 
-    Loss = MSE(x_hat, x) + l1_coef * mean(|h|)
-    """
-    def __init__(self, d_in: int, n_features: int):
-        super().__init__()
-        self.d_in = d_in
-        self.n_features = n_features
+print(f"Train activations shape: {X_train.shape}")
+print(f"Test activations shape: {X_test.shape}")
 
-        self.W_enc = nn.Parameter(torch.empty(n_features, d_in))
-        self.b_enc = nn.Parameter(torch.zeros(n_features))
+# 保存激活统计
+act_stats = {
+    'mean': X_train.mean(dim=0).cpu().numpy().tolist(),
+    'std': X_train.std(dim=0).cpu().numpy().tolist(),
+    'norm_mean': X_train.norm(dim=-1).mean().item(),
+    'norm_std': X_train.norm(dim=-1).std().item(),
+}
+with open(exp_dir / 'activation_stats.json', 'w') as f:
+    json.dump(act_stats, f, indent=2)
 
-        self.W_dec = nn.Parameter(torch.empty(d_in, n_features))
-        self.b_dec = nn.Parameter(torch.zeros(d_in))
+# =========================
+# 初始化 SAE
+# =========================
+print("\n" + "="*50)
+print("Initializing SAE...")
+print("="*50)
+print(f"d_in: {d_mlp}")
+print(f"n_features: {N_FEATURES}")
+print(f"l1_coefficient: {L1_COEFF}")
+print(f"expansion_factor: {N_FEATURES / d_mlp:.2f}x")
 
-        self.reset_parameters()
+sae = SparseAutoencoder(
+    d_in=d_mlp,
+    n_features=N_FEATURES,
+    l1_coefficient=L1_COEFF,
+    dtype=torch.float32,
+).to(DEVICE)
 
-    def reset_parameters(self):
-        # Kaiming init for encoder; decoder small init
-        nn.init.kaiming_uniform_(self.W_enc, a=math.sqrt(5))
-        nn.init.normal_(self.W_dec, std=0.02)
-        nn.init.zeros_(self.b_enc)
-        nn.init.zeros_(self.b_dec)
-
-    def encode(self, x: torch.Tensor) -> torch.Tensor:
-        # x: [B, d_in]
-        h = F.relu(F.linear(x, self.W_enc, self.b_enc))  # [B, n_features]
-        return h
-
-    def decode(self, h: torch.Tensor) -> torch.Tensor:
-        x_hat = F.linear(h, self.W_dec, self.b_dec)      # [B, d_in]
-        return x_hat
-
-    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        h = self.encode(x)
-        x_hat = self.decode(h)
-        return x_hat, h
-
-
-# --------------------------
-# Token index strategies
-# --------------------------
-def _find_token_subseq(tokens_1d: torch.Tensor, subseq_1d: torch.Tensor) -> Optional[int]:
-    """
-    Find first occurrence of subseq in tokens_1d.
-    Return start index or None.
-    """
-    if subseq_1d.numel() == 0 or tokens_1d.numel() < subseq_1d.numel():
-        return None
-    # naive scan (fine for short subseq)
-    for i in range(tokens_1d.numel() - subseq_1d.numel() + 1):
-        if torch.equal(tokens_1d[i:i + subseq_1d.numel()], subseq_1d):
-            return int(i)
-    return None
-
-
-def pick_token_index(
-    model: HookedTransformer,
-    tokens: torch.Tensor,                 # [B, T]
-    prompts: List[str],
-    strategy: str = "last"
-) -> torch.Tensor:
-    """
-    Return idx: [B] token positions to read activations from.
-    strategy:
-      - "last": last non-pad token
-      - "question_mark": token right before the first "?" (or the "?" token if not found)
-      - "answer_prefix": token right before the substring "Answer:" (or last if not found)
-    """
-    B, T = tokens.shape
-    pad_id = model.tokenizer.pad_token_id
-    if pad_id is None:
-        # Qwen tokenizer may not set pad; TransformerLens usually pads with 0.
-        pad_id = 0
-
-    idx = torch.zeros(B, dtype=torch.long, device=tokens.device)
-
-    if strategy == "last":
-        # last non-pad token
-        for b in range(B):
-            row = tokens[b]
-            nonpad = (row != pad_id).nonzero(as_tuple=False)
-            idx[b] = nonpad[-1].item() if nonpad.numel() > 0 else T - 1
-        return idx
-
-    # Pre-tokenize markers once (as token subsequences)
-    if strategy == "question_mark":
-        marker_text = "?"
-    elif strategy == "answer_prefix":
-        marker_text = "Answer:"
-    else:
-        raise ValueError(f"Unknown token_strategy: {strategy}")
-
-    marker_ids = model.to_tokens(marker_text, prepend_bos=False).squeeze(0)  # [m]
-    marker_ids = marker_ids.to(tokens.device)
-
-    for b in range(B):
-        row = tokens[b]
-        # remove pads for searching
-        nonpad = (row != pad_id).nonzero(as_tuple=False)
-        if nonpad.numel() == 0:
-            idx[b] = T - 1
-            continue
-        end = nonpad[-1].item() + 1
-        row_np = row[:end]
-
-        start = _find_token_subseq(row_np, marker_ids)
-        if start is None:
-            idx[b] = end - 1
-        else:
-            if strategy == "question_mark":
-                # choose token index = position of "?" token (or the token just before it, as you used in probing)
-                q_pos = start  # where "?" begins
-                idx[b] = max(q_pos, 0)
-            else:
-                # choose token right before "Answer:" begins
-                idx[b] = max(start - 1, 0)
-
-    return idx
-
-
-# --------------------------
-# Activation extraction
-# --------------------------
-@torch.no_grad()
-def get_layer_mlp_out_activations(
-    model: HookedTransformer,
-    prompts: List[str],
-    layer: int,
-    token_strategy: str,
-    max_prompt_tokens: int
-) -> torch.Tensor:
-    """
-    Returns activations: [B, d_mlp_out] where d_mlp_out == d_model
-    For hook_mlp_out in TransformerLens, tensor is [B, T, d_model]
-    We'll select one token per prompt according to token_strategy.
-    """
-    tokens = model.to_tokens(prompts, truncate=True)  # [B, T]
-    if tokens.shape[1] > max_prompt_tokens:
-        tokens = tokens[:, :max_prompt_tokens]
-
-    hook = f"blocks.{layer}.hook_mlp_out"
-    _, cache = model.run_with_cache(tokens, names_filter=hook)
-
-    acts = cache[hook]  # [B, T, d_model]
-    idx = pick_token_index(model, tokens, prompts, strategy=token_strategy)  # [B]
-    # gather: acts[b, idx[b], :]
-    B = acts.shape[0]
-    gathered = acts[torch.arange(B, device=acts.device), idx, :]  # [B, d_model]
-    return gathered
-
-
-# --------------------------
-# Train / Eval
-# --------------------------
-def batch_iter(data: List[Dict[str, Any]], batch_size: int, shuffle: bool = True):
-    idxs = list(range(len(data)))
-    if shuffle:
-        random.shuffle(idxs)
-    for i in range(0, len(idxs), batch_size):
-        batch = [data[j] for j in idxs[i:i + batch_size]]
-        yield batch
-
-
-def save_checkpoint(out_dir: str, sae: SparseAutoencoder, cfg: TrainConfig, step: int):
-    os.makedirs(out_dir, exist_ok=True)
-    ckpt = {
-        "step": step,
-        "cfg": asdict(cfg),
-        "state_dict": sae.state_dict(),
-    }
-    path = os.path.join(out_dir, f"sae_step_{step}.pt")
-    torch.save(ckpt, path)
-
-
-@torch.no_grad()
-def eval_recon(
-    model: HookedTransformer,
+# =========================
+# 训练 SAE
+# =========================
+def train_sae(
     sae: SparseAutoencoder,
-    data: List[Dict[str, Any]],
-    cfg: TrainConfig,
-    n_batches: int = 20
-) -> Dict[str, float]:
-    sae.eval()
-    losses = []
-    sparsities = []
-    it = batch_iter(data, cfg.batch_size, shuffle=True)
-    for _ in range(n_batches):
-        try:
-            batch = next(it)
-        except StopIteration:
-            break
-        prompts = [x["prompt"] for x in batch]
-        x = get_layer_mlp_out_activations(
-            model, prompts, cfg.layer, cfg.token_strategy, cfg.max_prompt_tokens
-        ).float()  # [B, d_model] fp32
-        x_hat, h = sae(x)
-        mse = F.mse_loss(x_hat, x).item()
-        l1 = h.abs().mean().item()
-        losses.append(mse)
-        sparsities.append(l1)
-    return {
-        "mse": float(np.mean(losses)) if losses else float("nan"),
-        "mean_abs_h": float(np.mean(sparsities)) if sparsities else float("nan"),
+    X_train: torch.Tensor,
+    X_test: torch.Tensor,
+    batch_size: int,
+    lr: float,
+    num_epochs: int,
+) -> Dict:
+    """训练 SAE 并返回训练历史"""
+    
+    optimizer = torch.optim.Adam(sae.parameters(), lr=lr)
+    
+    n_samples = X_train.shape[0]
+    n_batches = (n_samples + batch_size - 1) // batch_size
+    
+    history = {
+        'train_loss': [],
+        'train_mse': [],
+        'train_l1': [],
+        'train_l0': [],
+        'train_cos_sim': [],
+        'test_loss': [],
+        'test_mse': [],
+        'test_l1': [],
+        'test_l0': [],
+        'test_cos_sim': [],
     }
-
-
-@torch.no_grad()
-def feature_top_examples(
-    model: HookedTransformer,
-    sae: SparseAutoencoder,
-    data: List[Dict[str, Any]],
-    cfg: TrainConfig,
-    feature_id: int,
-    top_k: int = 10,
-    sample_n: int = 2000
-) -> List[Tuple[float, str]]:
-    """
-    Return top-k prompts with highest activation on a given feature.
-    """
-    sae.eval()
-    sample = data if len(data) <= sample_n else random.sample(data, sample_n)
-    scored = []
-    for batch in batch_iter(sample, cfg.batch_size, shuffle=False):
-        prompts = [x["prompt"] for x in batch]
-        x = get_layer_mlp_out_activations(
-            model, prompts, cfg.layer, cfg.token_strategy, cfg.max_prompt_tokens
-        ).float()
-        h = sae.encode(x)  # [B, n_features]
-        vals = h[:, feature_id].detach().cpu().numpy().tolist()
-        for v, p in zip(vals, prompts):
-            scored.append((float(v), p))
-    scored.sort(key=lambda t: t[0], reverse=True)
-    return scored[:top_k]
-
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", type=str, required=True)
-    parser.add_argument("--data_path", type=str, required=True, help="JSONL file with {\"prompt\": ...}")
-    parser.add_argument("--out_dir", type=str, required=True)
-
-    parser.add_argument("--layer", type=int, default=8)
-    parser.add_argument("--token_strategy", type=str, default="last",
-                        choices=["last", "question_mark", "answer_prefix"])
-
-    parser.add_argument("--n_features", type=int, default=4096)
-    parser.add_argument("--l1_coef", type=float, default=3e-4)
-    parser.add_argument("--lr", type=float, default=2e-4)
-    parser.add_argument("--weight_decay", type=float, default=0.0)
-    parser.add_argument("--batch_size", type=int, default=4)
-    parser.add_argument("--max_steps", type=int, default=5000)
-    parser.add_argument("--log_every", type=int, default=50)
-    parser.add_argument("--eval_every", type=int, default=500)
-    parser.add_argument("--max_prompt_tokens", type=int, default=2048)
-    parser.add_argument("--grad_clip", type=float, default=1.0)
-    parser.add_argument("--seed", type=int, default=42)
-    args = parser.parse_args()
-
-    cfg = TrainConfig(
-        model_path=args.model_path,
-        data_path=args.data_path,
-        out_dir=args.out_dir,
-        layer=args.layer,
-        token_strategy=args.token_strategy,
-        n_features=args.n_features,
-        l1_coef=args.l1_coef,
-        lr=args.lr,
-        weight_decay=args.weight_decay,
-        batch_size=args.batch_size,
-        max_steps=args.max_steps,
-        log_every=args.log_every,
-        eval_every=args.eval_every,
-        max_prompt_tokens=args.max_prompt_tokens,
-        grad_clip=args.grad_clip,
-        seed=args.seed,
-    )
-
-    set_seed(cfg.seed)
-    os.makedirs(cfg.out_dir, exist_ok=True)
-
-    # Load data
-    data = load_jsonl(cfg.data_path)
-    if len(data) < 10:
-        raise ValueError("Dataset too small. Provide at least ~hundreds prompts for SAE training.")
-    # Split train/val
-    random.shuffle(data)
-    split = int(0.95 * len(data))
-    train_data = data[:split]
-    val_data = data[split:]
-
-    # Load model
-    print(f"Loading HookedTransformer from: {cfg.model_path}")
-    model = load_hooked_transformer(
-        cfg.model_path,
-        device=cfg.device,
-        dtype=getattr(torch, cfg.dtype),
-    )
-
-    d_model = model.cfg.d_model
-    print(f"Model d_model={d_model}, n_layers={model.cfg.n_layers}")
-    print(f"Training SAE on blocks.{cfg.layer}.hook_mlp_out, token_strategy={cfg.token_strategy}")
-
-    # SAE
-    sae = SparseAutoencoder(d_in=d_model, n_features=cfg.n_features).to(cfg.device)
-    opt = AdamW(sae.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay)
-
-    # Save config
-    with open(os.path.join(cfg.out_dir, "train_config.json"), "w", encoding="utf-8") as f:
-        json.dump(asdict(cfg), f, indent=2, ensure_ascii=False)
-
-    sae.train()
-    pbar = tqdm(range(1, cfg.max_steps + 1), desc="SAE training")
-    train_iter = batch_iter(train_data, cfg.batch_size, shuffle=True)
-
-    for step in pbar:
-        try:
-            batch = next(train_iter)
-        except StopIteration:
-            train_iter = batch_iter(train_data, cfg.batch_size, shuffle=True)
-            batch = next(train_iter)
-
-        prompts = [x["prompt"] for x in batch]
-
-        # Extract activations (fp32 for stable SAE training)
-        x = get_layer_mlp_out_activations(
-            model, prompts, cfg.layer, cfg.token_strategy, cfg.max_prompt_tokens
-        ).float()  # [B, d_model]
-
-        x_hat, h = sae(x)
-        mse = F.mse_loss(x_hat, x)
-        l1 = h.abs().mean()
-        loss = mse + cfg.l1_coef * l1
-
-        opt.zero_grad(set_to_none=True)
-        loss.backward()
-        if cfg.grad_clip is not None and cfg.grad_clip > 0:
-            torch.nn.utils.clip_grad_norm_(sae.parameters(), cfg.grad_clip)
-        opt.step()
-
-        if step % cfg.log_every == 0:
+    
+    print("\n" + "="*50)
+    print("Starting training...")
+    print("="*50)
+    
+    for epoch in range(num_epochs):
+        sae.train()
+        
+        # Shuffle training data
+        perm = torch.randperm(n_samples)
+        X_train_shuffled = X_train[perm]
+        
+        epoch_losses = []
+        epoch_stats = {k: [] for k in ['mse', 'l1', 'l0', 'cos_sim']}
+        
+        pbar = tqdm(range(n_batches), desc=f"Epoch {epoch+1}/{num_epochs}")
+        for i in pbar:
+            start_idx = i * batch_size
+            end_idx = min((i + 1) * batch_size, n_samples)
+            batch = X_train_shuffled[start_idx:end_idx].to(DEVICE)
+            
+            optimizer.zero_grad()
+            loss_dict = sae.loss(batch)
+            loss_dict['total'].backward()
+            optimizer.step()
+            
+            # Normalize decoder (每个 batch 后)
+            sae.normalize_decoder()
+            
+            # 记录
+            epoch_losses.append(loss_dict['total'].item())
+            for k in ['mse', 'l1', 'l0', 'cos_sim']:
+                epoch_stats[k].append(loss_dict[k].item())
+            
+            # 更新进度条
             pbar.set_postfix({
-                "loss": float(loss.item()),
-                "mse": float(mse.item()),
-                "l1": float(l1.item()),
+                'loss': f"{loss_dict['total'].item():.4f}",
+                'L0': f"{loss_dict['l0'].item():.1f}",
             })
+        
+        # Epoch 统计
+        train_loss = np.mean(epoch_losses)
+        train_stats = {k: np.mean(v) for k, v in epoch_stats.items()}
+        
+        # 测试集评估
+        sae.eval()
+        with torch.no_grad():
+            test_batch_size = 256
+            test_losses = []
+            test_stats = {k: [] for k in ['mse', 'l1', 'l0', 'cos_sim']}
+            
+            for i in range(0, X_test.shape[0], test_batch_size):
+                batch = X_test[i:i+test_batch_size].to(DEVICE)
+                loss_dict = sae.loss(batch)
+                test_losses.append(loss_dict['total'].item())
+                for k in ['mse', 'l1', 'l0', 'cos_sim']:
+                    test_stats[k].append(loss_dict[k].item())
+        
+        test_loss = np.mean(test_losses)
+        test_stats_mean = {k: np.mean(v) for k, v in test_stats.items()}
+        
+        # 记录历史
+        history['train_loss'].append(train_loss)
+        history['test_loss'].append(test_loss)
+        for k in ['mse', 'l1', 'l0', 'cos_sim']:
+            history[f'train_{k}'].append(train_stats[k])
+            history[f'test_{k}'].append(test_stats_mean[k])
+        
+        print(f"\nEpoch {epoch+1}/{num_epochs}")
+        print(f"  Train - Loss: {train_loss:.4f}, MSE: {train_stats['mse']:.4f}, "
+              f"L1: {train_stats['l1']:.4f}, L0: {train_stats['l0']:.1f}, "
+              f"CosSim: {train_stats['cos_sim']:.4f}")
+        print(f"  Test  - Loss: {test_loss:.4f}, MSE: {test_stats_mean['mse']:.4f}, "
+              f"L1: {test_stats_mean['l1']:.4f}, L0: {test_stats_mean['l0']:.1f}, "
+              f"CosSim: {test_stats_mean['cos_sim']:.4f}")
+    
+    return history
 
-        if step % cfg.eval_every == 0:
-            metrics = eval_recon(model, sae, val_data, cfg, n_batches=20)
-            print(f"\n[Eval @ step {step}] mse={metrics['mse']:.6f}  mean|h|={metrics['mean_abs_h']:.6f}")
-            save_checkpoint(cfg.out_dir, sae, cfg, step)
+# 开始训练
+history = train_sae(
+    sae=sae,
+    X_train=X_train,
+    X_test=X_test,
+    batch_size=BATCH_SIZE,
+    lr=LR,
+    num_epochs=NUM_EPOCHS,
+)
 
-    # final save
-    save_checkpoint(cfg.out_dir, sae, cfg, cfg.max_steps)
-    print(f"Done. Checkpoints saved under: {cfg.out_dir}")
+# =========================
+# 保存模型和结果
+# =========================
+print("\n" + "="*50)
+print("Saving results...")
+print("="*50)
 
-    # Optional: quick feature inspection demo
-    # Pick a random feature and print its top prompts
-    feat_id = random.randint(0, cfg.n_features - 1)
-    top = feature_top_examples(model, sae, val_data, cfg, feature_id=feat_id, top_k=5, sample_n=2000)
-    print(f"\n[Top prompts for feature {feat_id}]")
-    for score, prompt in top:
-        print(f"  {score:.4f} | {prompt[:120].replace('\\n',' ')}...")
+# 保存 SAE 模型
+torch.save({
+    'model_state_dict': sae.state_dict(),
+    'config': {
+        'd_in': d_mlp,
+        'n_features': N_FEATURES,
+        'l1_coefficient': L1_COEFF,
+        'layer': LAYER_IDX,
+    },
+    'history': history,
+}, exp_dir / 'sae_checkpoint.pt')
 
+# 保存训练历史
+with open(exp_dir / 'training_history.json', 'w') as f:
+    json.dump(history, f, indent=2)
 
-if __name__ == "__main__":
-    main()
+# 保存实验配置
+config = {
+    'model_name': MODEL_NAME,
+    'model_path': MODEL_PATH,
+    'layer': LAYER_IDX,
+    'n_features': N_FEATURES,
+    'l1_coefficient': L1_COEFF,
+    'batch_size': BATCH_SIZE,
+    'lr': LR,
+    'num_epochs': NUM_EPOCHS,
+    'train_samples': len(train_data_raw),
+    'test_samples': len(test_data_raw),
+    'd_mlp': d_mlp,
+    'timestamp': timestamp,
+}
+with open(exp_dir / 'config.json', 'w') as f:
+    json.dump(config, f, indent=2)
+
+print(f"Results saved to: {exp_dir}")
+
+# =========================
+# 可视化训练曲线
+# =========================
+print("\nGenerating plots...")
+
+fig, axes = plt.subplots(2, 3, figsize=(15, 10))
+
+# Loss
+axes[0, 0].plot(history['train_loss'], label='Train')
+axes[0, 0].plot(history['test_loss'], label='Test')
+axes[0, 0].set_xlabel('Epoch')
+axes[0, 0].set_ylabel('Total Loss')
+axes[0, 0].set_title('Total Loss')
+axes[0, 0].legend()
+axes[0, 0].grid(True, alpha=0.3)
+
+# MSE
+axes[0, 1].plot(history['train_mse'], label='Train')
+axes[0, 1].plot(history['test_mse'], label='Test')
+axes[0, 1].set_xlabel('Epoch')
+axes[0, 1].set_ylabel('MSE')
+axes[0, 1].set_title('Reconstruction MSE')
+axes[0, 1].legend()
+axes[0, 1].grid(True, alpha=0.3)
+
+# L1
+axes[0, 2].plot(history['train_l1'], label='Train')
+axes[0, 2].plot(history['test_l1'], label='Test')
+axes[0, 2].set_xlabel('Epoch')
+axes[0, 2].set_ylabel('L1')
+axes[0, 2].set_title('L1 Sparsity Loss')
+axes[0, 2].legend()
+axes[0, 2].grid(True, alpha=0.3)
+
+# L0 (sparsity)
+axes[1, 0].plot(history['train_l0'], label='Train')
+axes[1, 0].plot(history['test_l0'], label='Test')
+axes[1, 0].set_xlabel('Epoch')
+axes[1, 0].set_ylabel('L0 (# active features)')
+axes[1, 0].set_title('Sparsity (L0)')
+axes[1, 0].legend()
+axes[1, 0].grid(True, alpha=0.3)
+
+# Cosine Similarity
+axes[1, 1].plot(history['train_cos_sim'], label='Train')
+axes[1, 1].plot(history['test_cos_sim'], label='Test')
+axes[1, 1].set_xlabel('Epoch')
+axes[1, 1].set_ylabel('Cosine Similarity')
+axes[1, 1].set_title('Reconstruction Similarity')
+axes[1, 1].legend()
+axes[1, 1].grid(True, alpha=0.3)
+axes[1, 1].set_ylim([0, 1])
+
+# 最终结果总结
+final_stats_text = f"""Final Results (Epoch {NUM_EPOCHS}):
+
+Train:
+  Loss: {history['train_loss'][-1]:.4f}
+  MSE: {history['train_mse'][-1]:.4f}
+  L0: {history['train_l0'][-1]:.1f}
+  CosSim: {history['train_cos_sim'][-1]:.4f}
+
+Test:
+  Loss: {history['test_loss'][-1]:.4f}
+  MSE: {history['test_mse'][-1]:.4f}
+  L0: {history['test_l0'][-1]:.1f}
+  CosSim: {history['test_cos_sim'][-1]:.4f}
+"""
+axes[1, 2].text(0.1, 0.5, final_stats_text, fontsize=10, family='monospace',
+                verticalalignment='center')
+axes[1, 2].axis('off')
+
+plt.tight_layout()
+plt.savefig(exp_dir / 'training_curves.png', dpi=150)
+print(f"Plots saved to: {exp_dir / 'training_curves.png'}")
+
+# =========================
+# 最终总结
+# =========================
+print("\n" + "="*50)
+print("TRAINING COMPLETE")
+print("="*50)
+print(f"\nExperiment: {exp_name}")
+print(f"Directory: {exp_dir}")
+print(f"\nFinal Test Results:")
+print(f"  Reconstruction MSE: {history['test_mse'][-1]:.4f}")
+print(f"  Sparsity (L0): {history['test_l0'][-1]:.1f} / {N_FEATURES} features")
+print(f"  Cosine Similarity: {history['test_cos_sim'][-1]:.4f}")
+print(f"\nSparsity: {100 * history['test_l0'][-1] / N_FEATURES:.1f}% features active")
+print("\n下一步：运行 analyze_features.py 来分析学到的 features")
+print("="*50)
 
