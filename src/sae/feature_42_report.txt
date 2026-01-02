@@ -1,0 +1,212 @@
+Feature 42 Analysis
+================================================================================
+
+Statistics:
+  - Number of top examples: 20
+  - Average sentences: 7.5
+  - Average entities: 15.1
+
+Common relations:
+  - left: 30
+  - is left of: 30
+  - above: 24
+  - is above of: 24
+  - below: 23
+  - right: 23
+  - is below of: 23
+  - is right of: 23
+  - behind: 20
+  - is behind of: 20
+
+Top examples:
+
+1. Score: 0.0000
+   B is below of A.
+C is right of B.
+D is right of A.
+E is left of D.
+Where is A relative to E?
+
+2. Score: 0.0000
+   B is left of A.
+C is left of A.
+D is right of A.
+E is above of D.
+Where is E relative to A?
+
+3. Score: 0.0000
+   B is right of A.
+C is above of B.
+D is left of B.
+E is below of B.
+F is front of D.
+G is right of D.
+Where is G relative to A?
+
+4. Score: 0.0000
+   B is left of A.
+C is left of B.
+D is front of B.
+E is left of C.
+F is above of D.
+G is behind of A.
+H is above of A.
+I is below of D.
+Where is A relative to I?
+
+5. Score: 0.0000
+   B is below of A.
+C is left of A.
+D is right of C.
+E is left of C.
+F is left of B.
+G is front of D.
+H is below of D.
+I is front of H.
+Where is I relative to A?
+
+6. Score: 0.0000
+   B is below of A.
+C is below of B.
+D is below of C.
+E is above of A.
+F is above of B.
+G is right of F.
+H is behind of B.
+I is front of E.
+Where is A relative to I?
+
+7. Score: 0.0000
+   B is left of A.
+C is left of A.
+D is behind of B.
+E is left of C.
+F is above of B.
+G is right of D.
+Where is A relative to G?
+
+8. Score: 0.0000
+   B is right of A.
+C is right of B.
+D is below of A.
+E is below of C.
+F is behind of E.
+G is behind of E.
+H is right of C.
+I is above of C.
+J is left of I.
+Where is A relative to J?
+
+9. Score: 0.0000
+   B is below of A.
+C is below of A.
+D is above of B.
+E is behind of B.
+Where is E relative to A?
+
+10. Score: 0.0000
+   B is above of A.
+C is below of A.
+D is left of C.
+E is below of C.
+F is left of C.
+G is behind of C.
+H is behind of B.
+I is below of A.
+J is above of E.
+K is above of D.
+Where is A relative to K?
+
+11. Score: 0.0000
+   B is right of A.
+C is right of B.
+D is above of C.
+E is above of A.
+F is behind of C.
+G is left of A.
+H is front of D.
+Where is H relative to A?
+
+12. Score: 0.0000
+   B is left of A.
+C is left of B.
+D is right of C.
+E is below of B.
+F is above of D.
+G is front of C.
+Where is A relative to G?
+
+13. Score: 0.0000
+   B is above of A.
+C is below of A.
+D is behind of B.
+E is behind of C.
+F is behind of E.
+G is right of A.
+H is left of B.
+I is left of F.
+J is above of E.
+Where is J relative to A?
+
+14. Score: 0.0000
+   B is right of A.
+C is left of A.
+D is left of B.
+E is right of D.
+Where is E relative to A?
+
+15. Score: 0.0000
+   B is above of A.
+C is below of A.
+D is above of C.
+E is right of D.
+F is behind of D.
+G is left of B.
+H is below of A.
+I is front of G.
+J is behind of G.
+K is below of I.
+Where is K relative to A?
+
+16. Score: 0.0000
+   B is behind of A.
+C is left of B.
+D is right of A.
+E is above of B.
+Where is E relative to A?
+
+17. Score: 0.0000
+   B is front of A.
+C is right of B.
+D is behind of A.
+E is left of A.
+F is left of E.
+G is right of A.
+H is behind of B.
+I is behind of H.
+J is behind of E.
+Where is A relative to J?
+
+18. Score: 0.0000
+   B is left of A.
+C is front of B.
+D is front of B.
+E is below of D.
+F is right of E.
+Where is F relative to A?
+
+19. Score: 0.0000
+   B is above of A.
+C is below of A.
+D is left of B.
+E is above of A.
+F is above of D.
+G is right of F.
+Where is G relative to A?
+
+20. Score: 0.0000
+   B is left of A.
+C is below of A.
+D is behind of A.
+E is above of B.
+Where is E relative to A?
