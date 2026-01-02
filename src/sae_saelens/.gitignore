@@ -1,0 +1,46 @@
+# SAELens 实验输出
+
+# 结果目录
+sae_results/
+analysis/
+
+# 模型 checkpoints
+*.pt
+*.pth
+*.ckpt
+
+# 数据文件
+*.npz
+*.npy
+
+# 日志
+*.log
+wandb/
+
+# 图片
+*.png
+!example_*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
