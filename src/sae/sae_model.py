@@ -94,3 +94,4 @@ class SparseAutoencoder(torch.nn.Module):
             'cos_sim': cos_sim,
         }
 
+
