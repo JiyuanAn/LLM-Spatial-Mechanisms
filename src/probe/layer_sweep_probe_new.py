@@ -13,11 +13,6 @@ from sklearn.metrics import r2_score
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformer_lens import HookedTransformer
 
-# MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
-# TRAIN_DATA_FILE_PATH = "../dataGenerate/spatial_reasoning_dataset_ZH.json"
-# TEST_DATA_FILE_PATH = "../dataGenerate/spatial_reasoning_dataset_ZH_test.json"
-# OUTPUT_FILE_PATH = f"probe_results_{time.strftime('%Y%m%d_%H%M%S')}.json"
-
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_name", "-m", type=str)
 parser.add_argument("--train_data_file_path", "-tr", type=str)
@@ -150,51 +145,10 @@ d_model = model.cfg.d_model
 print(f"Loaded model with {n_layers} layers, d_model={d_model}")
 
 # =========================
-# 3. 示例数据（请替换为你自己的）
+# 3. 加载数据
 # =========================
-# 假设你已经有 train / test 数据
-# target 是三维向量：[x, y, z]
-# x: left (-1) / right (+1)
-# y: below (-1) / above (+1)
-# z: behind (-1) / front (+1)
-# train_data = [
-#     {
-#         "prompt": "A is left of B. B is above C. Where is A relative to C?",
-#         "target": np.array([-1.0, 1.0, 0.0])
-#     },
-#     {
-#         "prompt": "A is right of B. B is below C. Where is A relative to C?",
-#         "target": np.array([1.0, -1.0, 0.0])
-#     },
-#     {
-#         "prompt": "A is above B. B is left of C. Where is A relative to C?",
-#         "target": np.array([-1.0, 1.0, 0.0])
-#     },
-#     {
-#         "prompt": "A is below B. B is right of C. Where is A relative to C?",
-#         "target": np.array([1.0, -1.0, 0.0])
-#     },
-#     {
-#         "prompt": "A is front of B. B is above C. Where is A relative to C?",
-#         "target": np.array([0.0, 1.0, 1.0])
-#     },
-#     {
-#         "prompt": "A is behind B. B is below C. Where is A relative to C?",
-#         "target": np.array([0.0, -1.0, -1.0])
-#     },
-#     {
-#         "prompt": "A is left of B. B is front of C. Where is A relative to C?",
-#         "target": np.array([-1.0, 0.0, 1.0])
-#     },
-#     {
-#         "prompt": "A is right of B. B is behind C. Where is A relative to C?",
-#         "target": np.array([1.0, 0.0, -1.0])
-#     },
-# ]
-
-# test_data = train_data  # demo 用，真实实验请分开
-
 import json
+
 train_data = []
 with open(TRAIN_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
