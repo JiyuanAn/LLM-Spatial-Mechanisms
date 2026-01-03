@@ -1,0 +1,41 @@
+============================================================
+Gradient-Based Feature Attribution (grad_x_act)
+============================================================
+
+Model: Qwen/Qwen2.5-7B-Instruct
+Layer: 18
+Eval samples: 100
+Accuracy: 0.4800
+
+============================================================
+Top 20 Most Important Features:
+============================================================
+ 1. Feature    0: 0.000000
+ 2. Feature    1: 0.000000
+ 3. Feature    2: 0.000000
+ 4. Feature    3: 0.000000
+ 5. Feature    4: 0.000000
+ 6. Feature    5: 0.000000
+ 7. Feature    6: 0.000000
+ 8. Feature    7: 0.000000
+ 9. Feature    8: 0.000000
+10. Feature    9: 0.000000
+11. Feature   10: 0.000000
+12. Feature   11: 0.000000
+13. Feature   12: 0.000000
+14. Feature   13: 0.000000
+15. Feature   14: 0.000000
+16. Feature   15: 0.000000
+17. Feature   16: 0.000000
+18. Feature   17: 0.000000
+19. Feature   18: 0.000000
+20. Feature   19: 0.000000
+
+============================================================
+Comparison with Spatial Features:
+============================================================
+Spatial features: 160
+Mean attribution (spatial): 0.000000
+Mean attribution (non-spatial): 0.000000
+Ratio: 0.00x
+Overlap with top-160: 0 (0.0%)

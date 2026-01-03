@@ -197,69 +197,39 @@ if args.max_samples:
 
 print(f"Loaded {len(eval_data)} samples")
 
-# 定义答案的关键词
-ANSWER_KEYWORDS = ['left', 'right', 'above', 'below', 'front', 'behind']
-
-# 尝试编码每个关键词（处理可能的编码错误）
-ANSWER_TOKENS = {}
-for word in ANSWER_KEYWORDS:
+# 编码选项字母 A, B, C, D
+OPTION_TOKENS = {}
+for option in ['A', 'B', 'C', 'D']:
     try:
-        tokens = tokenizer.encode(word, add_special_tokens=False)
+        tokens = tokenizer.encode(option, add_special_tokens=False)
         if len(tokens) > 0:
-            ANSWER_TOKENS[word] = tokens[0]
+            OPTION_TOKENS[option] = tokens[0]
     except Exception as e:
-        print(f"Warning: Failed to encode '{word}': {e}")
+        print(f"Warning: Failed to encode '{option}': {e}")
 
-print(f"\nAnswer token IDs ({len(ANSWER_TOKENS)} words):")
-for ans, tok_id in ANSWER_TOKENS.items():
-    print(f"  {ans}: {tok_id}")
+print(f"\nOption token IDs:")
+for opt, tok_id in OPTION_TOKENS.items():
+    print(f"  {opt}: {tok_id}")
 
 # =========================
 # 评估函数
 # =========================
-def extract_primary_direction(answer_text):
-    """
-    从复杂答案中提取主要方向
-    例如: "above (2 steps)" -> "above"
-          "above and front (2 steps)" -> "above" (第一个方向)
-          "left" -> "left"
-    """
-    answer_text = answer_text.lower().strip()
-    
-    # 移除括号内容
-    import re
-    answer_text = re.sub(r'\([^)]*\)', '', answer_text).strip()
-    
-    # 查找第一个匹配的方向词
-    for keyword in ANSWER_KEYWORDS:
-        if keyword in answer_text:
-            return keyword
-    
-    # 如果没找到，返回原始文本的第一个词
-    words = answer_text.split()
-    if words:
-        return words[0]
-    
-    return answer_text
-
 def evaluate_with_ablation(model, data, ablator=None, desc="Eval"):
     """
     评估模型在 ablation 条件下的表现
     
     使用简化的方法：
-    - 在最后一个 token 的 logits 上预测
-    - 选择最高概率的空间答案
+    - 在最后一个 token 的 logits 上预测选项字母 (A/B/C/D)
+    - 直接与 correct_option 字段比较
     """
     correct = 0
     total = 0
     results_detail = []
     
     for sample in tqdm(data, desc=desc):
-        prompt = sample["question"]
-        gt_answer_raw = sample["answer"]
-        
-        # 提取主要方向（处理复杂答案格式）
-        gt_answer = extract_primary_direction(gt_answer_raw)
+        prompt = sample["prompt"]
+        correct_option = sample["correct_option"]  # 正确答案的字母 (A/B/C/D)
+        answer_text = sample["answer"]  # 答案文本 (用于记录)
         
         # Tokenize
         tokens = model.to_tokens(prompt, truncate=True)
@@ -276,29 +246,32 @@ def evaluate_with_ablation(model, data, ablator=None, desc="Eval"):
         # Get last token logits
         last_logits = logits[0, -1, :]
         
-        # Extract logits for spatial answers
-        answer_probs = {}
-        for ans, tok_id in ANSWER_TOKENS.items():
-            answer_probs[ans] = last_logits[tok_id].item()
+        # Extract logits for option letters (A/B/C/D)
+        option_logits = {}
+        for opt, tok_id in OPTION_TOKENS.items():
+            option_logits[opt] = last_logits[tok_id].item()
         
-        # Predict: argmax over spatial answers
-        pred_answer = max(answer_probs, key=answer_probs.get)
-        print(f"Predicted answer: {pred_answer}")
-        print(f"Ground truth answer: {gt_answer}")
+        # Predict: argmax over options
+        pred_option = max(option_logits, key=option_logits.get)
         
-        # Check correctness
-        is_correct = (pred_answer == gt_answer)
+        # Check correctness (直接比较选项字母)
+        is_correct = (pred_option == correct_option)
         if is_correct:
             correct += 1
         total += 1
         
+        print(f"\nCorrect option: {correct_option} ({answer_text})")
+        print(f"Predicted option: {pred_option}")
+        print(f"Option logits: {option_logits}")
+        print(f"Result: {'✓ Correct' if is_correct else '✗ Wrong'}")
+        
         results_detail.append({
             'prompt': prompt,
-            'ground_truth': gt_answer,
-            'ground_truth_raw': gt_answer_raw,
-            'prediction': pred_answer,
+            'correct_option': correct_option,
+            'predicted_option': pred_option,
+            'answer_text': answer_text,
             'correct': is_correct,
-            'answer_logits': answer_probs,
+            'option_logits': option_logits,
         })
     
     accuracy = correct / total if total > 0 else 0.0
