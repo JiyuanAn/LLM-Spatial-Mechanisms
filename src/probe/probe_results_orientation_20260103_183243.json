@@ -1,0 +1,218 @@
+{
+  "model_name": "Qwen/Qwen2.5-7B-Instruct",
+  "model_path": "/home/s202507009/workspace/LLMs/Qwen2.5/Qwen2.5-7B-Instruct",
+  "n_layers": 28,
+  "d_model": 3584,
+  "train_samples": 100,
+  "test_samples": 100,
+  "ridge_alpha": 1.0,
+  "layer_results": [
+    {
+      "layer": 0,
+      "r2": 0.050235360860824585,
+      "accuracy": 0.36,
+      "correct": 36,
+      "total": 100
+    },
+    {
+      "layer": 1,
+      "r2": 0.09795281291007996,
+      "accuracy": 0.44,
+      "correct": 44,
+      "total": 100
+    },
+    {
+      "layer": 2,
+      "r2": 0.13679340481758118,
+      "accuracy": 0.47,
+      "correct": 47,
+      "total": 100
+    },
+    {
+      "layer": 3,
+      "r2": 0.18447095155715942,
+      "accuracy": 0.53,
+      "correct": 53,
+      "total": 100
+    },
+    {
+      "layer": 4,
+      "r2": 0.28190457820892334,
+      "accuracy": 0.55,
+      "correct": 55,
+      "total": 100
+    },
+    {
+      "layer": 5,
+      "r2": 0.3481764495372772,
+      "accuracy": 0.64,
+      "correct": 64,
+      "total": 100
+    },
+    {
+      "layer": 6,
+      "r2": 0.43137937784194946,
+      "accuracy": 0.7,
+      "correct": 70,
+      "total": 100
+    },
+    {
+      "layer": 7,
+      "r2": 0.5024358034133911,
+      "accuracy": 0.72,
+      "correct": 72,
+      "total": 100
+    },
+    {
+      "layer": 8,
+      "r2": 0.6011834144592285,
+      "accuracy": 0.83,
+      "correct": 83,
+      "total": 100
+    },
+    {
+      "layer": 9,
+      "r2": 0.6836427450180054,
+      "accuracy": 0.93,
+      "correct": 93,
+      "total": 100
+    },
+    {
+      "layer": 10,
+      "r2": 0.747407853603363,
+      "accuracy": 0.96,
+      "correct": 96,
+      "total": 100
+    },
+    {
+      "layer": 11,
+      "r2": 0.802842378616333,
+      "accuracy": 0.98,
+      "correct": 98,
+      "total": 100
+    },
+    {
+      "layer": 12,
+      "r2": 0.8424872159957886,
+      "accuracy": 0.99,
+      "correct": 99,
+      "total": 100
+    },
+    {
+      "layer": 13,
+      "r2": 0.8787449598312378,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 14,
+      "r2": 0.9034361839294434,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 15,
+      "r2": 0.9336919784545898,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 16,
+      "r2": 0.9526943564414978,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 17,
+      "r2": 0.9642596244812012,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 18,
+      "r2": 0.9888648986816406,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 19,
+      "r2": 0.9953200817108154,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 20,
+      "r2": 0.99788898229599,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 21,
+      "r2": 0.9989688396453857,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 22,
+      "r2": 0.9995695352554321,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 23,
+      "r2": 0.9998345375061035,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 24,
+      "r2": 0.9999324083328247,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 25,
+      "r2": 0.9999721050262451,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 26,
+      "r2": 0.9999886751174927,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 27,
+      "r2": 0.9999948740005493,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    }
+  ],
+  "best_layer_r2": 27,
+  "best_layer_accuracy": 13,
+  "best_r2": 0.9999948740005493,
+  "best_accuracy": 1.0,
+  "encoding": "angle_vector [cos(θ), sin(θ)]",
+  "directions": {
+    "north": "0° → [1, 0]",
+    "east": "90° → [0, 1]",
+    "south": "180° → [-1, 0]",
+    "west": "270° → [0, -1]"
+  }
+}

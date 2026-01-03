@@ -1,0 +1,470 @@
+{
+  "timestamp": "20260103_222244",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-7B-Instruct",
+    "layer": 8,
+    "n_features": 2048,
+    "d_in": 3584,
+    "n_spatial_features": 18,
+    "n_eval_samples": 100
+  },
+  "spatial_feature_ids": [
+    86,
+    113,
+    206,
+    303,
+    429,
+    495,
+    744,
+    773,
+    784,
+    1306,
+    1353,
+    1379,
+    1401,
+    1522,
+    1658,
+    1781,
+    1954,
+    2004
+  ],
+  "random_feature_ids": [
+    1319,
+    231,
+    51,
+    1532,
+    569,
+    507,
+    462,
+    288,
+    1521,
+    212,
+    1397,
+    1530,
+    1843,
+    1125,
+    180,
+    1218,
+    873,
+    65
+  ],
+  "results": {
+    "baseline": {
+      "accuracy": 0.4,
+      "correct": 40,
+      "total": 100
+    },
+    "spatial_ablation": {
+      "accuracy": 0.31,
+      "correct": 31,
+      "total": 100,
+      "drop": 0.09000000000000002,
+      "drop_pct": 22.500000000000007
+    },
+    "random_ablation": {
+      "accuracy": 0.31,
+      "correct": 31,
+      "total": 100,
+      "drop": 0.09000000000000002,
+      "drop_pct": 22.500000000000007
+    }
+  },
+  "examples": {
+    "baseline": [
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nRotate 180\u00b0 around the x-axis.\nRotate 90\u00b0 around the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (0, 0, 0)\nB. (1, 0, 0)\nC. (0, 1, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 6.74285364151001,
+          "B": 4.376434803009033,
+          "C": 5.279483795166016,
+          "D": 6.424108505249023
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nMove down by 2 units.\nRotate 180\u00b0 around the z-axis.\nReflect the position across the x-axis.\nMove backward by 1 unit.\nTranslate by (0, -3, -3).\nRotate 180\u00b0 around the z-axis.\nMove up by 1 unit.\n\nWhat is the final position?\n\nOptions:\nA. (4, 0, -4)\nB. (0, -4, -4)\nC. (0, 4, -4)\nD. (0, 4, 4)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "C",
+        "predicted_option": "B",
+        "answer_text": "(0, 4, -4)",
+        "correct": false,
+        "option_logits": {
+          "A": 8.174810409545898,
+          "B": 8.34085750579834,
+          "C": 7.133485317230225,
+          "D": 7.6899285316467285
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by -1.\nRotate 90\u00b0 around the y-axis.\nRotate 270\u00b0 around the y-axis.\nScale all coordinates by 3.\nTranslate by (2, 1, 1).\nRotate 180\u00b0 around the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (2, -1, -1)\nB. (2, -1, 1)\nC. (2, 1, -1)\nD. (-2, -1, -1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "D",
+        "answer_text": "(2, -1, -1)",
+        "correct": false,
+        "option_logits": {
+          "A": 7.944693088531494,
+          "B": 6.955402851104736,
+          "C": 7.518435001373291,
+          "D": 8.10710334777832
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 0.5.\nTranslate by (-3, 3, 3).\nReflect the position across the z-axis.\nMove backward by 3 units.\nReflect the position across the y-axis.\nRotate 180\u00b0 around the z-axis.\nMove right by 4 units.\nScale all coordinates by 0.5.\nMove down by 5 units.\nMove right by 3 units.\n\nWhat is the final position?\n\nOptions:\nA. (-3.5, 0, -6.5)\nB. (0, 3.5, -6.5)\nC. (3.5, 0, 6.5)\nD. (3.5, 0, -6.5)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "D",
+        "predicted_option": "D",
+        "answer_text": "(3.5, 0, -6.5)",
+        "correct": true,
+        "option_logits": {
+          "A": 7.869927406311035,
+          "B": 4.9433274269104,
+          "C": 5.515155792236328,
+          "D": 7.878488063812256
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nTranslate by (1, 2, 3).\nMove right by 3 units.\nScale all coordinates by 3.\nTranslate by (0, -2, -2).\nTranslate by (0, 0, 3).\nScale all coordinates by 2.\nMove down by 4 units.\nReflect the position across the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (24, -8, 16)\nB. (-24, -8, 16)\nC. (24, -8, -16)\nD. (24, 8, 16)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(24, -8, 16)",
+        "correct": true,
+        "option_logits": {
+          "A": 8.856033325195312,
+          "B": 6.222341537475586,
+          "C": 6.458480358123779,
+          "D": 7.4538397789001465
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nMove left by 1 unit.\nTranslate by (-1, 2, -3).\nMove backward by 1 unit.\nTranslate by (0, -3, 1).\nScale all coordinates by 2.\nRotate 180\u00b0 around the y-axis.\nMove left by 3 units.\n\nWhat is the final position?\n\nOptions:\nA. (1, 4, 4)\nB. (1, -4, 4)\nC. (1, -4, -4)\nD. (-1, -4, 4)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "B",
+        "predicted_option": "D",
+        "answer_text": "(1, -4, 4)",
+        "correct": false,
+        "option_logits": {
+          "A": 7.752296447753906,
+          "B": 6.775478839874268,
+          "C": 7.036888599395752,
+          "D": 7.945034980773926
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nReflect the position across the y-axis.\nReflect the position across the z-axis.\nMove right by 1 unit.\n\nWhat is the final position?\n\nOptions:\nA. (1, 0, 0)\nB. (-1, 0, 0)\nC. (0, 1, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(1, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 8.918981552124023,
+          "B": 5.721570014953613,
+          "C": 5.858079433441162,
+          "D": 7.120419025421143
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nRotate 180\u00b0 around the y-axis.\nReflect the position across the z-axis.\nRotate 90\u00b0 around the z-axis.\nReflect the position across the z-axis.\n\nWhat is the final position?\n\nOptions:\nA. (0, 1, 0)\nB. (0, 0, 0)\nC. (1, 0, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "B",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": false,
+        "option_logits": {
+          "A": 7.720026969909668,
+          "B": 6.035335540771484,
+          "C": 5.99390983581543,
+          "D": 7.7074713706970215
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nRotate 270\u00b0 around the y-axis.\nScale all coordinates by 0.5.\nScale all coordinates by 2.\n\nWhat is the final position?\n\nOptions:\nA. (0, 0, 0)\nB. (0, 0, 1)\nC. (0, 1, 0)\nD. (1, 0, 0)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 7.784801483154297,
+          "B": 5.133059024810791,
+          "C": 5.524299144744873,
+          "D": 6.7043681144714355
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nTranslate by (1, -2, -1).\nTranslate by (-3, 1, 2).\nRotate 270\u00b0 around the x-axis.\nRotate 180\u00b0 around the x-axis.\nTranslate by (-2, -2, -1).\nRotate 90\u00b0 around the y-axis.\nTranslate by (-3, -2, 1).\nReflect the position across the x-axis.\nReflect the position across the y-axis.\nTranslate by (-2, -3, 1).\n\nWhat is the final position?\n\nOptions:\nA. (-3, 2, 6)\nB. (3, 2, -6)\nC. (3, 2, 6)\nD. (3, -2, 6)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "C",
+        "predicted_option": "A",
+        "answer_text": "(3, 2, 6)",
+        "correct": false,
+        "option_logits": {
+          "A": 8.657757759094238,
+          "B": 6.699670314788818,
+          "C": 6.922951698303223,
+          "D": 7.706146240234375
+        }
+      }
+    ],
+    "spatial_ablation": [
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nRotate 180\u00b0 around the x-axis.\nRotate 90\u00b0 around the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (0, 0, 0)\nB. (1, 0, 0)\nC. (0, 1, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 6.698395252227783,
+          "B": 4.128381729125977,
+          "C": 3.5814735889434814,
+          "D": 5.416293621063232
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nMove down by 2 units.\nRotate 180\u00b0 around the z-axis.\nReflect the position across the x-axis.\nMove backward by 1 unit.\nTranslate by (0, -3, -3).\nRotate 180\u00b0 around the z-axis.\nMove up by 1 unit.\n\nWhat is the final position?\n\nOptions:\nA. (4, 0, -4)\nB. (0, -4, -4)\nC. (0, 4, -4)\nD. (0, 4, 4)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "C",
+        "predicted_option": "B",
+        "answer_text": "(0, 4, -4)",
+        "correct": false,
+        "option_logits": {
+          "A": 9.700361251831055,
+          "B": 10.665573120117188,
+          "C": 6.438575267791748,
+          "D": 6.426100254058838
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by -1.\nRotate 90\u00b0 around the y-axis.\nRotate 270\u00b0 around the y-axis.\nScale all coordinates by 3.\nTranslate by (2, 1, 1).\nRotate 180\u00b0 around the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (2, -1, -1)\nB. (2, -1, 1)\nC. (2, 1, -1)\nD. (-2, -1, -1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "B",
+        "answer_text": "(2, -1, -1)",
+        "correct": false,
+        "option_logits": {
+          "A": 8.328621864318848,
+          "B": 10.543783187866211,
+          "C": 7.668031692504883,
+          "D": 6.445592880249023
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 0.5.\nTranslate by (-3, 3, 3).\nReflect the position across the z-axis.\nMove backward by 3 units.\nReflect the position across the y-axis.\nRotate 180\u00b0 around the z-axis.\nMove right by 4 units.\nScale all coordinates by 0.5.\nMove down by 5 units.\nMove right by 3 units.\n\nWhat is the final position?\n\nOptions:\nA. (-3.5, 0, -6.5)\nB. (0, 3.5, -6.5)\nC. (3.5, 0, 6.5)\nD. (3.5, 0, -6.5)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "(3.5, 0, -6.5)",
+        "correct": false,
+        "option_logits": {
+          "A": 9.65645980834961,
+          "B": 9.035122871398926,
+          "C": 5.889225482940674,
+          "D": 9.233122825622559
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nTranslate by (1, 2, 3).\nMove right by 3 units.\nScale all coordinates by 3.\nTranslate by (0, -2, -2).\nTranslate by (0, 0, 3).\nScale all coordinates by 2.\nMove down by 4 units.\nReflect the position across the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (24, -8, 16)\nB. (-24, -8, 16)\nC. (24, -8, -16)\nD. (24, 8, 16)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(24, -8, 16)",
+        "correct": true,
+        "option_logits": {
+          "A": 9.157073974609375,
+          "B": 7.4618730545043945,
+          "C": 5.629256725311279,
+          "D": 5.970611572265625
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nMove left by 1 unit.\nTranslate by (-1, 2, -3).\nMove backward by 1 unit.\nTranslate by (0, -3, 1).\nScale all coordinates by 2.\nRotate 180\u00b0 around the y-axis.\nMove left by 3 units.\n\nWhat is the final position?\n\nOptions:\nA. (1, 4, 4)\nB. (1, -4, 4)\nC. (1, -4, -4)\nD. (-1, -4, 4)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "B",
+        "predicted_option": "B",
+        "answer_text": "(1, -4, 4)",
+        "correct": true,
+        "option_logits": {
+          "A": 8.901357650756836,
+          "B": 10.853157043457031,
+          "C": 7.160619258880615,
+          "D": 7.481152534484863
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nReflect the position across the y-axis.\nReflect the position across the z-axis.\nMove right by 1 unit.\n\nWhat is the final position?\n\nOptions:\nA. (1, 0, 0)\nB. (-1, 0, 0)\nC. (0, 1, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(1, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 9.250821113586426,
+          "B": 5.864060878753662,
+          "C": 3.760923385620117,
+          "D": 4.212518215179443
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nRotate 180\u00b0 around the y-axis.\nReflect the position across the z-axis.\nRotate 90\u00b0 around the z-axis.\nReflect the position across the z-axis.\n\nWhat is the final position?\n\nOptions:\nA. (0, 1, 0)\nB. (0, 0, 0)\nC. (1, 0, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "B",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": false,
+        "option_logits": {
+          "A": 8.085168838500977,
+          "B": 6.712391376495361,
+          "C": 4.4172844886779785,
+          "D": 6.682538032531738
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nRotate 270\u00b0 around the y-axis.\nScale all coordinates by 0.5.\nScale all coordinates by 2.\n\nWhat is the final position?\n\nOptions:\nA. (0, 0, 0)\nB. (0, 0, 1)\nC. (0, 1, 0)\nD. (1, 0, 0)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 8.144428253173828,
+          "B": 7.222396373748779,
+          "C": 4.534537315368652,
+          "D": 6.5147175788879395
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nTranslate by (1, -2, -1).\nTranslate by (-3, 1, 2).\nRotate 270\u00b0 around the x-axis.\nRotate 180\u00b0 around the x-axis.\nTranslate by (-2, -2, -1).\nRotate 90\u00b0 around the y-axis.\nTranslate by (-3, -2, 1).\nReflect the position across the x-axis.\nReflect the position across the y-axis.\nTranslate by (-2, -3, 1).\n\nWhat is the final position?\n\nOptions:\nA. (-3, 2, 6)\nB. (3, 2, -6)\nC. (3, 2, 6)\nD. (3, -2, 6)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "C",
+        "predicted_option": "B",
+        "answer_text": "(3, 2, 6)",
+        "correct": false,
+        "option_logits": {
+          "A": 9.671393394470215,
+          "B": 10.147306442260742,
+          "C": 7.067821502685547,
+          "D": 8.210042953491211
+        }
+      }
+    ],
+    "random_ablation": [
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nRotate 180\u00b0 around the x-axis.\nRotate 90\u00b0 around the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (0, 0, 0)\nB. (1, 0, 0)\nC. (0, 1, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 6.7508745193481445,
+          "B": 4.158390998840332,
+          "C": 3.6218793392181396,
+          "D": 5.412017345428467
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nMove down by 2 units.\nRotate 180\u00b0 around the z-axis.\nReflect the position across the x-axis.\nMove backward by 1 unit.\nTranslate by (0, -3, -3).\nRotate 180\u00b0 around the z-axis.\nMove up by 1 unit.\n\nWhat is the final position?\n\nOptions:\nA. (4, 0, -4)\nB. (0, -4, -4)\nC. (0, 4, -4)\nD. (0, 4, 4)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "C",
+        "predicted_option": "B",
+        "answer_text": "(0, 4, -4)",
+        "correct": false,
+        "option_logits": {
+          "A": 9.73161792755127,
+          "B": 10.674456596374512,
+          "C": 6.456984043121338,
+          "D": 6.437617301940918
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by -1.\nRotate 90\u00b0 around the y-axis.\nRotate 270\u00b0 around the y-axis.\nScale all coordinates by 3.\nTranslate by (2, 1, 1).\nRotate 180\u00b0 around the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (2, -1, -1)\nB. (2, -1, 1)\nC. (2, 1, -1)\nD. (-2, -1, -1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "B",
+        "answer_text": "(2, -1, -1)",
+        "correct": false,
+        "option_logits": {
+          "A": 8.361767768859863,
+          "B": 10.549881935119629,
+          "C": 7.655016899108887,
+          "D": 6.439126014709473
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 0.5.\nTranslate by (-3, 3, 3).\nReflect the position across the z-axis.\nMove backward by 3 units.\nReflect the position across the y-axis.\nRotate 180\u00b0 around the z-axis.\nMove right by 4 units.\nScale all coordinates by 0.5.\nMove down by 5 units.\nMove right by 3 units.\n\nWhat is the final position?\n\nOptions:\nA. (-3.5, 0, -6.5)\nB. (0, 3.5, -6.5)\nC. (3.5, 0, 6.5)\nD. (3.5, 0, -6.5)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "(3.5, 0, -6.5)",
+        "correct": false,
+        "option_logits": {
+          "A": 9.681679725646973,
+          "B": 9.059889793395996,
+          "C": 5.89501428604126,
+          "D": 9.231024742126465
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nTranslate by (1, 2, 3).\nMove right by 3 units.\nScale all coordinates by 3.\nTranslate by (0, -2, -2).\nTranslate by (0, 0, 3).\nScale all coordinates by 2.\nMove down by 4 units.\nReflect the position across the x-axis.\n\nWhat is the final position?\n\nOptions:\nA. (24, -8, 16)\nB. (-24, -8, 16)\nC. (24, -8, -16)\nD. (24, 8, 16)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(24, -8, 16)",
+        "correct": true,
+        "option_logits": {
+          "A": 9.19800853729248,
+          "B": 7.49488639831543,
+          "C": 5.647711753845215,
+          "D": 5.972026348114014
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nMove left by 1 unit.\nTranslate by (-1, 2, -3).\nMove backward by 1 unit.\nTranslate by (0, -3, 1).\nScale all coordinates by 2.\nRotate 180\u00b0 around the y-axis.\nMove left by 3 units.\n\nWhat is the final position?\n\nOptions:\nA. (1, 4, 4)\nB. (1, -4, 4)\nC. (1, -4, -4)\nD. (-1, -4, 4)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "B",
+        "predicted_option": "B",
+        "answer_text": "(1, -4, 4)",
+        "correct": true,
+        "option_logits": {
+          "A": 8.931365966796875,
+          "B": 10.854881286621094,
+          "C": 7.175262928009033,
+          "D": 7.488376617431641
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nReflect the position across the y-axis.\nReflect the position across the z-axis.\nMove right by 1 unit.\n\nWhat is the final position?\n\nOptions:\nA. (1, 0, 0)\nB. (-1, 0, 0)\nC. (0, 1, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(1, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 9.255473136901855,
+          "B": 5.872380256652832,
+          "C": 3.772627830505371,
+          "D": 4.207210540771484
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nRotate 180\u00b0 around the y-axis.\nReflect the position across the z-axis.\nRotate 90\u00b0 around the z-axis.\nReflect the position across the z-axis.\n\nWhat is the final position?\n\nOptions:\nA. (0, 1, 0)\nB. (0, 0, 0)\nC. (1, 0, 0)\nD. (0, 0, 1)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "B",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": false,
+        "option_logits": {
+          "A": 8.10266399383545,
+          "B": 6.697207927703857,
+          "C": 4.422182083129883,
+          "D": 6.6625285148620605
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nScale all coordinates by 2.\nRotate 270\u00b0 around the y-axis.\nScale all coordinates by 0.5.\nScale all coordinates by 2.\n\nWhat is the final position?\n\nOptions:\nA. (0, 0, 0)\nB. (0, 0, 1)\nC. (0, 1, 0)\nD. (1, 0, 0)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "A",
+        "predicted_option": "A",
+        "answer_text": "(0, 0, 0)",
+        "correct": true,
+        "option_logits": {
+          "A": 8.187414169311523,
+          "B": 7.247036457061768,
+          "C": 4.562079429626465,
+          "D": 6.5016913414001465
+        }
+      },
+      {
+        "prompt": "You are an AI assistant that helps solve spatial procedure execution problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nStart at (0, 0, 0).\nTranslate by (1, -2, -1).\nTranslate by (-3, 1, 2).\nRotate 270\u00b0 around the x-axis.\nRotate 180\u00b0 around the x-axis.\nTranslate by (-2, -2, -1).\nRotate 90\u00b0 around the y-axis.\nTranslate by (-3, -2, 1).\nReflect the position across the x-axis.\nReflect the position across the y-axis.\nTranslate by (-2, -3, 1).\n\nWhat is the final position?\n\nOptions:\nA. (-3, 2, 6)\nB. (3, 2, -6)\nC. (3, 2, 6)\nD. (3, -2, 6)\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]",
+        "correct_option": "C",
+        "predicted_option": "B",
+        "answer_text": "(3, 2, 6)",
+        "correct": false,
+        "option_logits": {
+          "A": 9.70182991027832,
+          "B": 10.147894859313965,
+          "C": 7.063943862915039,
+          "D": 8.18950366973877
+        }
+      }
+    ]
+  }
+}

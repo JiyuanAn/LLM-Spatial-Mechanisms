@@ -1,0 +1,218 @@
+{
+  "model_name": "Qwen/Qwen2.5-7B-Instruct",
+  "model_path": "/home/s202507009/workspace/LLMs/Qwen2.5/Qwen2.5-7B-Instruct",
+  "n_layers": 28,
+  "d_model": 3584,
+  "train_samples": 1000,
+  "test_samples": 100,
+  "ridge_alpha": 1.0,
+  "layer_results": [
+    {
+      "layer": 0,
+      "r2": 0.014318764209747314,
+      "accuracy": 0.28,
+      "correct": 28,
+      "total": 100
+    },
+    {
+      "layer": 1,
+      "r2": 0.0183296799659729,
+      "accuracy": 0.33,
+      "correct": 33,
+      "total": 100
+    },
+    {
+      "layer": 2,
+      "r2": 0.015665918588638306,
+      "accuracy": 0.3,
+      "correct": 30,
+      "total": 100
+    },
+    {
+      "layer": 3,
+      "r2": 0.028308838605880737,
+      "accuracy": 0.28,
+      "correct": 28,
+      "total": 100
+    },
+    {
+      "layer": 4,
+      "r2": 0.03673642873764038,
+      "accuracy": 0.33,
+      "correct": 33,
+      "total": 100
+    },
+    {
+      "layer": 5,
+      "r2": 0.05183303356170654,
+      "accuracy": 0.31,
+      "correct": 31,
+      "total": 100
+    },
+    {
+      "layer": 6,
+      "r2": 0.08514919877052307,
+      "accuracy": 0.37,
+      "correct": 37,
+      "total": 100
+    },
+    {
+      "layer": 7,
+      "r2": 0.12040144205093384,
+      "accuracy": 0.43,
+      "correct": 43,
+      "total": 100
+    },
+    {
+      "layer": 8,
+      "r2": 0.155389666557312,
+      "accuracy": 0.49,
+      "correct": 49,
+      "total": 100
+    },
+    {
+      "layer": 9,
+      "r2": 0.22301873564720154,
+      "accuracy": 0.51,
+      "correct": 51,
+      "total": 100
+    },
+    {
+      "layer": 10,
+      "r2": 0.2775692641735077,
+      "accuracy": 0.54,
+      "correct": 54,
+      "total": 100
+    },
+    {
+      "layer": 11,
+      "r2": 0.28965213894844055,
+      "accuracy": 0.6,
+      "correct": 60,
+      "total": 100
+    },
+    {
+      "layer": 12,
+      "r2": 0.330094575881958,
+      "accuracy": 0.62,
+      "correct": 62,
+      "total": 100
+    },
+    {
+      "layer": 13,
+      "r2": 0.39496147632598877,
+      "accuracy": 0.65,
+      "correct": 65,
+      "total": 100
+    },
+    {
+      "layer": 14,
+      "r2": 0.4418938159942627,
+      "accuracy": 0.65,
+      "correct": 65,
+      "total": 100
+    },
+    {
+      "layer": 15,
+      "r2": 0.5079507827758789,
+      "accuracy": 0.79,
+      "correct": 79,
+      "total": 100
+    },
+    {
+      "layer": 16,
+      "r2": 0.5411012172698975,
+      "accuracy": 0.8,
+      "correct": 80,
+      "total": 100
+    },
+    {
+      "layer": 17,
+      "r2": 0.5930023789405823,
+      "accuracy": 0.82,
+      "correct": 82,
+      "total": 100
+    },
+    {
+      "layer": 18,
+      "r2": 0.7318575978279114,
+      "accuracy": 0.93,
+      "correct": 93,
+      "total": 100
+    },
+    {
+      "layer": 19,
+      "r2": 0.8272849321365356,
+      "accuracy": 0.98,
+      "correct": 98,
+      "total": 100
+    },
+    {
+      "layer": 20,
+      "r2": 0.8722120523452759,
+      "accuracy": 0.98,
+      "correct": 98,
+      "total": 100
+    },
+    {
+      "layer": 21,
+      "r2": 0.9091091156005859,
+      "accuracy": 0.99,
+      "correct": 99,
+      "total": 100
+    },
+    {
+      "layer": 22,
+      "r2": 0.9427530765533447,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 23,
+      "r2": 0.9660467505455017,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 24,
+      "r2": 0.9826077222824097,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 25,
+      "r2": 0.9906591176986694,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 26,
+      "r2": 0.9946609735488892,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    },
+    {
+      "layer": 27,
+      "r2": 0.9968599081039429,
+      "accuracy": 1.0,
+      "correct": 100,
+      "total": 100
+    }
+  ],
+  "best_layer_r2": 27,
+  "best_layer_accuracy": 22,
+  "best_r2": 0.9968599081039429,
+  "best_accuracy": 1.0,
+  "encoding": "angle_vector [cos(θ), sin(θ)]",
+  "directions": {
+    "north": "0° → [1, 0]",
+    "east": "90° → [0, 1]",
+    "south": "180° → [-1, 0]",
+    "west": "270° → [0, -1]"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "timestamp": "20260103_225654",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-7B-Instruct",
+    "layer": 8,
+    "n_features": 2048,
+    "ablation_type": "mean",
+    "n_spatial_features": 136,
+    "n_non_spatial_features": 1912,
+    "eval_samples": 100
+  },
+  "results": {
+    "baseline": {
+      "accuracy": 0.49,
+      "avg_margin": -0.37637565612792967,
+      "avg_nll": 2.0790197361051104
+    },
+    "keep_spatial_only": {
+      "accuracy": 0.35,
+      "avg_margin": -0.8982796859741211,
+      "avg_nll": 1.9473741652071477
+    },
+    "ablate_spatial": {
+      "accuracy": 0.37,
+      "avg_margin": -0.8152375411987305,
+      "avg_nll": 1.7967484737792985
+    },
+    "ablate_all": {
+      "accuracy": 0.31,
+      "avg_margin": -1.0769121360778808,
+      "avg_nll": 2.0195759300515057
+    }
+  },
+  "interpretation": {
+    "retention_rate": 0.7142857142857143,
+    "above_random": false,
+    "gap_to_baseline": 0.14
+  }
+}

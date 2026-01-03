@@ -1,0 +1,73 @@
+{
+  "timestamp": "20260103_224707",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-7B-Instruct",
+    "layer": 8,
+    "n_features": 2048,
+    "n_spatial_features": 136,
+    "eval_samples": 100,
+    "ablation_types": [
+      "zero",
+      "mean",
+      "shuffle"
+    ]
+  },
+  "all_results": {
+    "baseline": {
+      "accuracy": 0.49,
+      "avg_margin": -0.37637565612792967,
+      "avg_nll": 2.0790197361051104
+    },
+    "spatial_zero": {
+      "accuracy": 0.32,
+      "avg_margin": -1.3082112312316894,
+      "avg_nll": 2.3475154851097613
+    },
+    "random_zero": {
+      "accuracy": 0.33,
+      "avg_margin": -0.9831597900390625,
+      "avg_nll": 2.016740294257179
+    },
+    "spatial_mean": {
+      "accuracy": 0.37,
+      "avg_margin": -0.8152375411987305,
+      "avg_nll": 1.7967484737792985
+    },
+    "random_mean": {
+      "accuracy": 0.33,
+      "avg_margin": -0.9615464401245117,
+      "avg_nll": 1.998532762043178
+    },
+    "spatial_shuffle": {
+      "accuracy": 0.31,
+      "avg_margin": -1.2883514404296874,
+      "avg_nll": 2.3465034669917078
+    },
+    "random_shuffle": {
+      "accuracy": 0.33,
+      "avg_margin": -0.9780084800720215,
+      "avg_nll": 2.0126881223823876
+    }
+  },
+  "robustness_analysis": [
+    {
+      "type": "zero",
+      "spatial_drop": 0.16999999999999998,
+      "random_drop": 0.15999999999999998,
+      "ratio": 1.0625
+    },
+    {
+      "type": "mean",
+      "spatial_drop": 0.12,
+      "random_drop": 0.15999999999999998,
+      "ratio": 0.7500000000000001
+    },
+    {
+      "type": "shuffle",
+      "spatial_drop": 0.18,
+      "random_drop": 0.15999999999999998,
+      "ratio": 1.1250000000000002
+    }
+  ],
+  "consistent_types": []
+}
