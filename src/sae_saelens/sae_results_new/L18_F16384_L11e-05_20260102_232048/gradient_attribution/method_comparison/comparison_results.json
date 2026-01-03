@@ -1,0 +1,22 @@
+{
+  "gradient": {
+    "method": "grad_x_act",
+    "accuracy": 0.48,
+    "spatial_ratio": 139.34840432523828,
+    "top_k_overlap": 99,
+    "top_k_overlap_pct": 61.875
+  },
+  "ablation": {
+    "baseline_accuracy": 0.49,
+    "spatial_ablation_accuracy": 0.47,
+    "random_ablation_accuracy": 0.45,
+    "spatial_drop": 0.020000000000000018,
+    "random_drop": 0.03999999999999998,
+    "drop_ratio": 0.5000000000000007
+  },
+  "comparison": {
+    "spatial_feature_count": 160,
+    "gradient_top_k_overlap_pct": 61.875,
+    "spearman_correlation": NaN
+  }
+}
