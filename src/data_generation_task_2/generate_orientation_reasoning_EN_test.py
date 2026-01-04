@@ -199,7 +199,7 @@ def main():
     dataset = generator.generate_dataset(
         num_samples=100,
         min_steps=2,
-        max_steps=15,
+        max_steps=5,
         output_file='orientation_reasoning_dataset_EN_test.json'
     )
     
@@ -207,7 +207,7 @@ def main():
     print("Sample Examples:")
     print("="*60)
     
-    for num_steps in [2, 5, 10, 15]:
+    for num_steps in [2, 5]:
         samples_with_n_steps = [s for s in dataset if s['num_steps'] == num_steps]
         if samples_with_n_steps:
             generator.print_sample(samples_with_n_steps[0])

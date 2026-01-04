@@ -20,9 +20,8 @@ def add_prompt_to_dataset(input_file: str, output_file: str):
         dataset = json.load(f)
     
     # 定义提示词模板
-    prompt_template = """You are an AI assistant that helps solve orientation reasoning problems.
-
-Please carefully read the following problem and choose the correct answer from the options provided.
+    prompt_template = """You are given a series of turning actions.
+Starting from an initial direction, you need to track the direction changes and determine the final direction.
 
 Problem:
 {question}
@@ -67,7 +66,7 @@ def main():
     )
     
     # 打印一个示例
-    with open('orientation_reasoning_dataset_EN_with_prompt.json', 'r', encoding='utf-8') as f:
+    with open('orientation_reasoning_dataset_EN_test_with_prompt.json', 'r', encoding='utf-8') as f:
         dataset = json.load(f)
     
     print("\n" + "="*60)

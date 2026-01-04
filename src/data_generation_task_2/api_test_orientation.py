@@ -34,8 +34,6 @@ def extract_answer(response_text):
     ]
     
     for pattern in patterns:
-        print(pattern)
-        print(response_text)
         match = re.search(pattern, response_text, re.IGNORECASE | re.MULTILINE)
         if match:
             return match.group(1).upper()
@@ -65,6 +63,12 @@ def process_one_item(item):
         
         # 判断是否正确
         is_correct = (predicted_answer == item['correct_option'])
+        print(item['prompt'])
+        print(response)
+        print(predicted_answer)
+        print(item['correct_option'])
+        print(is_correct)
+        print("================================================")
         
         # 返回结果
         return {
@@ -92,7 +96,7 @@ def process_one_item(item):
 
 if __name__ == "__main__":
     # 读取 JSON 数据
-    json_path = os.path.join(os.path.dirname(__file__), 'orientation_reasoning_dataset_EN_with_prompt.json')
+    json_path = os.path.join(os.path.dirname(__file__), 'orientation_reasoning_dataset_EN_test_with_prompt.json')
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
@@ -151,7 +155,7 @@ if __name__ == "__main__":
         'results': results
     }
     
-    output_path = os.path.join(os.path.dirname(__file__), 'orientation_test_results_test.json')
+    output_path = os.path.join(os.path.dirname(__file__), 'orientation_test_results_EN_test.json')
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
     

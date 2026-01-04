@@ -210,7 +210,7 @@ class OrientationReasoningGenerator:
         self, 
         num_samples: int = 1000,
         min_steps: int = 2,
-        max_steps: int = 15,
+        max_steps: int = 10,
         output_file: Optional[str] = None
     ) -> List[Dict]:
         """
@@ -302,7 +302,7 @@ def main():
     dataset = generator.generate_dataset(
         num_samples=1000,
         min_steps=2,
-        max_steps=15,
+        max_steps=10,
         output_file='orientation_reasoning_dataset_EN.json'
     )
     
@@ -312,7 +312,7 @@ def main():
     print("="*60)
     
     # 打印不同推理步骤的示例
-    for num_steps in [2, 5, 8, 12, 15]:
+    for num_steps in [2, 5, 8, 10]:
         samples_with_n_steps = [s for s in dataset if s['num_steps'] == num_steps]
         if samples_with_n_steps:
             generator.print_sample(samples_with_n_steps[0])

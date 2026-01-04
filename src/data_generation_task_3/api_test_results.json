@@ -1,0 +1,702 @@
+[
+  {
+    "id": 31,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(0.5, -0.5, 0.5)",
+    "success": true
+  },
+  {
+    "id": 26,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 12,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(-1, -2, 5)",
+    "success": true
+  },
+  {
+    "id": 30,
+    "correct_option": "D",
+    "predicted_option": "B",
+    "answer": "(0, 2, 4)",
+    "success": true
+  },
+  {
+    "id": 29,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-2, -5, 0)",
+    "success": true
+  },
+  {
+    "id": 28,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(6, -1, 2)",
+    "success": true
+  },
+  {
+    "id": 7,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(1, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 23,
+    "correct_option": "A",
+    "predicted_option": "B",
+    "answer": "(3, -3, 3)",
+    "success": true
+  },
+  {
+    "id": 17,
+    "correct_option": "D",
+    "predicted_option": "B",
+    "answer": "(-5, 2, -9)",
+    "success": true
+  },
+  {
+    "id": 19,
+    "correct_option": "D",
+    "predicted_option": "A",
+    "answer": "(-3, -6, 4)",
+    "success": true
+  },
+  {
+    "id": 8,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 10,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(3, 2, 6)",
+    "success": true
+  },
+  {
+    "id": 1,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 9,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 5,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(24, -8, 16)",
+    "success": true
+  },
+  {
+    "id": 18,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(-3, -3, -1)",
+    "success": true
+  },
+  {
+    "id": 14,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, 0, 12)",
+    "success": true
+  },
+  {
+    "id": 16,
+    "correct_option": "D",
+    "predicted_option": "B",
+    "answer": "(3, -3, 1)",
+    "success": true
+  },
+  {
+    "id": 22,
+    "correct_option": "D",
+    "predicted_option": "A",
+    "answer": "(0, 0, 0.5)",
+    "success": true
+  },
+  {
+    "id": 6,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(1, -4, 4)",
+    "success": true
+  },
+  {
+    "id": 21,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(0, -3, 0)",
+    "success": true
+  },
+  {
+    "id": 3,
+    "correct_option": "A",
+    "predicted_option": "C",
+    "answer": "(2, -1, -1)",
+    "success": true
+  },
+  {
+    "id": 34,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-5, 0, -2)",
+    "success": true
+  },
+  {
+    "id": 15,
+    "correct_option": "D",
+    "predicted_option": "C",
+    "answer": "(15, -9, -6)",
+    "success": true
+  },
+  {
+    "id": 2,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(0, 4, -4)",
+    "success": true
+  },
+  {
+    "id": 20,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 33,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(2, -5, -2)",
+    "success": true
+  },
+  {
+    "id": 4,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(3.5, 0, -6.5)",
+    "success": true
+  },
+  {
+    "id": 13,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(0, -0.5, -1.5)",
+    "success": true
+  },
+  {
+    "id": 24,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(2, 3, 0)",
+    "success": true
+  },
+  {
+    "id": 38,
+    "correct_option": "C",
+    "predicted_option": "A",
+    "answer": "(-4, 2, -3)",
+    "success": true
+  },
+  {
+    "id": 35,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-4, -2, 2)",
+    "success": true
+  },
+  {
+    "id": 36,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(-8, -4, 0)",
+    "success": true
+  },
+  {
+    "id": 32,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(-12, -8, -1)",
+    "success": true
+  },
+  {
+    "id": 25,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(0, 1, -2)",
+    "success": true
+  },
+  {
+    "id": 11,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-8, 4, -2.75)",
+    "success": true
+  },
+  {
+    "id": 42,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(-4, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 40,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, -6, 0)",
+    "success": true
+  },
+  {
+    "id": 27,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(-27, 54, 9)",
+    "success": true
+  },
+  {
+    "id": 41,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(1, -12, -3)",
+    "success": true
+  },
+  {
+    "id": 37,
+    "correct_option": "D",
+    "predicted_option": "A",
+    "answer": "(-3, -3, -1.5)",
+    "success": true
+  },
+  {
+    "id": 39,
+    "correct_option": "D",
+    "predicted_option": "B",
+    "answer": "(0, 1, 0)",
+    "success": true
+  },
+  {
+    "id": 44,
+    "correct_option": "B",
+    "predicted_option": "A",
+    "answer": "(3, -3, -4)",
+    "success": true
+  },
+  {
+    "id": 43,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(-9, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 46,
+    "correct_option": "D",
+    "predicted_option": "A",
+    "answer": "(0, 0, 2)",
+    "success": true
+  },
+  {
+    "id": 47,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(-5, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 45,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(3, -2, -1)",
+    "success": true
+  },
+  {
+    "id": 51,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 50,
+    "correct_option": "A",
+    "predicted_option": "C",
+    "answer": "(0, -2, 0)",
+    "success": true
+  },
+  {
+    "id": 49,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(-1, -3, 8)",
+    "success": true
+  },
+  {
+    "id": 53,
+    "correct_option": "A",
+    "predicted_option": "D",
+    "answer": "(2.5, 1.5, 1.5)",
+    "success": true
+  },
+  {
+    "id": 60,
+    "correct_option": "A",
+    "predicted_option": "B",
+    "answer": "(-9, 0, 5)",
+    "success": true
+  },
+  {
+    "id": 61,
+    "correct_option": "C",
+    "predicted_option": "A",
+    "answer": "(1, 4, -6)",
+    "success": true
+  },
+  {
+    "id": 52,
+    "correct_option": "B",
+    "predicted_option": "A",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 65,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 67,
+    "correct_option": "D",
+    "predicted_option": "A",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 63,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 69,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 57,
+    "correct_option": "A",
+    "predicted_option": "B",
+    "answer": "(-1, -4, -1)",
+    "success": true
+  },
+  {
+    "id": 62,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-3, 7, 1)",
+    "success": true
+  },
+  {
+    "id": 55,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(3, -3, 4.5)",
+    "success": true
+  },
+  {
+    "id": 54,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(-12, 9, -9)",
+    "success": true
+  },
+  {
+    "id": 77,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(3, -6, 2)",
+    "success": true
+  },
+  {
+    "id": 73,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(4, 0, -3)",
+    "success": true
+  },
+  {
+    "id": 70,
+    "correct_option": "B",
+    "predicted_option": "C",
+    "answer": "(-1, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 74,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(0, -3, 1)",
+    "success": true
+  },
+  {
+    "id": 48,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 68,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(2, 1, 6)",
+    "success": true
+  },
+  {
+    "id": 59,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-3, -4, -2)",
+    "success": true
+  },
+  {
+    "id": 79,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(0, -3, 0)",
+    "success": true
+  },
+  {
+    "id": 76,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(-2, 2, -1)",
+    "success": true
+  },
+  {
+    "id": 56,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 78,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 81,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(-8, -5, 8)",
+    "success": true
+  },
+  {
+    "id": 66,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(-5, 3, -6)",
+    "success": true
+  },
+  {
+    "id": 64,
+    "correct_option": "B",
+    "predicted_option": "A",
+    "answer": "(-2, -1, -2)",
+    "success": true
+  },
+  {
+    "id": 58,
+    "correct_option": "C",
+    "predicted_option": "D",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 83,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(1.5, -1.5, -3.5)",
+    "success": true
+  },
+  {
+    "id": 72,
+    "correct_option": "C",
+    "predicted_option": "D",
+    "answer": "(0, 0, 3)",
+    "success": true
+  },
+  {
+    "id": 75,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-0.5, -1.5, 3.5)",
+    "success": true
+  },
+  {
+    "id": 84,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-12, -10, -10)",
+    "success": true
+  },
+  {
+    "id": 85,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(4, 3, -4)",
+    "success": true
+  },
+  {
+    "id": 86,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(-5, 3, -2)",
+    "success": true
+  },
+  {
+    "id": 71,
+    "correct_option": "C",
+    "predicted_option": "C",
+    "answer": "(-3, 9, 1)",
+    "success": true
+  },
+  {
+    "id": 82,
+    "correct_option": "A",
+    "predicted_option": "A",
+    "answer": "(-1, 7, -1)",
+    "success": true
+  },
+  {
+    "id": 80,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(15, -27, -27)",
+    "success": true
+  },
+  {
+    "id": 88,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(0.5, 2, 2)",
+    "success": true
+  },
+  {
+    "id": 87,
+    "correct_option": "C",
+    "predicted_option": "A",
+    "answer": "(0, 5, 2)",
+    "success": true
+  },
+  {
+    "id": 89,
+    "correct_option": "A",
+    "predicted_option": "B",
+    "answer": "(0, 0, 5)",
+    "success": true
+  },
+  {
+    "id": 90,
+    "correct_option": "A",
+    "predicted_option": "C",
+    "answer": "(0, 0, 5)",
+    "success": true
+  },
+  {
+    "id": 91,
+    "correct_option": "C",
+    "predicted_option": "A",
+    "answer": "(5, -5, -4)",
+    "success": true
+  },
+  {
+    "id": 96,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(1, -1, 0)",
+    "success": true
+  },
+  {
+    "id": 93,
+    "correct_option": "B",
+    "predicted_option": "C",
+    "answer": "(1, 3, -7)",
+    "success": true
+  },
+  {
+    "id": 94,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(6, 14, -5)",
+    "success": true
+  },
+  {
+    "id": 92,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, -2, 0)",
+    "success": true
+  },
+  {
+    "id": 100,
+    "correct_option": "D",
+    "predicted_option": "D",
+    "answer": "(3, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 98,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(-6, 6, 18)",
+    "success": true
+  },
+  {
+    "id": 97,
+    "correct_option": "C",
+    "predicted_option": "B",
+    "answer": "(-2.5, 2, 1.5)",
+    "success": true
+  },
+  {
+    "id": 99,
+    "correct_option": "B",
+    "predicted_option": "B",
+    "answer": "(0, 0, 0)",
+    "success": true
+  },
+  {
+    "id": 95,
+    "correct_option": "B",
+    "predicted_option": "C",
+    "answer": "(0, 1, -5)",
+    "success": true
+  }
+]
