@@ -92,7 +92,7 @@ def process_one_item(item):
 
 if __name__ == "__main__":
     # 读取 JSON 数据
-    json_path = os.path.join(os.path.dirname(__file__), 'orientation_reasoning_dataset_EN_with_prompt.json')
+    json_path = os.path.join(os.path.dirname(__file__), 'orientation_reasoning_dataset_EN_test_with_prompt.json')
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     

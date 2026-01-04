@@ -1,0 +1,56 @@
+======================================================
+ALL LAYERS ABLATION COMPLETED
+======================================================
+
+Timestamp: Sun Jan  4 09:59:54 AM CST 2026
+Total Time: 2107s (35m 7s)
+
+Configuration:
+  Model: Qwen/Qwen2.5-7B-Instruct
+  SAE Results Directory: ./sae_results_all_layers_task_1
+  Features: 4096
+  Max Samples: 100
+  Version: simple
+
+Successfully processed layers (28):
+  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+
+Results locations:
+  Layer 0: ./sae_results_all_layers_task_1/L0_F4096_L11e-05_20260104_010857/ablation_results/
+  Layer 1: ./sae_results_all_layers_task_1/L1_F4096_L11e-05_20260104_011120/ablation_results/
+  Layer 2: ./sae_results_all_layers_task_1/L2_F4096_L11e-05_20260104_011343/ablation_results/
+  Layer 3: ./sae_results_all_layers_task_1/L3_F4096_L11e-05_20260104_011603/ablation_results/
+  Layer 4: ./sae_results_all_layers_task_1/L4_F4096_L11e-05_20260104_011827/ablation_results/
+  Layer 5: ./sae_results_all_layers_task_1/L5_F4096_L11e-05_20260104_012050/ablation_results/
+  Layer 6: ./sae_results_all_layers_task_1/L6_F4096_L11e-05_20260104_012312/ablation_results/
+  Layer 7: ./sae_results_all_layers_task_1/L7_F4096_L11e-05_20260104_012536/ablation_results/
+  Layer 8: ./sae_results_all_layers_task_1/L8_F4096_L11e-05_20260104_012801/ablation_results/
+  Layer 9: ./sae_results_all_layers_task_1/L9_F4096_L11e-05_20260104_013025/ablation_results/
+  Layer 10: ./sae_results_all_layers_task_1/L10_F4096_L11e-05_20260104_013248/ablation_results/
+  Layer 11: ./sae_results_all_layers_task_1/L11_F4096_L11e-05_20260104_013511/ablation_results/
+  Layer 12: ./sae_results_all_layers_task_1/L12_F4096_L11e-05_20260104_013735/ablation_results/
+  Layer 13: ./sae_results_all_layers_task_1/L13_F4096_L11e-05_20260104_013956/ablation_results/
+  Layer 14: ./sae_results_all_layers_task_1/L14_F4096_L11e-05_20260104_014217/ablation_results/
+  Layer 15: ./sae_results_all_layers_task_1/L15_F4096_L11e-05_20260104_014441/ablation_results/
+  Layer 16: ./sae_results_all_layers_task_1/L16_F4096_L11e-05_20260104_014705/ablation_results/
+  Layer 17: ./sae_results_all_layers_task_1/L17_F4096_L11e-05_20260104_014932/ablation_results/
+  Layer 18: ./sae_results_all_layers_task_1/L18_F4096_L11e-05_20260104_015158/ablation_results/
+  Layer 19: ./sae_results_all_layers_task_1/L19_F4096_L11e-05_20260104_015422/ablation_results/
+  Layer 20: ./sae_results_all_layers_task_1/L20_F4096_L11e-05_20260104_015648/ablation_results/
+  Layer 21: ./sae_results_all_layers_task_1/L21_F4096_L11e-05_20260104_015912/ablation_results/
+  Layer 22: ./sae_results_all_layers_task_1/L22_F4096_L11e-05_20260104_020144/ablation_results/
+  Layer 23: ./sae_results_all_layers_task_1/L23_F4096_L11e-05_20260104_020410/ablation_results/
+  Layer 24: ./sae_results_all_layers_task_1/L24_F4096_L11e-05_20260104_020631/ablation_results/
+  Layer 25: ./sae_results_all_layers_task_1/L25_F4096_L11e-05_20260104_020855/ablation_results/
+  Layer 26: ./sae_results_all_layers_task_1/L26_F4096_L11e-05_20260104_021116/ablation_results/
+  Layer 27: ./sae_results_all_layers_task_1/L27_F4096_L11e-05_20260104_021337/ablation_results/
+
+Logs saved to: ./sae_results_all_layers_task_1/ablation_logs
+
+Next steps:
+  1. Review summary: cat ./sae_results_all_layers_task_1/ablation_all_layers_summary.txt
+  2. Compare ablation results across layers
+  3. Check individual layer results in ablation_results/ directories
+  4. Analyze which layers are most important for spatial reasoning
+
+======================================================

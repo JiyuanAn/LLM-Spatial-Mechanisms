@@ -1,0 +1,1081 @@
+{
+  "model": "Qwen2.5-7B-Instruct",
+  "total_samples": 100,
+  "success_count": 100,
+  "correct_count": 28,
+  "overall_accuracy": 0.28,
+  "step_accuracy": {
+    "2": {
+      "correct": 1,
+      "total": 9,
+      "accuracy": 0.1111111111111111
+    },
+    "3": {
+      "correct": 1,
+      "total": 7,
+      "accuracy": 0.14285714285714285
+    },
+    "4": {
+      "correct": 6,
+      "total": 13,
+      "accuracy": 0.46153846153846156
+    },
+    "5": {
+      "correct": 2,
+      "total": 3,
+      "accuracy": 0.6666666666666666
+    },
+    "7": {
+      "correct": 2,
+      "total": 8,
+      "accuracy": 0.25
+    },
+    "8": {
+      "correct": 5,
+      "total": 9,
+      "accuracy": 0.5555555555555556
+    },
+    "6": {
+      "correct": 2,
+      "total": 7,
+      "accuracy": 0.2857142857142857
+    },
+    "15": {
+      "correct": 1,
+      "total": 4,
+      "accuracy": 0.25
+    },
+    "11": {
+      "correct": 3,
+      "total": 12,
+      "accuracy": 0.25
+    },
+    "9": {
+      "correct": 1,
+      "total": 6,
+      "accuracy": 0.16666666666666666
+    },
+    "12": {
+      "correct": 1,
+      "total": 8,
+      "accuracy": 0.125
+    },
+    "13": {
+      "correct": 2,
+      "total": 5,
+      "accuracy": 0.4
+    },
+    "10": {
+      "correct": 1,
+      "total": 7,
+      "accuracy": 0.14285714285714285
+    },
+    "14": {
+      "correct": 0,
+      "total": 2,
+      "accuracy": 0.0
+    }
+  },
+  "results": [
+    {
+      "id": 12,
+      "num_steps": 2,
+      "correct_option": "D",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing east, turning left will face you north, and then turning right from north will face you west.",
+      "question": "You are facing east.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 11,
+      "num_steps": 3,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing east, turning right once will face you south, and another right turn will face you north. Finally, turning left from north will face you west.",
+      "question": "You are facing east.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 3,
+      "num_steps": 4,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing north, turning around faces you south, then turning left faces you west, then turning around again faces you east, and finally turning right faces you north.",
+      "question": "You are facing north.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 29,
+      "num_steps": 3,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing west, turning left once will face you north. Turning left again will face you east. Finally, turning right from east will still leave you facing south.",
+      "question": "You are facing west.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 18,
+      "num_steps": 4,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, turning around puts you facing east. Turning left three times (90 degrees each time) will rotate you counterclockwise, ending up facing north.",
+      "question": "You are facing west.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 22,
+      "num_steps": 4,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting by facing west, turning left will face you north. Then turning around will face you south. Turning right from south will face you east. Finally, turning around again from east will still face you east.",
+      "question": "You are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 5,
+      "num_steps": 5,
+      "correct_option": "D",
+      "predicted_answer": "D",
+      "is_correct": true,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, turning around twice brings you back to facing west. Turning left twice from west will face you north. Finally, turning around from north will face you south. Therefore, the final direction is south.",
+      "question": "You are facing west.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 6,
+      "num_steps": 5,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing east, turning right twice will face you west, then turning around (180 degrees) will still face you west, and finally turning right will face you south, and turning left from south will face you west.",
+      "question": "You are facing east.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 31,
+      "num_steps": 2,
+      "correct_option": "A",
+      "predicted_answer": "A",
+      "is_correct": true,
+      "response_text": "Answer: A\nExplanation: Initially, you are facing west. When you turn around, you will be facing the opposite direction, which is east. Then, when you turn left, you will be facing north. Therefore, the correct answer is A. north.",
+      "question": "You are facing west.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 15,
+      "num_steps": 3,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting by facing south, turning right will make you face east. Then, turning around twice will face you back to the original direction, which is south. However, since the last action was a full 180-degree turn around, you end up facing north.",
+      "question": "You are facing south.\nTurn right.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 2,
+      "num_steps": 7,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing south, turning around will face you north. Then turning right will face you east. The next turn around (180 degrees) will face you west. Finally, three consecutive left turns will rotate you from west to south. Therefore, you are now facing north.",
+      "question": "You are facing south.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 26,
+      "num_steps": 7,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing north, each turn changes the direction you are facing. Turning around twice brings you back to facing north. Each left turn rotates you 90 degrees counterclockwise. After four such turns (two arounds and two lefts), you end up facing south.",
+      "question": "You are facing north.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 10,
+      "num_steps": 8,
+      "correct_option": "A",
+      "predicted_answer": "A",
+      "is_correct": true,
+      "response_text": "Answer: A\nExplanation: Starting from facing north, each left turn rotates you 90 degrees counterclockwise, and each right turn rotates you 90 degrees clockwise. After four consecutive left turns, you will be facing south. The subsequent right and left turns do not change this direction, so you end up facing south.",
+      "question": "You are facing north.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 24,
+      "num_steps": 6,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, each left turn (90 degrees counterclockwise) changes the direction as follows: first left turn = west, second left turn = south, third left turn = east. Then turning around (180 degrees) from east faces you to west. Therefore, after all these turns, you are facing west.",
+      "question": "You are facing north.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 25,
+      "num_steps": 7,
+      "correct_option": "A",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing north, each turn around (180 degrees) will return you to the original direction. Turning right three times is equivalent to turning right 270 degrees, which is the same as turning left 90 degrees, so you would be facing west. Finally, turning around again (180 degrees) from west will face you north.",
+      "question": "You are facing north.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 33,
+      "num_steps": 7,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, turning right twice brings you to face south. Turning around twice brings you back to face south, and then turning left makes you face west. Finally, turning right from west makes you face south.",
+      "question": "You are facing north.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 23,
+      "num_steps": 15,
+      "correct_option": "C",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Starting from facing north, each \"turn around\" action (which is 180 degrees) will return you to the original direction. Each \"turn right\" will shift the direction 90 degrees clockwise, and each \"turn left\" will shift the direction 90 degrees counterclockwise. After performing all the turns as specified, you end up facing south.",
+      "question": "You are facing north.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 30,
+      "num_steps": 4,
+      "correct_option": "D",
+      "predicted_answer": "D",
+      "is_correct": true,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, turning right will face you east. Then turning around three times (360 degrees) will bring you back to your original direction, which is north. However, since the last turn was a full 360-degree turn around, you would be facing the opposite direction of where you started after the first two 180-degree turns, which is west.",
+      "question": "You are facing north.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 17,
+      "num_steps": 11,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing east, each \"turn around\" action (which is 180 degrees) will return you to your original direction. Each pair of \"left\" and \"right\" turns cancel each other out. After all the instructions, you end up facing north because the last action is a \"turn around\" from your current direction, which was facing south after the previous \"turn around.\"",
+      "question": "You are facing east.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 9,
+      "num_steps": 6,
+      "correct_option": "D",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, turning around twice brings you back to facing north. Then turning right puts you facing east, and finally turning left from east positions you facing north. However, since the question asks which direction you are facing after all these turns, and the last turn was a left turn from east, you would be facing north but then turned left to face west. Therefore, the correct answer is B. west.",
+      "question": "You are facing north.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 32,
+      "num_steps": 7,
+      "correct_option": "D",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, turning left will face you west, then turning right twice will face you south, and turning around three times (which is equivalent to turning around once) will still face you south. Finally, turning right will face you east. However, since the last turn was a right turn from south, you end up facing west. But due to the sequence of turns, the final direction is actually south.",
+      "question": "You are facing north.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 8,
+      "num_steps": 4,
+      "correct_option": "A",
+      "predicted_answer": "A",
+      "is_correct": true,
+      "response_text": "Answer: A\nExplanation: Starting by facing east, turning right will make you face south. Then, turning around twice will face you back to the original direction, which is east. Finally, turning right from east will make you face south. Therefore, the final direction you are facing is south, but since the question asks for the direction after the last turn and not the immediate direction after the second turn-around, the correct answer is south, which corresponds to option A.",
+      "question": "You are facing east.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 40,
+      "num_steps": 3,
+      "correct_option": "A",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting by facing west, turning right once will face you south, and another right turn will face you north. Finally, turning around will face you opposite to where you were last, which is east.",
+      "question": "You are facing west.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 38,
+      "num_steps": 4,
+      "correct_option": "B",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing south, turning left will face you west, then turning right from west will face you north, another right turn from north will face you east, and finally turning left from east will still face you east.",
+      "question": "You are facing south.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 39,
+      "num_steps": 4,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, turning left once points you to the west. Turning around then points you to the east. Another left turn points you back to the north, and the final left turn points you to the west. Therefore, after all these turns, you are facing west.",
+      "question": "You are facing north.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 48,
+      "num_steps": 2,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting by facing east, turning around will make you face west. Turning right from there will then make you face south.",
+      "question": "You are facing east.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 16,
+      "num_steps": 9,
+      "correct_option": "D",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn left: Now facing west.\n2. Turn around: Now facing east.\n3. Turn around: Now facing west again.\n4. Turn around: Now facing east again.\n5. Turn right: Now facing south.\n6. Turn right: Now facing west.\n7. Turn around: Now facing east.\n8. Turn around: Now facing west again.\n9. Turn left: Now facing north.\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing north.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 27,
+      "num_steps": 12,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn can be tracked as follows:\n1. Turn around = face south\n2. Turn left = face west\n3. Turn right = face north\n4. Turn around = face south\n5. Turn right = face east\n6. Turn right = face south\n7. Turn left = face west\n8. Turn right = face north\n9. Turn left = face west\n10. Turn right = face north\n11. Turn around = face south\n\nAfter all these turns, you are facing south.",
+      "question": "You are facing north.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 14,
+      "num_steps": 8,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing west, each turn changes the direction as follows:\n1. Turn left: Now facing north.\n2. Turn right: Now facing east.\n3. Turn right: Now facing south.\n4. Turn around (180 degrees): Now facing north.\n5. Turn around (another 180 degrees): Now facing south.\n6. Turn around (another 180 degrees): Now facing north.\n7. Turn around (another 180 degrees): Now facing south.\n\nSo, after all these turns, you are facing south.",
+      "question": "You are facing west.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 43,
+      "num_steps": 7,
+      "correct_option": "D",
+      "predicted_answer": "D",
+      "is_correct": true,
+      "response_text": "Answer: D\nExplanation: Starting from facing south, turning left will face you west. Then turning around twice brings you back to facing west. Turning right four times (which is equivalent to turning around) will face you east. Therefore, after all these turns, you are facing east.",
+      "question": "You are facing south.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 13,
+      "num_steps": 9,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing east, each left turn rotates you 90 degrees counterclockwise, and each right turn rotates you 90 degrees clockwise. After performing all the turns as described, you will end up facing north. Here's the step-by-step breakdown:\n\n1. Start: East\n2. Left: South\n3. Right: East\n4. Left: North\n5. Left: West\n6. Right: North\n7. Left: East\n8. Left: North\n9. Right: North\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing east.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 36,
+      "num_steps": 11,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, the sequence of turns can be broken down as follows:\n1. Turn around twice (facing south again).\n2. Turn right three times (facing east).\n3. Turn left (facing north).\n4. Turn around twice (facing south).\n5. Turn left (facing west).\n6. Turn around twice (facing east).\n\nAfter all these turns, you are facing west.",
+      "question": "You are facing north.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 45,
+      "num_steps": 4,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting by facing east, turning right once will face you south. Turning right again will face you west. Another right turn will face you north. Finally, turning around will still face you north since turning around is 180 degrees, which doesn't change the direction you're facing from north.",
+      "question": "You are facing east.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 47,
+      "num_steps": 9,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, each \"turn around\" (360 degrees) brings you back to the original direction, and two consecutive \"turn right\" (90 degrees each time) will face you to the east. After all the turns, you end up facing south.",
+      "question": "You are facing north.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 21,
+      "num_steps": 9,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing west, each turn can be analyzed as follows:\n1. Turn right: Now facing south.\n2. Turn left: Now facing west.\n3. Turn right: Now facing north.\n4. Turn left: Now facing west.\n5. Turn around (180 degrees): Now facing east.\n6. Turn around (another 180 degrees): Now facing west.\n7. Turn right: Now facing north.\n8. Turn around (180 degrees): Now facing south.\n9. Turn around (another 180 degrees): Now facing north.\n\nHowever, after the last \"turn around\" command, you would be facing south. Therefore, the correct answer is B.",
+      "question": "You are facing west.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 19,
+      "num_steps": 13,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, each turn can be analyzed step-by-step:\n1. Turn left: Now facing north.\n2. Turn around: Now facing south.\n3. Turn right: Now facing east.\n4. Turn left: Now facing north.\n5. Turn around: Now facing south.\n6. Turn around: Now facing north.\n7. Turn right: Now facing east.\n8. Turn around: Now facing west.\n9. Turn right: Now facing north.\n10. Turn around: Now facing south.\n11. Turn left: Now facing west.\n12. Turn left: Now facing north.\n13. Turn right: Now facing east.\n\nAfter all these turns, you are facing east. Therefore, the correct answer is D.",
+      "question": "You are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 61,
+      "num_steps": 3,
+      "correct_option": "D",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing west, turning left once will face you north, and another left turn will face you south. Finally, turning right from south will face you east.",
+      "question": "You are facing west.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 4,
+      "num_steps": 13,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing south, each turn can be analyzed step-by-step:\n1. Turn around (180 degrees) - face north.\n2. Turn around again (another 180 degrees) - face south.\n3. Turn right - face east.\n4. Turn right again - face south.\n5. Turn around (180 degrees) - face north.\n6. Turn left - face west.\n7. Turn left again - face north.\n8. Turn right - face east.\n9. Turn right again - face south.\n10. Turn left - face east.\n11. Turn left again - face south.\n12. Turn right - face east.\n\nAfter all these turns, you end up facing south. Therefore, the correct answer is B.",
+      "question": "You are facing south.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 35,
+      "num_steps": 12,
+      "correct_option": "A",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, each pair of \"turn left\" followed by \"turn right\" brings you back to your original direction. The sequence includes three such pairs, so after these, you are still facing west. Then, \"turn left\" changes your direction to north. Following that, \"turn right\" changes your direction to east. Finally, \"turn around\" (which is equivalent to turning 180 degrees) changes your direction to west again. However, the last action is \"turn right,\" which changes your direction to east. Therefore, you are now facing east.",
+      "question": "You are facing west.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 57,
+      "num_steps": 6,
+      "correct_option": "B",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing west, turning left three times (90 degrees each time) will face you north. Turning around will face you south. Finally, turning right will keep you facing south. Therefore, the final direction is south.",
+      "question": "You are facing west.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 58,
+      "num_steps": 11,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing west, each \"turn right\" changes the direction 90 degrees clockwise, and each \"turn left\" changes the direction 90 degrees counterclockwise. After performing all the turns as specified, you end up facing east.",
+      "question": "You are facing west.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 28,
+      "num_steps": 12,
+      "correct_option": "D",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn right (facing east).\n2. Turn right (facing south).\n3. Turn left (facing east).\n4. Turn left (facing north).\n5. Turn right (facing east).\n6. Turn around (facing west).\n7. Turn right (facing north).\n8. Turn around (facing south).\n9. Turn left (facing east).\n10. Turn left (facing north).\n11. Turn left (facing west).\n12. Turn around (facing east).\n\nAfter all these turns, you are facing east. However, since the last action was turning around from facing west to face east, the final direction is actually west. Therefore, the correct answer is A. west.",
+      "question": "You are facing north.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 1,
+      "num_steps": 7,
+      "correct_option": "A",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn can be analyzed as follows:\n1. Turn right: Now facing east.\n2. Turn left: Now facing north.\n3. Turn right: Now facing east.\n4. Turn right: Now facing south.\n5. Turn around (180 degrees): Now facing north.\n6. Turn around (another 180 degrees): Still facing north.\n7. Turn right: Now facing east.\n\nHowever, after the last two turns (5 and 6), you are still facing north because turning around twice brings you back to your original direction. The final \"turn right\" changes your direction to east. But since the question asks for the direction you are facing after all these turns, and considering the last significant change before the final turn was facing north, the correct answer is north after the last full cycle of turns.",
+      "question": "You are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 49,
+      "num_steps": 7,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing east, each turn changes the direction as follows:\n1. Turn right: now facing south\n2. Turn left: now facing west\n3. Turn around: now facing east\n4. Turn right: now facing south\n5. Turn around: now facing north\n6. Turn left: now facing west\n7. Turn left: now facing north\n\nSo after all these turns, you are facing north.",
+      "question": "You are facing east.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 41,
+      "num_steps": 10,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing east, each turn changes the direction as follows:\n1. Turn left: now facing north\n2. Turn around: now facing south\n3. Turn left: now facing west\n4. Turn right: now facing north\n5. Turn around: now facing south\n6. Turn around: still facing south\n7. Turn around: still facing south\n8. Turn right: still facing south\n9. Turn around: still facing south\n10. Turn left: still facing south\n\nSo, after all these turns, you are facing south.",
+      "question": "You are facing east.\nTurn left.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 66,
+      "num_steps": 3,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting by facing west, turning around will face you east. Turning left from east will face you north. Finally, turning right from north will face you east.",
+      "question": "You are facing west.\nTurn around.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 37,
+      "num_steps": 12,
+      "correct_option": "B",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Starting from facing south, each turn can be analyzed step-by-step:\n1. Turn right: Now facing east.\n2. Turn around: Now facing west.\n3. Turn around: Now facing east again.\n4. Turn right: Now facing north.\n5. Turn right: Now facing east.\n6. Turn left: Now facing north.\n7. Turn left: Now facing west.\n8. Turn around: Now facing east.\n9. Turn around: Now facing west.\n10. Turn around: Now facing east.\n11. Turn around: Now facing west.\n12. Turn left: Now facing north.\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing south.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 7,
+      "num_steps": 11,
+      "correct_option": "C",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Starting from facing west, each turn changes the direction as follows:\n1. First left turn: north\n2. Second left turn: east\n3. Right turn: south\n4. First around turn (180 degrees): north\n5. Second around turn (another 180 degrees): south\n6. Left turn: east\n7. Right turn: north\n8. Right turn: east\n9. Around turn (180 degrees): west\n10. Left turn: south\n\nAfter all these turns, you are facing south, but since the last action was a left turn which would make you face west, the final direction is:\n\nAnswer: B (west) if considering the last turn before the final around turn, or C (south) if considering the immediate direction after the final around turn. However, based on the sequence provided and typical interpretation, the final direction is west.",
+      "question": "You are facing west.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 42,
+      "num_steps": 11,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing west, each turn can be analyzed as follows:\n1. Turn left: Now facing north.\n2. Turn right: Now facing east.\n3. Turn left: Now facing north.\n4. Turn left: Now facing south.\n5. Turn right: Now facing east.\n6. Turn left: Now facing north.\n7. Turn right: Now facing east.\n8. Turn right: Now facing south.\n9. Turn left: Now facing east.\n10. Turn left: Now facing north.\n11. Turn left: Now facing west.\n\nHowever, after the final sequence of turns, you end up facing north.",
+      "question": "You are facing west.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 51,
+      "num_steps": 8,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing south, each turn can be analyzed step-by-step:\n1. Turn around: Now facing north.\n2. Turn left: Now facing west.\n3. Turn around: Now facing east.\n4. Turn right: Still facing south.\n5. Turn left: Now facing west.\n6. Turn around: Now facing east.\n7. Turn around: Now facing west.\n8. Turn right: Now facing north.\n\nAfter all the turns, you are facing north. Therefore, the correct answer is B.",
+      "question": "You are facing south.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 59,
+      "num_steps": 4,
+      "correct_option": "A",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting by facing south, turning right will face you to the east. Then, turning around three times (360 degrees) will bring you back to your original direction, which is south. However, since the last action was a full turn around (180 degrees), you would be facing the opposite direction of where you were facing before that turn, which is north.",
+      "question": "You are facing south.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 65,
+      "num_steps": 6,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing west, turning right will face you south, then turning around will face you north, and the subsequent turns will cycle through directions as follows: left to east, left to north, and right to east. Therefore, after all these turns, you will be facing north.",
+      "question": "You are facing west.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 62,
+      "num_steps": 8,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing east, each turn around (360 degrees) brings you back to the original direction. Turning around four times is equivalent to not turning at all, so you're still facing east. Then, turning right from east will face you south. Finally, turning left from south will face you west. Therefore, the final direction you are facing is west.",
+      "question": "You are facing east.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 50,
+      "num_steps": 10,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing west, each turn can be analyzed step-by-step:\n1. Turn around (facing east).\n2. Turn around again (facing west).\n3. Turn right (facing south).\n4. Turn right again (facing west).\n5. Turn left (facing north).\n6. Turn around (facing south).\n7. Turn around again (facing north).\n8. Turn around once more (facing south).\n9. Turn left (facing east).\n10. Turn left again (facing north).\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing west.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 54,
+      "num_steps": 10,
+      "correct_option": "A",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing east, each turn can be tracked as follows:\n1. Turn around (facing west)\n2. Turn right (facing south)\n3. Turn around (facing north)\n4. Turn around (facing south)\n5. Turn around (facing north)\n6. Turn right (facing east)\n7. Turn left (facing north)\n8. Turn right (facing east)\n9. Turn left (facing north)\n10. Turn right (facing east)\n\nAfter all these turns, you end up facing east again.",
+      "question": "You are facing east.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 74,
+      "num_steps": 4,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting by facing west, turning around will face you east. Turning left three times (90 degrees each time) will rotate you counterclockwise, ending up facing north.",
+      "question": "You are facing west.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 55,
+      "num_steps": 10,
+      "correct_option": "B",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing south, each turn can be analyzed as follows:\n1. First left turn: face west\n2. Second left turn: face north\n3. First around turn: face south\n4. Second around turn: face north\n5. First right turn: face east\n6. Second right turn: face north\n7. Third around turn: face south\n8. Fourth around turn: face north\n9. Fifth around turn: face south\n10. Final right turn: face east\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 60,
+      "num_steps": 2,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, turning around will make you face south. Then, turning left from south will make you face west. However, since the question asks for the direction you are facing after both turns, the correct answer is south (option B) because the second turn (left) from the south position would be towards the west, but the direction you are now facing is the one you turned to, which is west's adjacent direction on the left, i.e., south.",
+      "question": "You are facing north.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 68,
+      "num_steps": 6,
+      "correct_option": "A",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, turning around makes you face east. Then, turning right twice (360 degrees total) brings you back to facing east. Turning left then changes your direction to north. Finally, turning right twice (another 180 degrees) from north will make you face east again.",
+      "question": "You are facing west.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 53,
+      "num_steps": 11,
+      "correct_option": "A",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn right: Now facing east.\n2. Turn left: Now facing north.\n3. Turn around: Now facing south.\n4. Turn around: Now facing north.\n5. Turn left: Now facing west.\n6. Turn around: Now facing east.\n7. Turn left: Now facing north.\n8. Turn around: Now facing south.\n9. Turn around: Now facing north.\n10. Turn around: Now facing south.\n11. Turn right: Now facing west.\n\nAfter all these turns, you are facing west. Therefore, the correct answer is D.",
+      "question": "You are facing north.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 78,
+      "num_steps": 2,
+      "correct_option": "D",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Initially, you are facing north. When you turn around, you will be facing south. Then, when you turn right, you will be facing east. Therefore, the correct answer is B. east.",
+      "question": "You are facing north.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 20,
+      "num_steps": 15,
+      "correct_option": "D",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn left: face west\n2. Turn right: face north\n3. Turn right: face east\n4. Turn around: face west\n5. Turn left: face north\n6. Turn right: face east\n7. Turn right: face south\n8. Turn right: face east\n9. Turn right: face south\n10. Turn right: face east\n11. Turn around: face west\n12. Turn left: face north\n13. Turn left: face west\n14. Turn left: face north\n15. Turn left: face east\n\nAfter all these turns, you are facing east. However, there seems to be a mistake in the final analysis as the last four turns should result in facing west, not east. Correcting this:\n\n12. Turn around: face west\n13. Turn left: face north\n14. Turn left: face west\n15. Turn left: face north\n\nSo, after all the turns, you are facing north. Therefore, the correct answer is C.",
+      "question": "You are facing north.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 46,
+      "num_steps": 15,
+      "correct_option": "D",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, each \"turn left\" rotates you 90 degrees counterclockwise, while each \"turn right\" rotates you 90 degrees clockwise. After performing all the turns as specified, you will end up facing west. Here's the breakdown:\n\n1. Start: North\n2. Turn left: West\n3. Turn right: South\n4. Turn left: East\n5. Turn left: North\n6. Turn left: West\n7. Turn around: East\n8. Turn left: North\n9. Turn around: South\n10. Turn right: East\n11. Turn right: North\n12. Turn left: West\n13. Turn left: North\n\nAfter all these turns, you are facing west.",
+      "question": "You are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 52,
+      "num_steps": 13,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, each turn can be analyzed step-by-step:\n1. Turn left: Now facing north.\n2. Turn around: Now facing south.\n3. Turn left: Now facing east.\n4. Turn left: Now facing north.\n5. Turn left: Now facing west.\n6. Turn right: Now facing north.\n7. Turn right: Now facing east.\n8. Turn right: Now facing north.\n9. Turn right: Now facing east.\n10. Turn around: Now facing west.\n11. Turn right: Now facing north.\n12. Turn right: Now facing east.\n13. Turn right: Now facing north.\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing west.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 76,
+      "num_steps": 5,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, turning left will face you to the west. Then turning around will face you to the east. Turning right from there will face you to the south. Finally, turning around again will keep you facing south. Therefore, the final direction you are facing is south (Option B).",
+      "question": "You are facing north.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 69,
+      "num_steps": 4,
+      "correct_option": "B",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing west, each left turn rotates you 90 degrees counterclockwise. After four left turns, you will have rotated 360 degrees counterclockwise, which brings you back to your original direction, facing west. However, since the question asks for the direction after each left turn sequentially, after the fourth left turn, you would be facing north.",
+      "question": "You are facing west.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 87,
+      "num_steps": 2,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing east, turning left will face you north, and then turning right from north will face you west.",
+      "question": "You are facing east.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 64,
+      "num_steps": 10,
+      "correct_option": "A",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, each turn can be tracked as follows:\n1. Turn around (facing east)\n2. Turn right (facing south)\n3. Turn right (facing west)\n4. Turn right (facing north)\n5. Turn around (facing south)\n6. Turn around (facing north)\n7. Turn left (facing east)\n8. Turn right (facing south)\n9. Turn left (facing east)\n10. Turn around (facing west)\n\nAfter all these turns, you are facing west again.",
+      "question": "You are facing west.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 63,
+      "num_steps": 10,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn changes the direction as follows:\n1. Turn left: face west\n2. Turn around (180 degrees): face east\n3. Turn around again (another 180 degrees): face west\n4. Turn right: face south\n5. Turn right again: face west\n6. Turn around (180 degrees): face east\n7. Turn around again: face west\n8. Turn left: face north\n9. Turn left again: face west\n10. Turn left once more: face south\n\nAfter all these turns, you are facing south.",
+      "question": "You are facing north.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 85,
+      "num_steps": 2,
+      "correct_option": "C",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting by facing west, turning right will make you face south. Then, turning left from south will make you face west. However, since the last turn was a left turn from south, the final direction you are facing is east.",
+      "question": "You are facing west.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 70,
+      "num_steps": 9,
+      "correct_option": "D",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing west, each turn around (360 degrees) brings you back to the original direction. Turning around four times is equivalent to not turning at all, so you're still facing west. Then, you turn left, which would be north, turn right, which would be east, and then turn left again, which would be north. Finally, turning left from north brings you to the east. Therefore, you are now facing east.",
+      "question": "You are facing west.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 34,
+      "num_steps": 12,
+      "correct_option": "A",
+      "predicted_answer": "C",
+      "is_correct": false,
+      "response_text": "Answer: C\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn left: face west\n2. Turn left: face south\n3. Turn right: face east\n4. Turn around: face west\n5. Turn right: face north\n6. Turn around: face south\n7. Turn right: face east\n8. Turn around: face west\n9. Turn around: face east\n10. Turn right: face north\n11. Turn left: face west\n12. Turn around: face east\n\nAfter all these turns, you are facing east. However, there seems to be a mistake in the sequence as the final turn around should not change the direction if we follow the given steps correctly. The correct final direction based on the given steps is actually east, but the logical flow suggests it should be north after the last turn around. Given the options and the steps, the most consistent final direction is:\n\nAnswer: C\nExplanation: After carefully following the sequence of turns, the final direction faced is north.",
+      "question": "You are facing north.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 86,
+      "num_steps": 2,
+      "correct_option": "B",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Initially, you are facing north. When you turn around, you will be facing south. Then, when you turn left, you will be facing west. Therefore, the correct answer is A. west.",
+      "question": "You are facing north.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 72,
+      "num_steps": 2,
+      "correct_option": "B",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Starting from facing north, turning left will face you to the west, and then turning right from the west will face you to the south. Therefore, the correct answer is A. south. However, there seems to be a discrepancy between the answer and the options provided since the correct direction based on the sequence of turns should be south, but the closest matching option given is A. east. The correct answer according to the sequence of turns should be D. south.",
+      "question": "You are facing north.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 56,
+      "num_steps": 11,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing north, each turn changes the direction you are facing. Let's break it down step by step:\n\n1. Turn left: Now facing west.\n2. Turn left: Now facing south.\n3. Turn around: Now facing north.\n4. Turn around: Still facing north.\n5. Turn left: Now facing west.\n6. Turn right: Now facing south.\n7. Turn right: Now facing east.\n8. Turn right: Now facing north.\n9. Turn left: Now facing west.\n10. Turn right: Now facing south.\n11. Turn around: Now facing north.\n\nAfter all these turns, you are facing north again. However, due to the final turn around at the end, the last direction you face is south. Therefore, the correct answer is C. south.",
+      "question": "You are facing north.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 67,
+      "num_steps": 8,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing south, each turn can be analyzed as follows:\n1. Turn left: Now facing west.\n2. Turn right: Now facing north.\n3. Turn left: Now facing west.\n4. Turn left: Now facing east.\n5. Turn right: Now facing south.\n6. Turn left: Now facing west.\n7. Turn around (180 degrees): Now facing east.\n8. Turn around (another 180 degrees): Now facing west.\n\nHowever, after the last two turns, you are facing north. Therefore, the correct answer is C. north.",
+      "question": "You are facing south.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 44,
+      "num_steps": 14,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, each \"turn around\" action (which is 180 degrees) will return you to the original direction. Each pair of \"turn right\" or \"turn left\" followed by another \"turn right\" or \"turn left\" will net a 90-degree turn in one direction. Counting the turns:\n\n1. First right: facing north\n2. Second right: facing east\n3. First turn around: back to east\n4. Second turn around: back to east\n5. Left: facing north\n6. First turn around: back to north\n7. Second turn around: back to north\n8. Right: facing east\n9. First turn around: back to east\n10. Second right: facing south\n11. First turn around: back to south\n12. Second turn around: back to south\n13. Left: facing east\n14. Left: facing north\n\nAfter all these turns, you end up facing north.",
+      "question": "You are facing west.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 90,
+      "num_steps": 3,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, turning around will face you south. Then turning right will face you west. Finally, turning left from west will face you north. However, since the last turn was a left turn from west, you end up facing east.",
+      "question": "You are facing north.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 83,
+      "num_steps": 6,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, turning left will face you north. Then turning around will face you south. Turning right twice will face you east, and turning around again will face you west. However, since the last action is to turn around, which is 180 degrees, it will face you back to the opposite direction of where you were before the turn around, which is south.",
+      "question": "You are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 73,
+      "num_steps": 10,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing south, each turn can be analyzed step-by-step:\n1. Turn left: face west\n2. Turn around: face east\n3. Turn around again: face west\n4. Turn right: face north\n5. Turn right again: face east\n6. Turn left: face north\n7. Turn left: face west\n8. Turn left: face north\n9. Turn right: face east\n10. Turn right: face north\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing south.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 80,
+      "num_steps": 8,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing west, each turn changes the direction as follows:\n1. Turn around: face east\n2. Turn right: face south\n3. Turn left: face east\n4. Turn around: face west\n5. Turn left: face north\n6. Turn left: face west\n7. Turn right: face north\n8. Turn around: face south\n\nSo, after all these turns, you are facing north.",
+      "question": "You are facing west.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 97,
+      "num_steps": 4,
+      "correct_option": "A",
+      "predicted_answer": "A",
+      "is_correct": true,
+      "response_text": "Answer: A\nExplanation: Starting from facing east, turning right will make you face south. Then turning around twice will make you face north again, and finally turning right will make you face west.",
+      "question": "You are facing east.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 95,
+      "num_steps": 4,
+      "correct_option": "D",
+      "predicted_answer": "D",
+      "is_correct": true,
+      "response_text": "Answer: D\nExplanation: Starting from facing east, turning right once will face you south. Turning around will face you north. Turning right again will face you east. Finally, turning right one more time will face you south. Therefore, the final direction is south.",
+      "question": "You are facing east.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 84,
+      "num_steps": 8,
+      "correct_option": "D",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing north, each turn can be analyzed as follows:\n1. Turn right: Now facing east.\n2. Turn left: Now facing north.\n3. Turn right: Now facing east.\n4. Turn around: Now facing west.\n5. Turn right: Now facing north.\n6. Turn right: Now facing east.\n7. Turn left: Now facing north.\n8. Turn right: Now facing east.\n\nAfter all these turns, you are facing east. Therefore, the correct answer is B.",
+      "question": "You are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 82,
+      "num_steps": 11,
+      "correct_option": "A",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing south, each turn changes the direction as follows:\n1. First left turn: west\n2. Second left turn: north\n3. First around turn: south\n4. Second around turn: north\n5. Right turn: east\n6. Left turn: north\n7. Right turn: east\n8. Left turn: north\n9. Around turn: south\n10. Right turn: east\n11. Left turn: north\n\nAfter all these turns, you are facing north.",
+      "question": "You are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 94,
+      "num_steps": 15,
+      "correct_option": "D",
+      "predicted_answer": "D",
+      "is_correct": true,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, each \"turn right\" rotates you 90 degrees clockwise, and each \"turn left\" rotates you 90 degrees counterclockwise. Each \"turn around\" rotates you 180 degrees. After performing all the turns as specified, you end up facing north.",
+      "question": "You are facing west.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 77,
+      "num_steps": 9,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn right: Now facing east.\n2. Turn left: Now facing north.\n3. Turn right: Now facing east.\n4. Turn right: Now facing south.\n5. Turn left: Now facing east.\n6. Turn around: Now facing west.\n7. Turn around: Now facing east.\n8. Turn right: Now facing south.\n9. Turn around: Now facing north.\n\nHowever, the last \"turn around\" should leave you facing the opposite direction of where you were before turning, which means after the final \"turn around,\" you are facing south.",
+      "question": "You are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 81,
+      "num_steps": 12,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing west, each turn can be analyzed step-by-step:\n1. Turn around: Now facing east.\n2. Turn right: Facing south.\n3. Turn left: Facing west.\n4. Turn right: Facing north.\n5. Turn right: Facing east.\n6. Turn right: Facing south.\n7. Turn right: Facing east.\n8. Turn right: Facing north.\n9. Turn right: Facing east.\n10. Turn right: Facing north.\n11. Turn around: Facing south.\n\nAfter all these turns, you are facing south.",
+      "question": "You are facing west.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 96,
+      "num_steps": 6,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing south, turning right will face you east, then turning around (180 degrees) will face you west, turning left will face you north, turning right will face you east, turning left will face you north again, and finally, turning left will face you west. Therefore, after all these turns, you are facing west.",
+      "question": "You are facing south.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 75,
+      "num_steps": 11,
+      "correct_option": "B",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Starting from facing north, each turn can be tracked as follows:\n1. Turn around = face south\n2. Turn left = face west\n3. Turn right = face north\n4. Turn right = face east\n5. Turn left = face north\n6. Turn around = face south\n7. Turn right = face east\n8. Turn right = face south\n9. Turn around = face north\n10. Turn left = face west\n11. Turn right = face north\n\nAfter all these turns, you are facing north. However, the final turn (turn right) changes the direction to the east. Therefore, the correct answer is facing east.",
+      "question": "You are facing north.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 88,
+      "num_steps": 8,
+      "correct_option": "D",
+      "predicted_answer": "B",
+      "is_correct": false,
+      "response_text": "Answer: B\nExplanation: Starting from facing east, each turn changes the direction as follows:\n1. Turn left: Now facing north.\n2. Turn right: Now facing east.\n3. Turn around: Now facing west.\n4. Turn right: Now facing north.\n5. Turn left: Now facing west.\n6. Turn left: Now facing south.\n7. Turn around: Now facing north.\n8. Turn around: Now facing south.\n\nSo, after all these turns, you are facing south.",
+      "question": "You are facing east.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 79,
+      "num_steps": 11,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn left: Now facing west.\n2. Turn right: Now facing north.\n3. Turn left: Now facing west.\n4. Turn around: Now facing east.\n5. Turn right: Now facing south.\n6. Turn around: Now facing north.\n7. Turn right: Now facing east.\n8. Turn right: Now facing south.\n9. Turn around: Now facing north.\n10. Turn around: Now facing south.\n11. Turn right: Now facing east.\n\nAfter all these turns, you end up facing south. Therefore, the correct answer is D.",
+      "question": "You are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 93,
+      "num_steps": 14,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each pair of \"turn left\" followed by another \"turn left\" results in a 180-degree turn, effectively reversing direction. The sequence includes several such pairs (left-left, left-left, left-left, left-left), which means you end up facing the opposite direction of where you started. After the final \"turn around\" (which is a 180-degree turn), you will be facing south.",
+      "question": "You are facing north.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 98,
+      "num_steps": 11,
+      "correct_option": "C",
+      "predicted_answer": "C",
+      "is_correct": true,
+      "response_text": "Answer: C\nExplanation: Starting from facing east, each \"turn right\" rotates you 90 degrees clockwise, while \"turn left\" rotates you 90 degrees counterclockwise. After performing all the turns as specified, you will end up facing west. The \"turn around\" command is equivalent to turning 180 degrees, which would reverse your direction but not change the net effect of the subsequent turns.",
+      "question": "You are facing east.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 71,
+      "num_steps": 13,
+      "correct_option": "B",
+      "predicted_answer": "B",
+      "is_correct": true,
+      "response_text": "Answer: B\nExplanation: Starting from facing south, each turn can be analyzed step-by-step:\n1. Turn left (facing west).\n2. Turn left (facing north).\n3. Turn around (facing south).\n4. Turn around (facing north).\n5. Turn right (facing east).\n6. Turn right (facing north).\n7. Turn around (facing south).\n8. Turn right (facing east).\n9. Turn right (facing north).\n10. Turn left (facing east).\n11. Turn right (facing south).\n\nAfter all these turns, you are facing south. However, since the question asks which direction you are facing after the last turn, and the last turn was to the right from north, the final direction is north. Therefore, the correct answer is B. north.",
+      "question": "You are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 92,
+      "num_steps": 12,
+      "correct_option": "D",
+      "predicted_answer": "D",
+      "is_correct": true,
+      "response_text": "Answer: D\nExplanation: Starting from facing east, each pair of \"left\" and \"right\" turns cancels out to a 180-degree rotation, bringing you back to the original direction. The sequence includes three pairs of \"left\" and \"right\" turns, which means you end up facing the opposite direction you started with. Since you started facing east, after these turns, you will be facing west. However, the last action is a \"turn right,\" which changes your direction from west to north. Therefore, the final direction you are facing is north.",
+      "question": "You are facing east.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 89,
+      "num_steps": 13,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing east, each \"turn right\" rotates you 90 degrees clockwise, while \"turn around\" means turning 180 degrees. Let's break it down step by step:\n\n1. Start: East\n2. Turn right x4: East -> South -> West -> North -> (Now facing North)\n3. Turn around x2: North -> South (Now facing South)\n4. Turn right x4: South -> West -> North -> East -> South (Now facing South)\n5. Turn left: South -> West (Now facing West)\n\nSo, after all these turns, you are facing west. Therefore, the correct answer is D.",
+      "question": "You are facing east.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 100,
+      "num_steps": 8,
+      "correct_option": "C",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn changes the direction as follows:\n1. Turn left: Now facing west.\n2. Turn right: Now facing north.\n3. Turn left: Now facing west.\n4. Turn around (180 degrees): Now facing east.\n5. Turn left: Now facing north.\n6. Turn around (180 degrees): Now facing south.\n7. Turn around (180 degrees): Still facing south.\n\nTherefore, after all the turns, you are facing south.",
+      "question": "You are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 91,
+      "num_steps": 11,
+      "correct_option": "C",
+      "predicted_answer": "A",
+      "is_correct": false,
+      "response_text": "Answer: A\nExplanation: Starting from facing north, each turn can be analyzed step-by-step:\n1. Turn around: face south.\n2. Turn right: face east.\n3. Turn left: face north.\n4. Turn around: face south.\n5. Turn around: face north.\n6. Turn around: face south.\n7. Turn left: face west.\n8. Turn left: face north.\n9. Turn right: face east.\n10. Turn around: face west.\n11. Turn left: face north.\n\nAfter all these turns, you are facing north. However, the last turn (turn left) changes the direction to the east. Therefore, the final direction is east.",
+      "question": "You are facing north.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    },
+    {
+      "id": 99,
+      "num_steps": 12,
+      "correct_option": "B",
+      "predicted_answer": "D",
+      "is_correct": false,
+      "response_text": "Answer: D\nExplanation: Starting from facing north, each turn can be tracked as follows:\n1. Turn around (facing south)\n2. Turn around again (facing north)\n3. Turn right (facing east)\n4. Turn right (facing south)\n5. Turn left (facing west)\n6. Turn around (facing east)\n7. Turn right (facing north)\n8. Turn right (facing east)\n9. Turn right (facing south)\n10. Turn left (facing east)\n11. Turn around (facing west)\n\nAfter all these turns, you are facing west. Therefore, the correct answer is D.",
+      "question": "You are facing north.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+      "success": true
+    }
+  ]
+}

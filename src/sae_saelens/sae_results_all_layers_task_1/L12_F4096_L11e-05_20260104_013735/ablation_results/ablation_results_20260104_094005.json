@@ -1,0 +1,520 @@
+{
+  "timestamp": "20260104_094005",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-7B-Instruct",
+    "layer": 12,
+    "n_features": 4096,
+    "d_in": 3584,
+    "n_spatial_features": 43,
+    "n_eval_samples": 100
+  },
+  "spatial_feature_ids": [
+    53,
+    108,
+    143,
+    193,
+    477,
+    680,
+    812,
+    906,
+    976,
+    1016,
+    1310,
+    1362,
+    1435,
+    1491,
+    1557,
+    1574,
+    1592,
+    1723,
+    1782,
+    2036,
+    2109,
+    2334,
+    2483,
+    2517,
+    2570,
+    2651,
+    2867,
+    3037,
+    3086,
+    3171,
+    3246,
+    3279,
+    3340,
+    3457,
+    3499,
+    3519,
+    3657,
+    3667,
+    3821,
+    3855,
+    3916,
+    4050,
+    4063
+  ],
+  "random_feature_ids": [
+    2644,
+    460,
+    103,
+    3065,
+    1136,
+    1012,
+    922,
+    576,
+    3044,
+    423,
+    2797,
+    3061,
+    3692,
+    2254,
+    360,
+    2440,
+    1746,
+    132,
+    124,
+    387,
+    902,
+    960,
+    2089,
+    2488,
+    110,
+    2319,
+    821,
+    2959,
+    2687,
+    2899,
+    2253,
+    1736,
+    910,
+    1858,
+    2435,
+    1149,
+    3348,
+    3596,
+    26,
+    3137,
+    3332,
+    658,
+    2886
+  ],
+  "results": {
+    "baseline": {
+      "accuracy": 0.49,
+      "correct": 49,
+      "total": 100
+    },
+    "spatial_ablation": {
+      "accuracy": 0.34,
+      "correct": 34,
+      "total": 100,
+      "drop": 0.14999999999999997,
+      "drop_pct": 30.61224489795918
+    },
+    "random_ablation": {
+      "accuracy": 0.37,
+      "correct": 37,
+      "total": 100,
+      "drop": 0.12,
+      "drop_pct": 24.489795918367346
+    }
+  },
+  "examples": {
+    "baseline": [
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is left of B.\nD is above of A.\nE is right of B.\nF is below of C.\nG is behind of F.\nH is above of C.\nI is above of D.\n\nQuestion:\nWhere is I relative to A?\n\nOptions:\nA. behind and left and below\nB. above\nC. below and behind and left\nD. front and below and right\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "B",
+        "predicted_option": "B",
+        "answer_text": "above",
+        "correct": true,
+        "option_logits": {
+          "A": 26.071306228637695,
+          "B": 31.17375946044922,
+          "C": 22.075891494750977,
+          "D": 22.1258487701416
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is below of B.\nD is above of A.\nE is right of C.\nF is below of D.\nG is front of E.\nH is above of F.\nI is left of C.\nJ is behind of H.\n\nQuestion:\nWhere is J relative to A?\n\nOptions:\nA. above and behind\nB. right and front and above\nC. left and behind and below\nD. behind and below\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "A",
+        "predicted_option": "C",
+        "answer_text": "above and behind",
+        "correct": false,
+        "option_logits": {
+          "A": 26.378236770629883,
+          "B": 23.84312629699707,
+          "C": 30.229848861694336,
+          "D": 30.017305374145508
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is below of B.\nD is behind of C.\n\nQuestion:\nWhere is A relative to D?\n\nOptions:\nA. front and below and left\nB. above and front\nC. left and above and front\nD. left and above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "B",
+        "predicted_option": "B",
+        "answer_text": "above and front",
+        "correct": true,
+        "option_logits": {
+          "A": 27.121658325195312,
+          "B": 30.830259323120117,
+          "C": 25.965656280517578,
+          "D": 26.70872688293457
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is front of A.\nD is below of B.\nE is above of A.\nF is front of E.\n\nQuestion:\nWhere is F relative to A?\n\nOptions:\nA. right and below and behind\nB. behind and above and right\nC. front and above and left\nD. above and front\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "D",
+        "answer_text": "above and front",
+        "correct": true,
+        "option_logits": {
+          "A": 26.104393005371094,
+          "B": 25.34183692932129,
+          "C": 25.134626388549805,
+          "D": 30.281108856201172
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is right of B.\nD is right of A.\nE is behind of A.\nF is front of C.\nG is left of D.\n\nQuestion:\nWhere is A relative to G?\n\nOptions:\nA. front and left\nB. front and left and below\nC. above and behind and right\nD. overlap\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "C",
+        "answer_text": "overlap",
+        "correct": false,
+        "option_logits": {
+          "A": 27.050092697143555,
+          "B": 27.773746490478516,
+          "C": 30.644790649414062,
+          "D": 26.196170806884766
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is front of A.\nC is behind of B.\nD is front of A.\nE is right of C.\nF is front of B.\nG is behind of D.\nH is below of A.\nI is left of C.\nJ is behind of D.\n\nQuestion:\nWhere is A relative to J?\n\nOptions:\nA. front and left and below\nB. front and above and right\nC. above and right and behind\nD. overlap\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "D",
+        "answer_text": "overlap",
+        "correct": true,
+        "option_logits": {
+          "A": 27.82585906982422,
+          "B": 24.253475189208984,
+          "C": 28.15251922607422,
+          "D": 28.333410263061523
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is front of A.\nD is behind of A.\nE is front of B.\nF is behind of A.\nG is right of C.\nH is front of C.\nI is left of E.\nJ is above of I.\n\nQuestion:\nWhere is J relative to A?\n\nOptions:\nA. front and left\nB. left and below\nC. below and left and behind\nD. right and front and above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "A",
+        "predicted_option": "C",
+        "answer_text": "front and left",
+        "correct": false,
+        "option_logits": {
+          "A": 25.41091537475586,
+          "B": 27.664403915405273,
+          "C": 30.18291664123535,
+          "D": 22.400598526000977
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is left of B.\nD is below of C.\nE is below of B.\nF is behind of B.\n\nQuestion:\nWhere is F relative to A?\n\nOptions:\nA. behind and right and above\nB. behind and above and right\nC. behind and right and below\nD. behind and left\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "C",
+        "answer_text": "behind and left",
+        "correct": false,
+        "option_logits": {
+          "A": 28.131118774414062,
+          "B": 26.426090240478516,
+          "C": 30.38491439819336,
+          "D": 27.00689697265625
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is behind of A.\nC is behind of A.\nD is above of A.\nE is right of C.\n\nQuestion:\nWhere is A relative to E?\n\nOptions:\nA. right and front and above\nB. left and above and front\nC. left\nD. front and left\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "C",
+        "answer_text": "front and left",
+        "correct": false,
+        "option_logits": {
+          "A": 26.749317169189453,
+          "B": 27.092941284179688,
+          "C": 29.708843231201172,
+          "D": 25.7659854888916
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is behind of B.\nD is above of B.\nE is below of B.\nF is below of B.\n\nQuestion:\nWhere is A relative to F?\n\nOptions:\nA. below and behind and left\nB. left and behind and below\nC. right and behind and above\nD. above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "D",
+        "answer_text": "above",
+        "correct": true,
+        "option_logits": {
+          "A": 28.30290412902832,
+          "B": 28.012144088745117,
+          "C": 26.100759506225586,
+          "D": 28.91526222229004
+        }
+      }
+    ],
+    "spatial_ablation": [
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is left of B.\nD is above of A.\nE is right of B.\nF is below of C.\nG is behind of F.\nH is above of C.\nI is above of D.\n\nQuestion:\nWhere is I relative to A?\n\nOptions:\nA. behind and left and below\nB. above\nC. below and behind and left\nD. front and below and right\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "B",
+        "predicted_option": "B",
+        "answer_text": "above",
+        "correct": true,
+        "option_logits": {
+          "A": 23.83323097229004,
+          "B": 26.98200035095215,
+          "C": 19.718965530395508,
+          "D": 18.620304107666016
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is below of B.\nD is above of A.\nE is right of C.\nF is below of D.\nG is front of E.\nH is above of F.\nI is left of C.\nJ is behind of H.\n\nQuestion:\nWhere is J relative to A?\n\nOptions:\nA. above and behind\nB. right and front and above\nC. left and behind and below\nD. behind and below\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "A",
+        "predicted_option": "B",
+        "answer_text": "above and behind",
+        "correct": false,
+        "option_logits": {
+          "A": 23.918424606323242,
+          "B": 25.62643814086914,
+          "C": 24.591588973999023,
+          "D": 23.339014053344727
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is below of B.\nD is behind of C.\n\nQuestion:\nWhere is A relative to D?\n\nOptions:\nA. front and below and left\nB. above and front\nC. left and above and front\nD. left and above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "B",
+        "predicted_option": "A",
+        "answer_text": "above and front",
+        "correct": false,
+        "option_logits": {
+          "A": 24.972740173339844,
+          "B": 24.78642463684082,
+          "C": 21.795692443847656,
+          "D": 21.670705795288086
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is front of A.\nD is below of B.\nE is above of A.\nF is front of E.\n\nQuestion:\nWhere is F relative to A?\n\nOptions:\nA. right and below and behind\nB. behind and above and right\nC. front and above and left\nD. above and front\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "B",
+        "answer_text": "above and front",
+        "correct": false,
+        "option_logits": {
+          "A": 22.592803955078125,
+          "B": 23.811176300048828,
+          "C": 20.233028411865234,
+          "D": 22.38564682006836
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is right of B.\nD is right of A.\nE is behind of A.\nF is front of C.\nG is left of D.\n\nQuestion:\nWhere is A relative to G?\n\nOptions:\nA. front and left\nB. front and left and below\nC. above and behind and right\nD. overlap\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "C",
+        "answer_text": "overlap",
+        "correct": false,
+        "option_logits": {
+          "A": 24.012643814086914,
+          "B": 25.789798736572266,
+          "C": 25.996957778930664,
+          "D": 21.619169235229492
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is front of A.\nC is behind of B.\nD is front of A.\nE is right of C.\nF is front of B.\nG is behind of D.\nH is below of A.\nI is left of C.\nJ is behind of D.\n\nQuestion:\nWhere is A relative to J?\n\nOptions:\nA. front and left and below\nB. front and above and right\nC. above and right and behind\nD. overlap\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "overlap",
+        "correct": false,
+        "option_logits": {
+          "A": 24.68405532836914,
+          "B": 22.68703269958496,
+          "C": 23.610536575317383,
+          "D": 21.438474655151367
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is front of A.\nD is behind of A.\nE is front of B.\nF is behind of A.\nG is right of C.\nH is front of C.\nI is left of E.\nJ is above of I.\n\nQuestion:\nWhere is J relative to A?\n\nOptions:\nA. front and left\nB. left and below\nC. below and left and behind\nD. right and front and above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "A",
+        "predicted_option": "D",
+        "answer_text": "front and left",
+        "correct": false,
+        "option_logits": {
+          "A": 23.164398193359375,
+          "B": 21.554336547851562,
+          "C": 21.907859802246094,
+          "D": 25.42131996154785
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is left of B.\nD is below of C.\nE is below of B.\nF is behind of B.\n\nQuestion:\nWhere is F relative to A?\n\nOptions:\nA. behind and right and above\nB. behind and above and right\nC. behind and right and below\nD. behind and left\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "B",
+        "answer_text": "behind and left",
+        "correct": false,
+        "option_logits": {
+          "A": 23.297609329223633,
+          "B": 23.93944549560547,
+          "C": 23.355335235595703,
+          "D": 21.876434326171875
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is behind of A.\nC is behind of A.\nD is above of A.\nE is right of C.\n\nQuestion:\nWhere is A relative to E?\n\nOptions:\nA. right and front and above\nB. left and above and front\nC. left\nD. front and left\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "front and left",
+        "correct": false,
+        "option_logits": {
+          "A": 25.45417022705078,
+          "B": 24.78424835205078,
+          "C": 24.023319244384766,
+          "D": 21.644771575927734
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is behind of B.\nD is above of B.\nE is below of B.\nF is below of B.\n\nQuestion:\nWhere is A relative to F?\n\nOptions:\nA. below and behind and left\nB. left and behind and below\nC. right and behind and above\nD. above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "above",
+        "correct": false,
+        "option_logits": {
+          "A": 25.335844039916992,
+          "B": 24.32649803161621,
+          "C": 19.929819107055664,
+          "D": 23.804431915283203
+        }
+      }
+    ],
+    "random_ablation": [
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is left of B.\nD is above of A.\nE is right of B.\nF is below of C.\nG is behind of F.\nH is above of C.\nI is above of D.\n\nQuestion:\nWhere is I relative to A?\n\nOptions:\nA. behind and left and below\nB. above\nC. below and behind and left\nD. front and below and right\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "B",
+        "predicted_option": "B",
+        "answer_text": "above",
+        "correct": true,
+        "option_logits": {
+          "A": 25.172622680664062,
+          "B": 28.602495193481445,
+          "C": 21.331649780273438,
+          "D": 19.81239128112793
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is below of B.\nD is above of A.\nE is right of C.\nF is below of D.\nG is front of E.\nH is above of F.\nI is left of C.\nJ is behind of H.\n\nQuestion:\nWhere is J relative to A?\n\nOptions:\nA. above and behind\nB. right and front and above\nC. left and behind and below\nD. behind and below\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "A",
+        "predicted_option": "B",
+        "answer_text": "above and behind",
+        "correct": false,
+        "option_logits": {
+          "A": 25.367494583129883,
+          "B": 26.84088897705078,
+          "C": 26.607553482055664,
+          "D": 26.0396671295166
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is below of B.\nD is behind of C.\n\nQuestion:\nWhere is A relative to D?\n\nOptions:\nA. front and below and left\nB. above and front\nC. left and above and front\nD. left and above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "B",
+        "predicted_option": "A",
+        "answer_text": "above and front",
+        "correct": false,
+        "option_logits": {
+          "A": 26.823436737060547,
+          "B": 26.46332550048828,
+          "C": 24.765546798706055,
+          "D": 24.271615982055664
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is front of A.\nD is below of B.\nE is above of A.\nF is front of E.\n\nQuestion:\nWhere is F relative to A?\n\nOptions:\nA. right and below and behind\nB. behind and above and right\nC. front and above and left\nD. above and front\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "B",
+        "answer_text": "above and front",
+        "correct": false,
+        "option_logits": {
+          "A": 24.22736358642578,
+          "B": 25.82171630859375,
+          "C": 22.513412475585938,
+          "D": 25.058639526367188
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is right of B.\nD is right of A.\nE is behind of A.\nF is front of C.\nG is left of D.\n\nQuestion:\nWhere is A relative to G?\n\nOptions:\nA. front and left\nB. front and left and below\nC. above and behind and right\nD. overlap\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "C",
+        "answer_text": "overlap",
+        "correct": false,
+        "option_logits": {
+          "A": 25.260358810424805,
+          "B": 26.78896141052246,
+          "C": 27.811384201049805,
+          "D": 23.441394805908203
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is front of A.\nC is behind of B.\nD is front of A.\nE is right of C.\nF is front of B.\nG is behind of D.\nH is below of A.\nI is left of C.\nJ is behind of D.\n\nQuestion:\nWhere is A relative to J?\n\nOptions:\nA. front and left and below\nB. front and above and right\nC. above and right and behind\nD. overlap\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "overlap",
+        "correct": false,
+        "option_logits": {
+          "A": 26.43984031677246,
+          "B": 24.010433197021484,
+          "C": 26.304386138916016,
+          "D": 24.164926528930664
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is front of A.\nD is behind of A.\nE is front of B.\nF is behind of A.\nG is right of C.\nH is front of C.\nI is left of E.\nJ is above of I.\n\nQuestion:\nWhere is J relative to A?\n\nOptions:\nA. front and left\nB. left and below\nC. below and left and behind\nD. right and front and above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "A",
+        "predicted_option": "D",
+        "answer_text": "front and left",
+        "correct": false,
+        "option_logits": {
+          "A": 24.38016700744629,
+          "B": 22.65247344970703,
+          "C": 23.53668785095215,
+          "D": 27.597469329833984
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is left of A.\nC is left of B.\nD is below of C.\nE is below of B.\nF is behind of B.\n\nQuestion:\nWhere is F relative to A?\n\nOptions:\nA. behind and right and above\nB. behind and above and right\nC. behind and right and below\nD. behind and left\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "B",
+        "answer_text": "behind and left",
+        "correct": false,
+        "option_logits": {
+          "A": 25.381328582763672,
+          "B": 26.126684188842773,
+          "C": 25.835891723632812,
+          "D": 24.431629180908203
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is behind of A.\nC is behind of A.\nD is above of A.\nE is right of C.\n\nQuestion:\nWhere is A relative to E?\n\nOptions:\nA. right and front and above\nB. left and above and front\nC. left\nD. front and left\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "front and left",
+        "correct": false,
+        "option_logits": {
+          "A": 26.947526931762695,
+          "B": 26.112852096557617,
+          "C": 26.557579040527344,
+          "D": 23.943740844726562
+        }
+      },
+      {
+        "prompt": "You are given several statements describing the relative positions of objects in a 3D space.\nEach statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)\n\nStatements:\nB is below of A.\nC is behind of B.\nD is above of B.\nE is below of B.\nF is below of B.\n\nQuestion:\nWhere is A relative to F?\n\nOptions:\nA. below and behind and left\nB. left and behind and below\nC. right and behind and above\nD. above\n\nInstruction:\nOutput ONLY the letter of the correct option (A, B, C, or D).\nDo NOT provide any explanation, reasoning steps, or additional text.\n",
+        "correct_option": "D",
+        "predicted_option": "A",
+        "answer_text": "above",
+        "correct": false,
+        "option_logits": {
+          "A": 27.107460021972656,
+          "B": 26.17298126220703,
+          "C": 22.547222137451172,
+          "D": 26.151376724243164
+        }
+      }
+    ]
+  }
+}

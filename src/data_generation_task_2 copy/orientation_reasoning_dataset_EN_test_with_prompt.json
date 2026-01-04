@@ -1,0 +1,2983 @@
+[
+  {
+    "id": 1,
+    "num_steps": 7,
+    "question": "You are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "east",
+      "south",
+      "north"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. south\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 2,
+    "num_steps": 7,
+    "question": "You are facing south.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "east",
+      "north",
+      "west",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "south",
+    "end_direction": "west",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. west\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 3,
+    "num_steps": 4,
+    "question": "You are facing north.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 4,
+    "num_steps": 13,
+    "question": "You are facing south.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "north",
+      "west",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "south",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. west\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 5,
+    "num_steps": 5,
+    "question": "You are facing west.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "east",
+      "north",
+      "south",
+      "west"
+    ],
+    "correct_option": "D",
+    "start_direction": "west",
+    "end_direction": "west",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 6,
+    "num_steps": 5,
+    "question": "You are facing east.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "north",
+      "east",
+      "south",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "east",
+    "end_direction": "east",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. east\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 7,
+    "num_steps": 11,
+    "question": "You are facing west.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "west",
+      "south",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. south\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 8,
+    "num_steps": 4,
+    "question": "You are facing east.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "A",
+    "start_direction": "east",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 9,
+    "num_steps": 6,
+    "question": "You are facing north.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 10,
+    "num_steps": 8,
+    "question": "You are facing north.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 11,
+    "num_steps": 3,
+    "question": "You are facing east.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "east",
+    "end_direction": "south",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 12,
+    "num_steps": 2,
+    "question": "You are facing east.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "D",
+    "start_direction": "east",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 13,
+    "num_steps": 9,
+    "question": "You are facing east.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "north",
+      "east",
+      "west"
+    ],
+    "correct_option": "A",
+    "start_direction": "east",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. north\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 14,
+    "num_steps": 8,
+    "question": "You are facing west.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "north",
+      "west",
+      "south",
+      "east"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn around"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 15,
+    "num_steps": 3,
+    "question": "You are facing south.\nTurn right.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "south",
+      "west",
+      "east",
+      "north"
+    ],
+    "correct_option": "B",
+    "start_direction": "south",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn right.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. east\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 16,
+    "num_steps": 9,
+    "question": "You are facing north.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 17,
+    "num_steps": 11,
+    "question": "You are facing east.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "south",
+      "east",
+      "west",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "east",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. east\nC. west\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 18,
+    "num_steps": 4,
+    "question": "You are facing west.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "west",
+      "south",
+      "east",
+      "north"
+    ],
+    "correct_option": "B",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. south\nC. east\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 19,
+    "num_steps": 13,
+    "question": "You are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "west",
+      "east",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. east\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 20,
+    "num_steps": 15,
+    "question": "You are facing north.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "south",
+      "east",
+      "north",
+      "west"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. east\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 21,
+    "num_steps": 9,
+    "question": "You are facing west.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "west",
+      "north",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 22,
+    "num_steps": 4,
+    "question": "You are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "north",
+      "west",
+      "south",
+      "east"
+    ],
+    "correct_option": "B",
+    "start_direction": "west",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 23,
+    "num_steps": 15,
+    "question": "You are facing north.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "south",
+      "north",
+      "west",
+      "east"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. north\nC. west\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 24,
+    "num_steps": 6,
+    "question": "You are facing north.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "north",
+      "west",
+      "south",
+      "east"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 25,
+    "num_steps": 7,
+    "question": "You are facing north.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 26,
+    "num_steps": 7,
+    "question": "You are facing north.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "west",
+      "south",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. south\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 27,
+    "num_steps": 12,
+    "question": "You are facing north.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "east",
+      "north",
+      "west",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. west\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 28,
+    "num_steps": 12,
+    "question": "You are facing north.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "north",
+      "west",
+      "east"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. north\nC. west\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 29,
+    "num_steps": 3,
+    "question": "You are facing west.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "north",
+      "south",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 30,
+    "num_steps": 4,
+    "question": "You are facing north.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "north",
+      "south",
+      "east",
+      "west"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. south\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 31,
+    "num_steps": 2,
+    "question": "You are facing west.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "north",
+      "west",
+      "east",
+      "south"
+    ],
+    "correct_option": "A",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. east\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 32,
+    "num_steps": 7,
+    "question": "You are facing north.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "south",
+      "west",
+      "north"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "north",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. south\nC. west\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 33,
+    "num_steps": 7,
+    "question": "You are facing north.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "west",
+      "south",
+      "east",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. south\nC. east\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 34,
+    "num_steps": 12,
+    "question": "You are facing north.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 35,
+    "num_steps": 12,
+    "question": "You are facing west.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 36,
+    "num_steps": 11,
+    "question": "You are facing north.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 37,
+    "num_steps": 12,
+    "question": "You are facing south.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "north",
+      "south",
+      "west",
+      "east"
+    ],
+    "correct_option": "B",
+    "start_direction": "south",
+    "end_direction": "south",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. south\nC. west\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 38,
+    "num_steps": 4,
+    "question": "You are facing south.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "west",
+      "south",
+      "east",
+      "north"
+    ],
+    "correct_option": "B",
+    "start_direction": "south",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. south\nC. east\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 39,
+    "num_steps": 4,
+    "question": "You are facing north.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "east",
+      "west",
+      "north",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 40,
+    "num_steps": 3,
+    "question": "You are facing west.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "north",
+      "south",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "west",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. north\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 41,
+    "num_steps": 10,
+    "question": "You are facing east.\nTurn left.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "west",
+      "east",
+      "north"
+    ],
+    "correct_option": "A",
+    "start_direction": "east",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn left.\nTurn around.\nTurn left.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. east\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 42,
+    "num_steps": 11,
+    "question": "You are facing west.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "north",
+      "south",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 43,
+    "num_steps": 7,
+    "question": "You are facing south.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "west",
+      "south",
+      "north",
+      "east"
+    ],
+    "correct_option": "D",
+    "start_direction": "south",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. south\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 44,
+    "num_steps": 14,
+    "question": "You are facing west.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "west",
+      "south",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. south\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 45,
+    "num_steps": 4,
+    "question": "You are facing east.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "west",
+      "south",
+      "north",
+      "east"
+    ],
+    "correct_option": "B",
+    "start_direction": "east",
+    "end_direction": "south",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. south\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 46,
+    "num_steps": 15,
+    "question": "You are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "north",
+      "west",
+      "south",
+      "east"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 47,
+    "num_steps": 9,
+    "question": "You are facing north.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "south",
+      "north",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. south\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 48,
+    "num_steps": 2,
+    "question": "You are facing east.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "C",
+    "start_direction": "east",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 49,
+    "num_steps": 7,
+    "question": "You are facing east.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "north",
+      "west",
+      "east",
+      "south"
+    ],
+    "correct_option": "A",
+    "start_direction": "east",
+    "end_direction": "north",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. east\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 50,
+    "num_steps": 10,
+    "question": "You are facing west.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "south",
+      "north",
+      "east",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. north\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 51,
+    "num_steps": 8,
+    "question": "You are facing south.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "north",
+      "west",
+      "south",
+      "east"
+    ],
+    "correct_option": "C",
+    "start_direction": "south",
+    "end_direction": "south",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 52,
+    "num_steps": 13,
+    "question": "You are facing west.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "west",
+      "south",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. south\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 53,
+    "num_steps": 11,
+    "question": "You are facing north.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "north",
+      "south",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. north\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 54,
+    "num_steps": 10,
+    "question": "You are facing east.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "north",
+      "south",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "east",
+    "end_direction": "west",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn around.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. north\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 55,
+    "num_steps": 10,
+    "question": "You are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "south",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 56,
+    "num_steps": 11,
+    "question": "You are facing north.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "north",
+      "east",
+      "south",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. east\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 57,
+    "num_steps": 6,
+    "question": "You are facing west.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "east",
+      "north",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "west",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn left.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. east\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 58,
+    "num_steps": 11,
+    "question": "You are facing west.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "north",
+      "east",
+      "south",
+      "west"
+    ],
+    "correct_option": "A",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. east\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 59,
+    "num_steps": 4,
+    "question": "You are facing south.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "east",
+      "west",
+      "north",
+      "south"
+    ],
+    "correct_option": "A",
+    "start_direction": "south",
+    "end_direction": "east",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn around"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn right.\nTurn around.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 60,
+    "num_steps": 2,
+    "question": "You are facing north.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "east",
+      "south",
+      "north",
+      "west"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. south\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 61,
+    "num_steps": 3,
+    "question": "You are facing west.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "west",
+      "north",
+      "south"
+    ],
+    "correct_option": "D",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 62,
+    "num_steps": 8,
+    "question": "You are facing east.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "C",
+    "start_direction": "east",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 63,
+    "num_steps": 10,
+    "question": "You are facing north.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "north",
+      "south",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 64,
+    "num_steps": 10,
+    "question": "You are facing west.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "east",
+      "north",
+      "south",
+      "west"
+    ],
+    "correct_option": "A",
+    "start_direction": "west",
+    "end_direction": "east",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 65,
+    "num_steps": 6,
+    "question": "You are facing west.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn right.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 66,
+    "num_steps": 3,
+    "question": "You are facing west.\nTurn around.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "north",
+      "east",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "east",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. north\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 67,
+    "num_steps": 8,
+    "question": "You are facing south.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "south",
+      "north",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "south",
+    "end_direction": "north",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. south\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 68,
+    "num_steps": 6,
+    "question": "You are facing west.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "north",
+      "west",
+      "south",
+      "east"
+    ],
+    "correct_option": "A",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. south\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 69,
+    "num_steps": 4,
+    "question": "You are facing west.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "B",
+    "start_direction": "west",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 70,
+    "num_steps": 9,
+    "question": "You are facing west.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "north",
+      "south",
+      "east",
+      "west"
+    ],
+    "correct_option": "D",
+    "start_direction": "west",
+    "end_direction": "west",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. south\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 71,
+    "num_steps": 13,
+    "question": "You are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "north",
+      "south",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "south",
+    "end_direction": "north",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 72,
+    "num_steps": 2,
+    "question": "You are facing north.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "north",
+      "west",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "north",
+    "actions": [
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. west\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 73,
+    "num_steps": 10,
+    "question": "You are facing south.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "west",
+      "east",
+      "south",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "south",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. south\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 74,
+    "num_steps": 4,
+    "question": "You are facing west.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "north",
+      "south",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "south",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. south\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 75,
+    "num_steps": 11,
+    "question": "You are facing north.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "south",
+      "north",
+      "east",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. north\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 76,
+    "num_steps": 5,
+    "question": "You are facing north.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "east",
+      "west",
+      "north",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 77,
+    "num_steps": 9,
+    "question": "You are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "west",
+      "north",
+      "east",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "north",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. north\nC. east\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 78,
+    "num_steps": 2,
+    "question": "You are facing north.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "east",
+      "south",
+      "north",
+      "west"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. south\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 79,
+    "num_steps": 11,
+    "question": "You are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "east",
+      "north",
+      "west",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. west\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 80,
+    "num_steps": 8,
+    "question": "You are facing west.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 81,
+    "num_steps": 12,
+    "question": "You are facing west.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "north",
+      "west",
+      "east",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "east",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. east\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 82,
+    "num_steps": 11,
+    "question": "You are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "north",
+      "east",
+      "west"
+    ],
+    "correct_option": "A",
+    "start_direction": "south",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. north\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 83,
+    "num_steps": 6,
+    "question": "You are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "north",
+      "west",
+      "east",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. east\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 84,
+    "num_steps": 8,
+    "question": "You are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "west",
+      "north",
+      "east"
+    ],
+    "correct_option": "D",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. north\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 85,
+    "num_steps": 2,
+    "question": "You are facing west.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "north",
+      "east",
+      "west",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "west",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. east\nC. west\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 86,
+    "num_steps": 2,
+    "question": "You are facing north.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "west",
+      "east",
+      "north",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 87,
+    "num_steps": 2,
+    "question": "You are facing east.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "south",
+      "east",
+      "north",
+      "west"
+    ],
+    "correct_option": "B",
+    "start_direction": "east",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn left.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. east\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 88,
+    "num_steps": 8,
+    "question": "You are facing east.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "west",
+      "north",
+      "south"
+    ],
+    "correct_option": "D",
+    "start_direction": "east",
+    "end_direction": "south",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn left.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. west\nC. north\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 89,
+    "num_steps": 13,
+    "question": "You are facing east.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "north",
+      "south",
+      "east",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "east",
+    "end_direction": "east",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn right.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. south\nC. east\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 90,
+    "num_steps": 3,
+    "question": "You are facing north.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "south",
+      "west",
+      "east",
+      "north"
+    ],
+    "correct_option": "A",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn right.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. west\nC. east\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 91,
+    "num_steps": 11,
+    "question": "You are facing north.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "south",
+      "east",
+      "north",
+      "west"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "north",
+    "actions": [
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn right.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. east\nC. north\nD. west\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 92,
+    "num_steps": 12,
+    "question": "You are facing east.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "south",
+      "east",
+      "west",
+      "north"
+    ],
+    "correct_option": "D",
+    "start_direction": "east",
+    "end_direction": "north",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. east\nC. west\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 93,
+    "num_steps": 14,
+    "question": "You are facing north.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "north",
+      "west",
+      "east",
+      "south"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "west",
+    "actions": [
+      "Turn left",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn around"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn around.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. east\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 94,
+    "num_steps": 15,
+    "question": "You are facing west.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "north",
+    "options": [
+      "east",
+      "south",
+      "west",
+      "north"
+    ],
+    "correct_option": "D",
+    "start_direction": "west",
+    "end_direction": "north",
+    "actions": [
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn left",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      0.0,
+      1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing west.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn left.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. south\nC. west\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 95,
+    "num_steps": 4,
+    "question": "You are facing east.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "east",
+      "north",
+      "west",
+      "south"
+    ],
+    "correct_option": "D",
+    "start_direction": "east",
+    "end_direction": "south",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. east\nB. north\nC. west\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 96,
+    "num_steps": 6,
+    "question": "You are facing south.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "south",
+      "east",
+      "west",
+      "north"
+    ],
+    "correct_option": "C",
+    "start_direction": "south",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn left"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing south.\nTurn right.\nTurn around.\nTurn left.\nTurn right.\nTurn left.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. south\nB. east\nC. west\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 97,
+    "num_steps": 4,
+    "question": "You are facing east.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "west",
+      "east",
+      "south",
+      "north"
+    ],
+    "correct_option": "A",
+    "start_direction": "east",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. west\nB. east\nC. south\nD. north\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 98,
+    "num_steps": 11,
+    "question": "You are facing east.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "west",
+    "options": [
+      "north",
+      "south",
+      "west",
+      "east"
+    ],
+    "correct_option": "C",
+    "start_direction": "east",
+    "end_direction": "west",
+    "actions": [
+      "Turn right",
+      "Turn left",
+      "Turn right",
+      "Turn right",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn right"
+    ],
+    "target": [
+      -1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing east.\nTurn right.\nTurn left.\nTurn right.\nTurn right.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. south\nC. west\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 99,
+    "num_steps": 12,
+    "question": "You are facing north.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?",
+    "answer": "south",
+    "options": [
+      "north",
+      "south",
+      "west",
+      "east"
+    ],
+    "correct_option": "B",
+    "start_direction": "north",
+    "end_direction": "south",
+    "actions": [
+      "Turn around",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn right",
+      "Turn right",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn left"
+    ],
+    "target": [
+      -0.0,
+      -1.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn around.\nTurn around.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn right.\nTurn right.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. south\nC. west\nD. east\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  },
+  {
+    "id": 100,
+    "num_steps": 8,
+    "question": "You are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?",
+    "answer": "east",
+    "options": [
+      "north",
+      "west",
+      "east",
+      "south"
+    ],
+    "correct_option": "C",
+    "start_direction": "north",
+    "end_direction": "east",
+    "actions": [
+      "Turn left",
+      "Turn right",
+      "Turn left",
+      "Turn around",
+      "Turn left",
+      "Turn around",
+      "Turn around",
+      "Turn right"
+    ],
+    "target": [
+      1.0,
+      0.0
+    ],
+    "prompt": "You are an AI assistant that helps solve orientation reasoning problems.\n\nPlease carefully read the following problem and choose the correct answer from the options provided.\n\nProblem:\nYou are facing north.\nTurn left.\nTurn right.\nTurn left.\nTurn around.\nTurn left.\nTurn around.\nTurn around.\nTurn right.\n\nWhich direction are you facing now?\n\nOptions:\nA. north\nB. west\nC. east\nD. south\n\nPlease provide your answer in the following format:\nAnswer: [Your choice (A/B/C/D)]\nExplanation: [Brief explanation of your reasoning]"
+  }
+]
