@@ -1,54 +1,54 @@
 {
   "by_steps": {
-    "9": {
-      "total": 33,
-      "correct": 23,
-      "accuracy": 69.6969696969697
+    "3": {
+      "total": 24,
+      "correct": 19,
+      "accuracy": 79.16666666666666
     },
-    "4": {
+    "9": {
+      "total": 32,
+      "correct": 22,
+      "accuracy": 68.75
+    },
+    "7": {
       "total": 20,
       "correct": 11,
       "accuracy": 55.00000000000001
     },
     "5": {
-      "total": 18,
-      "correct": 11,
-      "accuracy": 61.111111111111114
-    },
-    "7": {
-      "total": 23,
-      "correct": 13,
-      "accuracy": 56.52173913043478
-    },
-    "8": {
-      "total": 13,
-      "correct": 10,
-      "accuracy": 76.92307692307693
-    },
-    "2": {
-      "total": 27,
-      "correct": 11,
-      "accuracy": 40.74074074074074
-    },
-    "3": {
-      "total": 27,
-      "correct": 17,
-      "accuracy": 62.96296296296296
+      "total": 21,
+      "correct": 12,
+      "accuracy": 57.14285714285714
     },
     "6": {
-      "total": 20,
+      "total": 22,
       "correct": 11,
-      "accuracy": 55.00000000000001
+      "accuracy": 50.0
+    },
+    "8": {
+      "total": 20,
+      "correct": 13,
+      "accuracy": 65.0
+    },
+    "4": {
+      "total": 20,
+      "correct": 9,
+      "accuracy": 45.0
+    },
+    "2": {
+      "total": 19,
+      "correct": 12,
+      "accuracy": 63.1578947368421
     },
     "10": {
-      "total": 19,
-      "correct": 7,
-      "accuracy": 36.84210526315789
+      "total": 22,
+      "correct": 15,
+      "accuracy": 68.18181818181817
     }
   },
   "overall": {
     "total": 200,
-    "correct": 114,
-    "accuracy": 56.99999999999999
+    "correct": 124,
+    "accuracy": 62.0
   }
 }

@@ -61,13 +61,17 @@ class SpatialProcedureGenerator:
     # 定义可能的旋转角度
     ROTATION_ANGLES = [90, 180, 270]
     
-    # 定义缩放因子
-    SCALE_FACTORS = [2, 3, 0.5, -1]
+    # 定义缩放因子 (修改为更温和的值，避免极端放大)
+    SCALE_FACTORS = [2, 0.5, -1]  # 移除 3，避免过度放大
+    
+    # 坐标范围限制
+    MAX_COORD_VALUE = 50  # 单个坐标的最大绝对值
     
     def __init__(self, seed: Optional[int] = None):
         """初始化生成器"""
         if seed is not None:
             random.seed(seed)
+        self.consecutive_scale_count = 0  # 跟踪连续 scale 操作
     
     def apply_move(self, position: Tuple[float, float, float], 
                    direction: str, units: int) -> Tuple[float, float, float]:
@@ -201,65 +205,109 @@ class SpatialProcedureGenerator:
                                        action.params['dy'], action.params['dz'])
         return position
     
-    def generate_random_action(self) -> SpatialAction:
+    def generate_random_action(self, current_position: Optional[Tuple[float, float, float]] = None) -> SpatialAction:
         """
-        生成随机空间操作
+        生成随机空间操作（改进版：避免连续 scale 和极端值）
+        
+        Args:
+            current_position: 当前位置（用于避免生成导致越界的操作）
         
         Returns:
             action: 随机空间操作
         """
-        action_type = random.choice(['move', 'reflect', 'rotate', 'scale', 'translate'])
+        # 如果连续 2 次 scale，则降低 scale 的概率
+        if self.consecutive_scale_count >= 2:
+            action_type = random.choice(['move', 'move', 'reflect', 'rotate', 'translate'])
+        else:
+            action_type = random.choice(['move', 'reflect', 'rotate', 'scale', 'translate'])
         
         if action_type == 'move':
             direction = random.choice(list(self.MOVE_DIRECTIONS.keys()))
             units = random.randint(1, 5)
+            self.consecutive_scale_count = 0
             return SpatialAction('move', {'direction': direction, 'units': units})
         
         elif action_type == 'reflect':
             axis = random.choice(self.AXES)
+            self.consecutive_scale_count = 0
             return SpatialAction('reflect', {'axis': axis})
         
         elif action_type == 'rotate':
             axis = random.choice(self.AXES)
             degrees = random.choice(self.ROTATION_ANGLES)
+            self.consecutive_scale_count = 0
             return SpatialAction('rotate', {'axis': axis, 'degrees': degrees})
         
         elif action_type == 'scale':
-            factor = random.choice(self.SCALE_FACTORS)
+            # 如果当前坐标已经很大，避免放大操作
+            if current_position is not None:
+                max_abs_coord = max(abs(current_position[0]), abs(current_position[1]), abs(current_position[2]))
+                if max_abs_coord > 20:
+                    # 只允许缩小或取反
+                    factor = random.choice([0.5, -1])
+                else:
+                    factor = random.choice(self.SCALE_FACTORS)
+            else:
+                factor = random.choice(self.SCALE_FACTORS)
+            
+            self.consecutive_scale_count += 1
             return SpatialAction('scale', {'factor': factor})
         
         else:  # translate
             dx = random.randint(-3, 3)
             dy = random.randint(-3, 3)
             dz = random.randint(-3, 3)
+            self.consecutive_scale_count = 0
             return SpatialAction('translate', {'dx': dx, 'dy': dy, 'dz': dz})
     
-    def generate_action_sequence(self, num_steps: int) -> Tuple[List[SpatialAction], 
+    def generate_action_sequence(self, num_steps: int, max_retries: int = 10) -> Tuple[List[SpatialAction], 
                                                                 Tuple[float, float, float]]:
         """
-        生成空间操作序列
+        生成空间操作序列（改进版：添加坐标范围检查和重试机制）
         
         Args:
             num_steps: 操作步骤数量
+            max_retries: 最大重试次数
             
         Returns:
             actions: 操作列表
             final_position: 最终位置
         """
-        # 起始位置
-        start_position = (0.0, 0.0, 0.0)
-        current_position = start_position
+        for retry in range(max_retries):
+            # 重置连续 scale 计数
+            self.consecutive_scale_count = 0
+            
+            # 起始位置
+            start_position = (0.0, 0.0, 0.0)
+            current_position = start_position
+            
+            # 生成操作序列
+            actions = []
+            valid_sequence = True
+            
+            for _ in range(num_steps):
+                action = self.generate_random_action(current_position)
+                new_position = self.apply_action(current_position, action)
+                
+                # 检查是否超出范围
+                if any(abs(coord) > self.MAX_COORD_VALUE for coord in new_position):
+                    valid_sequence = False
+                    break
+                
+                actions.append(action)
+                current_position = new_position
+            
+            # 如果生成的序列有效，返回结果
+            if valid_sequence:
+                # 四舍五入最终结果
+                final_position = tuple(round(coord, 2) for coord in current_position)
+                return actions, final_position
         
-        # 生成操作序列
-        actions = []
-        for _ in range(num_steps):
-            action = self.generate_random_action()
-            actions.append(action)
-            current_position = self.apply_action(current_position, action)
-        
-        # 四舍五入最终结果
-        final_position = tuple(round(coord, 2) for coord in current_position)
-        
+        # 如果重试多次仍失败，使用最后一次的结果（裁剪到范围内）
+        final_position = tuple(
+            round(max(-self.MAX_COORD_VALUE, min(self.MAX_COORD_VALUE, coord)), 2) 
+            for coord in current_position
+        )
         return actions, final_position
     
     def generate_distractor_options(self, correct_answer: Tuple[float, float, float]) -> List[Tuple[float, float, float]]:
@@ -426,6 +474,9 @@ class SpatialProcedureGenerator:
             if (i + 1) % 100 == 0:
                 print(f"Generated {i + 1}/{num_samples} samples...")
         
+        # 数据集质量验证
+        self._validate_dataset_quality(dataset)
+        
         # 保存到文件
         if output_file:
             with open(output_file, 'w', encoding='utf-8') as f:
@@ -433,6 +484,67 @@ class SpatialProcedureGenerator:
             print(f"\nDataset saved to {output_file}")
         
         return dataset
+    
+    def _validate_dataset_quality(self, dataset: List[Dict]):
+        """
+        验证数据集质量，确保方差和范围在合理范围内
+        
+        Args:
+            dataset: 数据集
+        """
+        import numpy as np
+        
+        targets = np.array([s['target'] for s in dataset])
+        
+        mean = targets.mean(axis=0)
+        std = targets.std(axis=0)
+        min_vals = targets.min(axis=0)
+        max_vals = targets.max(axis=0)
+        ranges = max_vals - min_vals
+        
+        print("\n" + "="*60)
+        print("Dataset Quality Validation:")
+        print("="*60)
+        print(f"Target Statistics:")
+        print(f"  Mean:  x={mean[0]:.2f}, y={mean[1]:.2f}, z={mean[2]:.2f}")
+        print(f"  Std:   x={std[0]:.2f}, y={std[1]:.2f}, z={std[2]:.2f}")
+        print(f"  Range: x=[{min_vals[0]:.1f}, {max_vals[0]:.1f}], "
+              f"y=[{min_vals[1]:.1f}, {max_vals[1]:.1f}], "
+              f"z=[{min_vals[2]:.1f}, {max_vals[2]:.1f}]")
+        
+        # 检查是否有轴的方差过大
+        max_std = std.max()
+        min_std = std.min()
+        std_ratio = max_std / min_std if min_std > 0 else float('inf')
+        
+        print(f"\nBalance Check:")
+        print(f"  Max std: {max_std:.2f}")
+        print(f"  Min std: {min_std:.2f}")
+        print(f"  Std ratio: {std_ratio:.2f}")
+        
+        # 警告
+        if std_ratio > 3.0:
+            print(f"\n⚠️  WARNING: Std ratio > 3.0, data may be imbalanced!")
+            print(f"   Consider regenerating with different seed or adjusting SCALE_FACTORS.")
+        elif std_ratio > 2.0:
+            print(f"\n⚡ CAUTION: Std ratio > 2.0, data slightly imbalanced.")
+        else:
+            print(f"\n✓ Data balance is good (std ratio < 2.0)")
+        
+        # 检查极端值
+        max_abs = np.abs(targets).max()
+        extreme_count = (np.abs(targets) > self.MAX_COORD_VALUE * 0.8).sum()
+        
+        print(f"\nExtreme Values Check:")
+        print(f"  Max absolute value: {max_abs:.1f}")
+        print(f"  Coords near limit (>{self.MAX_COORD_VALUE * 0.8:.1f}): {extreme_count}")
+        
+        if max_abs > self.MAX_COORD_VALUE:
+            print(f"\n⚠️  WARNING: Some coordinates exceed MAX_COORD_VALUE ({self.MAX_COORD_VALUE})!")
+        else:
+            print(f"\n✓ All coordinates within bounds")
+        
+        print("="*60)
     
     def print_sample(self, sample: Dict):
         """打印样本示例"""
