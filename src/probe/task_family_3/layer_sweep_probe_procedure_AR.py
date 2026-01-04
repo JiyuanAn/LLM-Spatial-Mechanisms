@@ -10,7 +10,7 @@ import argparse
 import numpy as np
 from tqdm import tqdm
 from sklearn.linear_model import Ridge
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformer_lens import HookedTransformer
 
@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--model_name", "-m", type=str)
 parser.add_argument("--train_data_file_path", "-tr", type=str)
 parser.add_argument("--test_data_file_path", "-te", type=str)
-parser.add_argument("--output_file_path", "-o", type=str, default=f"probe_results_orientation_{time.strftime('%Y%m%d_%H%M%S')}.json")
+parser.add_argument("--output_file_path", "-o", type=str, default=f"probe_procedure_results_{time.strftime('%Y%m%d_%H%M%S')}.json")
 args = parser.parse_args()
 
 MODEL_NAME = args.model_name
@@ -42,13 +42,12 @@ np.random.seed(SEED)
 # =========================
 # 1.5 Prompt 模板
 # =========================
-SYSTEM_PROMPT = """You are a spatial orientation reasoning assistant."""
+SYSTEM_PROMPT = """You are a spatial reasoning assistant."""
 
-INSTRUCTION_TEMPLATE = """You are given a series of turning actions.
-Starting from an initial direction, you need to track the direction changes and determine the final direction.
+INSTRUCTION_TEMPLATE = """You are given a starting position and a sequence of spatial operations.
+Each operation transforms the position in 3D space.
 
-Initial direction and actions:
-{statements}
+{procedure}
 
 Question:
 {question}
@@ -64,25 +63,23 @@ Output ONLY the letter of the correct option (A, B, C, or D).
 Do NOT provide any explanation, reasoning steps, or additional text.
 """
 
-def parse_question(question_text):
-    """从 question 字段中解析出 statements 和 question"""
-    lines = question_text.strip().split('\n')
-    statements_lines = []
-    question_line = ""
-    
-    for line in lines:
-        if line.startswith("Which direction"):
-            question_line = line
-        else:
-            statements_lines.append(line)
-    
-    statements = '\n'.join(statements_lines)
-    return statements, question_line
-
 def construct_prompt(sample):
     """构造完整的 prompt"""
-    # 解析 question 字段
-    statements, question = parse_question(sample['question'])
+    # 从 question 字段解析 procedure 和 question
+    question_text = sample['question']
+    lines = question_text.strip().split('\n')
+    
+    # 找到 "What is the final position?" 这一行
+    question_line = ""
+    procedure_lines = []
+    
+    for line in lines:
+        if line.strip().startswith("What is"):
+            question_line = line.strip()
+        elif line.strip():  # 非空行
+            procedure_lines.append(line)
+    
+    procedure = '\n'.join(procedure_lines)
     
     # 获取选项
     options = sample['options']
@@ -93,11 +90,11 @@ def construct_prompt(sample):
     
     # 构造 prompt
     prompt = INSTRUCTION_TEMPLATE.format(
-        statements=statements,
-        question=question, 
-        option_A=option_A, 
-        option_B=option_B, 
-        option_C=option_C, 
+        procedure=procedure,
+        question=question_line,
+        option_A=option_A,
+        option_B=option_B,
+        option_C=option_C,
         option_D=option_D
     )
     
@@ -155,10 +152,10 @@ with open(TRAIN_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample['prompt'] #construct_prompt(sample)
         train_data.append({
             "prompt": prompt,
-            "target": np.array(sample["target"])  # [cos(θ), sin(θ)]
+            "target": np.array(sample["target"], dtype=np.float32)
         })
 
 test_data = []
@@ -166,11 +163,14 @@ with open(TEST_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample['prompt'] #construct_prompt(sample)
         test_data.append({
             "prompt": prompt,
-            "target": np.array(sample["target"])  # [cos(θ), sin(θ)]
+            "target": np.array(sample["target"], dtype=np.float32)
         })
+
+print(f"Loaded {len(train_data)} training samples")
+print(f"Loaded {len(test_data)} test samples")
 
 # =========================
 # 4. 工具函数：提取 resid_post
@@ -180,7 +180,7 @@ def collect_hidden_states(data, layer_idx):
     对指定 layer_idx，收集 resid_post hidden states
     返回：
         X: [N, d_model]
-        Y: [N, 2]  # 二维：[cos(θ), sin(θ)]
+        Y: [N, 3]  # 三维：[x, y, z] 表示最终位置
     """
     X, Y = [], []
 
@@ -207,6 +207,8 @@ def collect_hidden_states(data, layer_idx):
 # =========================
 print("\n===== Starting Layer Sweep =====")
 layer_r2 = []
+layer_mae = []
+layer_rmse = []
 
 for layer in range(n_layers):
     print(f"\nProcessing Layer {layer}/{n_layers-1}...")
@@ -214,43 +216,22 @@ for layer in range(n_layers):
     X_train, Y_train = collect_hidden_states(train_data, layer)
     X_test, Y_test = collect_hidden_states(test_data, layer)
 
-    # Ridge 回归（预测 cos(θ), sin(θ)）
+    # Ridge 回归（预测最终位置 x, y, z）
     probe = Ridge(alpha=RIDGE_ALPHA)
     probe.fit(X_train, Y_train)
 
-    # 在测试集上预测
     Y_pred = probe.predict(X_test)
-    r2 = r2_score(Y_test, Y_pred, multioutput="uniform_average")
-    layer_r2.append(r2)
-    
-    # 在训练集上预测（检查是否能拟合）
-    Y_train_pred = probe.predict(X_train)
-    r2_train = r2_score(Y_train, Y_train_pred, multioutput="uniform_average")
-    
-    # === 诊断信息（仅对第一层、中间层和最后一层） ===
-    if layer == 0 or layer == n_layers // 2 or layer == n_layers - 1:
-        # 计算基准（用均值预测的MSE）
-        Y_mean_pred = np.tile(Y_train.mean(axis=0), (len(Y_test), 1))
-        baseline_mse = np.mean((Y_test - Y_mean_pred) ** 2)
-        model_mse = np.mean((Y_test - Y_pred) ** 2)
-        
-        # 分别计算cos和sin的R²
-        r2_cos = r2_score(Y_test[:, 0], Y_pred[:, 0])
-        r2_sin = r2_score(Y_test[:, 1], Y_pred[:, 1])
-        
-        print(f"\n{'='*50}")
-        print(f"Layer {layer} 详细诊断:")
-        print(f"  数据量: train={len(Y_train)}, test={len(Y_test)}")
-        print(f"  训练集目标: 均值={Y_train.mean(axis=0)}, std={Y_train.std(axis=0)}")
-        print(f"  测试集目标: 均值={Y_test.mean(axis=0)}, std={Y_test.std(axis=0)}")
-        print(f"  预测值(test): 均值={Y_pred.mean(axis=0)}, std={Y_pred.std(axis=0)}")
-        print(f"  MSE (baseline/model): {baseline_mse:.6f} / {model_mse:.6f}")
-        print(f"  R² on TRAIN: {r2_train:.4f}  <- 能否拟合训练集？")
-        print(f"  R² on TEST:  {r2:.4f}       <- 泛化能力")
-        print(f"  R² by dim (cos/sin): {r2_cos:.4f} / {r2_sin:.4f}")
-        print(f"{'='*50}\n")
 
-    print(f"Layer {layer:02d} | R²_train = {r2_train:.4f}, R²_test = {r2:.4f}")
+    # 计算评估指标
+    r2 = r2_score(Y_test, Y_pred, multioutput="uniform_average")
+    mae = mean_absolute_error(Y_test, Y_pred)
+    rmse = np.sqrt(mean_squared_error(Y_test, Y_pred))
+    
+    layer_r2.append(float(r2))
+    layer_mae.append(float(mae))
+    layer_rmse.append(float(rmse))
+
+    print(f"Layer {layer:02d} | R² = {r2:.4f} | MAE = {mae:.4f} | RMSE = {rmse:.4f}")
 
 # =========================
 # 6. 结果输出
@@ -258,9 +239,9 @@ for layer in range(n_layers):
 print("\n" + "="*50)
 print("===== Layer Sweep Result =====")
 print("="*50)
-for i, r2 in enumerate(layer_r2):
+for i, (r2, mae, rmse) in enumerate(zip(layer_r2, layer_mae, layer_rmse)):
     marker = " <<<" if i == np.argmax(layer_r2) else ""
-    print(f"Layer {i:02d}: R² = {r2:.4f}{marker}")
+    print(f"Layer {i:02d}: R² = {r2:.4f} | MAE = {mae:.4f} | RMSE = {rmse:.4f}{marker}")
 
 best_layer = int(np.argmax(layer_r2))
 print("\n" + "="*50)
@@ -268,16 +249,18 @@ print(f">>> Best layer: {best_layer} (R²={layer_r2[best_layer]:.4f})")
 print("="*50)
 
 # =========================
-# 7. 保存结果（可选）
+# 7. 保存结果
 # =========================
 results = {
     'layer_r2': layer_r2,
+    'layer_mae': layer_mae,
+    'layer_rmse': layer_rmse,
     'best_layer': best_layer,
     'n_layers': n_layers,
     'd_model': d_model,
+    'task_type': 'spatial_procedure_execution'
 }
 
-import json
 output_file = OUTPUT_FILE_PATH
 with open(output_file, 'w') as f:
     json.dump(results, f, indent=2)

@@ -34,7 +34,7 @@ def parse_question(question_text):
     question_line = ""
     
     for line in lines:
-        if line.startswith("Where is"):
+        if line.startswith("Which direction"):
             question_line = line
         else:
             statements_lines.append(line)

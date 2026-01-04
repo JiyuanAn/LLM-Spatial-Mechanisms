@@ -44,24 +44,24 @@ np.random.seed(SEED)
 # =========================
 SYSTEM_PROMPT = """You are a spatial orientation reasoning assistant."""
 
-INSTRUCTION_TEMPLATE = """You are given a series of turning actions.
-Starting from an initial direction, you need to track the direction changes and determine the final direction.
+INSTRUCTION_TEMPLATE = """سيتم إعطاؤك سلسلة من إجراءات الدوران.
+بدءًا من اتجاه أولي، تحتاج إلى تتبع التغييرات في الاتجاه وتحديد الاتجاه النهائي.
 
-Initial direction and actions:
+الاتجاه الأولي والإجراءات:
 {statements}
 
-Question:
+السؤال:
 {question}
 
-Options:
+الخيارات:
 A. {option_A}
 B. {option_B}
 C. {option_C}
 D. {option_D}
 
-Instruction:
-Output ONLY the letter of the correct option (A, B, C, or D).
-Do NOT provide any explanation, reasoning steps, or additional text.
+التعليمات:
+اكتب فقط حرف الخيار الصحيح (A أو B أو C أو D).
+لا تقدم أي تفسير أو خطوات استدلال أو نص إضافي.
 """
 
 def parse_question(question_text):
@@ -71,7 +71,7 @@ def parse_question(question_text):
     question_line = ""
     
     for line in lines:
-        if line.startswith("Which direction"):
+        if line.startswith("في أي اتجاه"):
             question_line = line
         else:
             statements_lines.append(line)

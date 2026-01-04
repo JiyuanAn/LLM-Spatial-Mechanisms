@@ -1,40 +1,40 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-为空间过程执行数据集添加提示词
+为空间过程执行数据集添加提示词（阿拉伯语版）
 """
 
 INSTRUCTION_TEMPLATE = """
-You are given a starting position and a sequence of spatial operations.
-Each operation transforms the position in 3D space.
+سيتم إعطاؤك موضع بداية وسلسلة من العمليات المكانية.
+كل عملية تحول الموضع في الفضاء ثلاثي الأبعاد.
 
-Spatial operations:
+العمليات المكانية:
 {statements}
 
-Question:
+السؤال:
 {question}
 
-Options:
+الخيارات:
 A. {option_A}
 B. {option_B}
 C. {option_C}
 D. {option_D}
 
-Instruction:
-Output ONLY the letter of the correct option (A, B, C, or D).
-Do NOT provide any explanation, reasoning steps, or additional text.
+التعليمات:
+اكتب فقط حرف الخيار الصحيح (A أو B أو C أو D).
+لا تقدم أي تفسير أو خطوات استنتاج أو نص إضافي.
 """.strip()
 
 import json
 
 def parse_question(question_text):
-    """从 question 字段中解析出 statements 和 question"""
+    """من question 字段中解析出 statements 和 question"""
     lines = question_text.strip().split('\n')
     statements_lines = []
     question_line = ""
     
     for line in lines:
-        if line.startswith("Where is"):
+        if line.startswith("ما هو الموضع"):
             question_line = line
         else:
             statements_lines.append(line)
@@ -96,31 +96,31 @@ def main():
     import os
     
     # 检查并处理完整数据集
-    if os.path.exists('./data_procedure/spatial_procedure_dataset_EN.json'):
-        print("Adding prompts to full dataset...")
+    if os.path.exists('./data_procedure/spatial_procedure_dataset_AR.json'):
+        print("Adding prompts to full dataset (Arabic)...")
         add_prompt_to_dataset(
-            input_file='./data_procedure/spatial_procedure_dataset_EN.json',
-            output_file='./data_procedure/spatial_procedure_dataset_EN_with_prompt.json'
+            input_file='./data_procedure/spatial_procedure_dataset_AR.json',
+            output_file='./data_procedure/spatial_procedure_dataset_AR_with_prompt.json'
         )
     else:
         print("Full dataset not found, skipping...")
     
     # 检查并处理测试数据集
-    if os.path.exists('./data_procedure/spatial_procedure_dataset_EN_test.json'):
-        print("\nAdding prompts to test dataset...")
+    if os.path.exists('./data_procedure/spatial_procedure_dataset_AR_test.json'):
+        print("\nAdding prompts to test dataset (Arabic)...")
         add_prompt_to_dataset(
-            input_file='./data_procedure/spatial_procedure_dataset_EN_test.json',
-            output_file='./data_procedure/spatial_procedure_dataset_EN_test_with_prompt.json'
+            input_file='./data_procedure/spatial_procedure_dataset_AR_test.json',
+            output_file='./data_procedure/spatial_procedure_dataset_AR_test_with_prompt.json'
         )
     else:
         print("Test dataset not found, skipping...")
     
     # 打印一个示例（优先使用完整数据集）
     sample_file = None
-    if os.path.exists('./data_procedure/spatial_procedure_dataset_EN_with_prompt.json'):
-        sample_file = './data_procedure/spatial_procedure_dataset_EN_with_prompt.json'
-    elif os.path.exists('./data_procedure/spatial_procedure_dataset_EN_test_with_prompt.json'):
-        sample_file = './data_procedure/spatial_procedure_dataset_EN_test_with_prompt.json'
+    if os.path.exists('./data_procedure/spatial_procedure_dataset_AR_with_prompt.json'):
+        sample_file = './data_procedure/spatial_procedure_dataset_AR_with_prompt.json'
+    elif os.path.exists('./data_procedure/spatial_procedure_dataset_AR_test_with_prompt.json'):
+        sample_file = './data_procedure/spatial_procedure_dataset_AR_test_with_prompt.json'
     
     if sample_file:
         with open(sample_file, 'r', encoding='utf-8') as f:
@@ -137,4 +137,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
