@@ -11,7 +11,7 @@
 | 08 | probe_results_20260105_090827 | Llama3-8B-Instruct | 英文 | / |
 | 09 | probe_results_20260105_101745 | Llama3-8B-Instruct | 中文 | 英文提示+中文数据 |
 | 10 | probe_results_20260105_112659 | Llama3-8B-Instruct | 阿拉伯语 | / |
-| 11 | compute3-running | Qwen2.5-7B-Base | 英文 | / |
+| 11 | probe_results_20260105_142153 | Qwen2.5-7B-Base | 英文 | / |
 | 12 | probe_results_20260105_102958 | Qwen2.5-7B-Base | 中文 | 英文提示+中文数据 |
 | 13 | probe_results_20260105_110533 | Qwen2.5-7B-Base | 阿拉伯语 | / |
 
