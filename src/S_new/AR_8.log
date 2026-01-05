@@ -1,0 +1,667 @@
+==========================================
+SAE Analysis Full Pipeline
+==========================================
+Model: Qwen/Qwen2.5-7B-Instruct
+Layer: 20
+Expansion Factor: 32
+Output Directory: ./outputs_20260105_222431
+==========================================
+
+Step 1: Training SAE...
+==========================================
+==================================================
+SAE Training Configuration
+==================================================
+Model: Qwen/Qwen2.5-7B-Instruct
+Layer: 20
+Expansion Factor: 32
+Batch Size: 1024
+Num Tokens: 500000
+L1 Coefficient: 0.0001
+Output Dir: outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452
+==================================================
+
+Loading model...
+Converting to HookedTransformer...
+Loaded pretrained model Qwen/Qwen2.5-7B-Instruct into HookedTransformer
+Model loaded: 28 layers, d_model=3584
+
+Loading training data from /home/s202507009/workspace/SA-of-LLM/SA-of-LLM/src/data_generation/task_family_1/data_relation/spatial_reasoning_dataset_AR_with_prompt.json...
+Loaded 2000 training samples
+
+Collecting activations from layer 20...
+Collected activations shape: torch.Size([417468, 3584])
+
+Configuring SAE training...
+SAE config: d_in=3584, d_sae=114688
+
+Initializing SAE...
+SAE architecture:
+  Encoder: 3584 -> 114688
+  Decoder: 114688 -> 3584
+
+Training SAE...
+Training for 407 batches...
+
+Batch 0/407
+  Loss: 246.822739
+  Reconstruction: 245.315475
+  L1: 1.507268
+  Sparsity: 0.5008
+  L0: 57439.13/114688
+
+Batch 100/407
+  Loss: 0.809511
+  Reconstruction: 0.285415
+  L1: 0.524097
+  Sparsity: 0.0053
+  L0: 602.78/114688
+
+Batch 200/407
+  Loss: 0.562300
+  Reconstruction: 0.152272
+  L1: 0.410028
+  Sparsity: 0.0031
+  L0: 355.75/114688
+
+Batch 300/407
+  Loss: 0.467256
+  Reconstruction: 0.134130
+  L1: 0.333126
+  Sparsity: 0.0024
+  L0: 280.21/114688
+
+Batch 400/407
+  Loss: 0.511684
+  Reconstruction: 0.229172
+  L1: 0.282512
+  Sparsity: 0.0020
+  L0: 231.45/114688
+
+Saving SAE...
+SAE saved to outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/sae_final.pt
+Training history saved to outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/training_history.json
+
+Evaluating SAE...
+
+==================================================
+SAE Evaluation Metrics
+==================================================
+Reconstruction Error (MSE): 0.251667
+Explained Variance: 0.9989
+Sparsity: 0.0019
+L0 (avg active features): 219.49 / 114688
+==================================================
+
+Evaluation results saved to outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/eval_results.json
+
+SAE training complete! Model saved to: outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452
+SAE model saved at: ./outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/sae_final.pt
+
+Step 2: Analyzing SAE features...
+==========================================
+==================================================
+SAE Feature Analysis Configuration
+==================================================
+Model: Qwen/Qwen2.5-7B-Instruct
+SAE Path: ./outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/sae_final.pt
+Output Dir: ./outputs_20260105_222431/sae_analysis
+Top K: 50
+==================================================
+
+Loading model...
+Loaded pretrained model Qwen/Qwen2.5-7B-Instruct into HookedTransformer
+
+Loading SAE...
+SAE Config: {'model_name': 'Qwen/Qwen2.5-7B-Instruct', 'layer': 20, 'd_model': 3584, 'd_sae': 114688, 'expansion_factor': 32, 'l1_coefficient': 0.0001, 'num_tokens': 500000, 'lr': 0.0003}
+SAE loaded: layer=20, d_model=3584, d_sae=114688
+
+Loading data...
+Train samples: 2000, Test samples: 200
+
+Collecting SAE features from layer 20...
+X_train shape: (2000, 114688), Y_train shape: (2000, 3)
+X_test shape: (200, 114688), Y_test shape: (200, 3)
+
+==================================================
+Analysis 1: Ridge Regression on SAE Features
+==================================================
+R² (overall): 0.0458
+MAE: 0.6748
+R²(x): -0.0174, R²(y): 0.1461, R²(z): 0.0086
+
+==================================================
+Analysis 2: Feature Importance
+==================================================
+
+Top 50 most important SAE features:
+  1. Feature 110911: importance=1.218147
+  2. Feature 12648: importance=1.105093
+  3. Feature 42676: importance=1.000998
+  4. Feature 88367: importance=0.988492
+  5. Feature 79784: importance=0.970766
+  6. Feature 105559: importance=0.926907
+  7. Feature 72601: importance=0.868023
+  8. Feature 20499: importance=0.862012
+  9. Feature 83851: importance=0.801346
+  10. Feature 95555: importance=0.783154
+  11. Feature 112746: importance=0.777114
+  12. Feature 39229: importance=0.697745
+  13. Feature 51155: importance=0.694320
+  14. Feature 66638: importance=0.692433
+  15. Feature 43816: importance=0.628704
+  16. Feature 66895: importance=0.624727
+  17. Feature 38348: importance=0.615159
+  18. Feature 20103: importance=0.608538
+  19. Feature 92050: importance=0.602792
+  20. Feature 78128: importance=0.594502
+
+Top features per dimension:
+
+  x-axis (Top 10):
+    1. Feature 72601: coef=1.441013
+    2. Feature 110911: coef=1.263445
+    3. Feature 105559: coef=1.100110
+    4. Feature 60945: coef=1.043115
+    5. Feature 38348: coef=1.039027
+    6. Feature 57312: coef=1.027642
+    7. Feature 20103: coef=0.993080
+    8. Feature 78128: coef=0.976199
+    9. Feature 95555: coef=0.883488
+    10. Feature 90396: coef=0.860341
+
+  y-axis (Top 10):
+    1. Feature 12648: coef=2.465292
+    2. Feature 88367: coef=2.197583
+    3. Feature 20499: coef=1.859602
+    4. Feature 83851: coef=1.324909
+    5. Feature 42676: coef=1.293329
+    6. Feature 105559: coef=1.253547
+    7. Feature 79784: coef=1.201117
+    8. Feature 112746: coef=1.154270
+    9. Feature 81718: coef=1.123424
+    10. Feature 41141: coef=1.054567
+
+  z-axis (Top 10):
+    1. Feature 79784: coef=1.597192
+    2. Feature 110911: coef=1.400145
+    3. Feature 12463: coef=1.130844
+    4. Feature 11816: coef=1.108984
+    5. Feature 42676: coef=1.040401
+    6. Feature 43816: coef=0.982314
+    7. Feature 66638: coef=0.915334
+    8. Feature 39639: coef=0.839924
+    9. Feature 95555: coef=0.817871
+    10. Feature 38348: coef=0.782694
+
+==================================================
+Analysis 3: Feature Activation Statistics
+==================================================
+
+Top features activation statistics:
+  1. Feature 110911:
+      Freq: 1.0000, Mean: 22.8658, Std: 0.1661
+  2. Feature 12648:
+      Freq: 1.0000, Mean: 4.0505, Std: 0.1160
+  3. Feature 42676:
+      Freq: 0.0380, Mean: 0.0028, Std: 0.0202
+  4. Feature 88367:
+      Freq: 1.0000, Mean: 21.8139, Std: 0.1829
+  5. Feature 79784:
+      Freq: 0.3710, Mean: 0.0449, Std: 0.0816
+  6. Feature 105559:
+      Freq: 0.7325, Mean: 0.0750, Std: 0.0756
+  7. Feature 72601:
+      Freq: 0.7090, Mean: 0.0732, Std: 0.0756
+  8. Feature 20499:
+      Freq: 1.0000, Mean: 4.0448, Std: 0.0906
+  9. Feature 83851:
+      Freq: 1.0000, Mean: 6.5593, Std: 0.2805
+  10. Feature 95555:
+      Freq: 1.0000, Mean: 17.4519, Std: 0.1716
+  11. Feature 112746:
+      Freq: 0.4385, Mean: 0.0371, Std: 0.0595
+  12. Feature 39229:
+      Freq: 1.0000, Mean: 1.5712, Std: 0.0966
+  13. Feature 51155:
+      Freq: 0.8525, Mean: 0.2671, Std: 0.2106
+  14. Feature 66638:
+      Freq: 0.4625, Mean: 0.0503, Std: 0.0812
+  15. Feature 43816:
+      Freq: 1.0000, Mean: 0.8835, Std: 0.1050
+  16. Feature 66895:
+      Freq: 0.4895, Mean: 0.0346, Std: 0.0521
+  17. Feature 38348:
+      Freq: 1.0000, Mean: 5.3251, Std: 0.1300
+  18. Feature 20103:
+      Freq: 0.9945, Mean: 0.2887, Std: 0.1237
+  19. Feature 92050:
+      Freq: 0.0045, Mean: 0.0006, Std: 0.0153
+  20. Feature 78128:
+      Freq: 0.9050, Mean: 0.1197, Std: 0.0812
+
+==================================================
+Analysis 4: Lasso Regression (Sparse Selection)
+==================================================
+Lasso R²: -0.0051
+Lasso MAE: 0.6294
+Non-zero features: 5 / 114688
+
+Top 20 Lasso-selected features:
+  1. Feature 86606: importance=0.079629
+  2. Feature 55135: importance=0.034403
+  3. Feature 69428: importance=0.012219
+  4. Feature 83851: importance=0.005470
+  5. Feature 51155: importance=0.001256
+
+==================================================
+Saving Results
+==================================================
+Results saved to ./outputs_20260105_222431/sae_analysis/sae_analysis_layer20.json
+
+Generating visualizations...
+Visualizations saved to ./outputs_20260105_222431/sae_analysis
+
+==================================================
+SAE Feature Analysis Complete!
+==================================================
+Analysis results saved at: ./outputs_20260105_222431/sae_analysis/sae_analysis_layer20.json
+
+Step 3: Running gradient attribution analysis...
+==========================================
+==================================================
+SAE Gradient Attribution Analysis
+==================================================
+Model: Qwen/Qwen2.5-7B-Instruct
+SAE Path: ./outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/sae_final.pt
+Output Dir: ./outputs_20260105_222431/gradient_attribution
+Num Samples: 100
+Top K: 50
+==================================================
+
+Loading model...
+Loaded pretrained model Qwen/Qwen2.5-7B-Instruct into HookedTransformer
+
+Loading SAE...
+SAE Config: {'model_name': 'Qwen/Qwen2.5-7B-Instruct', 'layer': 20, 'd_model': 3584, 'd_sae': 114688, 'expansion_factor': 32, 'l1_coefficient': 0.0001, 'num_tokens': 500000, 'lr': 0.0003}
+SAE loaded: layer=20, d_model=3584, d_sae=114688
+
+Loading test data...
+Using 100 test samples
+
+==================================================
+Computing Gradient Attribution
+==================================================
+
+Shape of attribution matrix: (100, 114688)
+
+==================================================
+Analysis 1: Feature Attribution Statistics
+==================================================
+
+Top 20 features by gradient attribution:
+   1. Feature 110911: Attribution=22.882256, Std=0.144171, Freq=1.0000
+   2. Feature 88367: Attribution=21.842031, Std=0.203953, Freq=1.0000
+   3. Feature 41141: Attribution=19.232065, Std=0.202748, Freq=1.0000
+   4. Feature 105252: Attribution=17.760431, Std=0.120376, Freq=1.0000
+   5. Feature 95555: Attribution=17.471226, Std=0.154976, Freq=1.0000
+   6. Feature 11816: Attribution=17.442965, Std=0.112747, Freq=1.0000
+   7. Feature 101078: Attribution=12.559513, Std=0.172412, Freq=1.0000
+   8. Feature 59076: Attribution=12.044936, Std=0.096767, Freq=1.0000
+   9. Feature 8330: Attribution=10.150315, Std=0.090626, Freq=1.0000
+  10. Feature 93731: Attribution=10.033242, Std=0.071760, Freq=1.0000
+  11. Feature 85803: Attribution=9.977622, Std=0.128456, Freq=1.0000
+  12. Feature 51216: Attribution=8.947127, Std=0.127651, Freq=1.0000
+  13. Feature 48953: Attribution=8.470305, Std=0.136167, Freq=1.0000
+  14. Feature 83851: Attribution=6.568419, Std=0.284431, Freq=1.0000
+  15. Feature 38348: Attribution=5.314954, Std=0.135359, Freq=1.0000
+  16. Feature 12648: Attribution=4.051150, Std=0.114941, Freq=1.0000
+  17. Feature 20499: Attribution=4.035378, Std=0.092900, Freq=1.0000
+  18. Feature 6644: Attribution=3.570140, Std=0.111021, Freq=1.0000
+  19. Feature 81718: Attribution=2.450306, Std=0.169147, Freq=1.0000
+  20. Feature 89080: Attribution=2.311910, Std=0.136777, Freq=1.0000
+
+==================================================
+Analysis 2: Per-Dimension Attribution
+==================================================
+
+X-axis (Top 10 features):
+   1. Feature 48966: Correlation=0.206159
+   2. Feature 62636: Correlation=0.194095
+   3. Feature 43816: Correlation=0.180007
+   4. Feature 16135: Correlation=0.167319
+   5. Feature 51196: Correlation=0.154374
+   6. Feature 51155: Correlation=0.154301
+   7. Feature 72863: Correlation=0.150921
+   8. Feature 89080: Correlation=0.147382
+   9. Feature 105576: Correlation=0.146433
+  10. Feature 8330: Correlation=0.145113
+
+Y-axis (Top 10 features):
+   1. Feature 103079: Correlation=0.313125
+   2. Feature 16135: Correlation=0.282712
+   3. Feature 83368: Correlation=0.278169
+   4. Feature 18230: Correlation=0.251780
+   5. Feature 107282: Correlation=0.247862
+   6. Feature 101818: Correlation=0.240233
+   7. Feature 108423: Correlation=0.233434
+   8. Feature 96133: Correlation=0.228402
+   9. Feature 73621: Correlation=0.222977
+  10. Feature 107104: Correlation=0.214600
+
+Z-axis (Top 10 features):
+   1. Feature 20103: Correlation=0.192046
+   2. Feature 43816: Correlation=0.172612
+   3. Feature 57312: Correlation=0.156919
+   4. Feature 105559: Correlation=0.154488
+   5. Feature 34144: Correlation=0.152964
+   6. Feature 88239: Correlation=0.149611
+   7. Feature 76216: Correlation=0.149320
+   8. Feature 6541: Correlation=0.147326
+   9. Feature 60818: Correlation=0.146777
+  10. Feature 28826: Correlation=0.139605
+
+==================================================
+Analysis 3: Feature Overlap Analysis
+==================================================
+X-Y overlap: 1 features: [16135]
+X-Z overlap: 1 features: [43816]
+Y-Z overlap: 0 features: []
+X-Y-Z overlap: 0 features: []
+
+==================================================
+Saving Results
+==================================================
+Results saved to ./outputs_20260105_222431/gradient_attribution/gradient_attribution_layer20.json
+
+Generating visualizations...
+All visualizations saved to ./outputs_20260105_222431/gradient_attribution
+
+==================================================
+Gradient Attribution Analysis Complete!
+==================================================
+Gradient attribution results saved at: ./outputs_20260105_222431/gradient_attribution/gradient_attribution_layer20.json
+
+Step 4: Running feature intervention experiments...
+==========================================
+==================================================
+SAE Feature Intervention
+==================================================
+Model: Qwen/Qwen2.5-7B-Instruct
+SAE Path: ./outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/sae_final.pt
+Intervention Magnitude: 2.0
+==================================================
+
+Loading model...
+Loaded pretrained model Qwen/Qwen2.5-7B-Instruct into HookedTransformer
+
+Loading SAE...
+SAE loaded: layer=20
+
+Loading analysis results...
+Top features (overall): [110911, 12648, 42676, 88367, 79784, 105559, 72601, 20499, 83851, 95555]
+Top features (x): [72601, 110911, 105559, 60945, 38348]
+Top features (y): [12648, 88367, 20499, 83851, 42676]
+Top features (z): [79784, 110911, 12463, 11816, 42676]
+
+Loading test data...
+Testing on 100 samples
+
+==================================================
+Experiment 1: Single Feature Intervention
+==================================================
+
+Intervening top overall features...
+
+Top Overall Feature 1 (Feature 110911):
+  Avg change in hidden state: 13.9943
+  Avg original activation: 22.8823
+
+Top Overall Feature 2 (Feature 12648):
+  Avg change in hidden state: 7.4208
+  Avg original activation: 4.0512
+
+Top Overall Feature 3 (Feature 42676):
+  Avg change in hidden state: 7.2222
+  Avg original activation: 0.0048
+
+Top Overall Feature 4 (Feature 88367):
+  Avg change in hidden state: 15.1347
+  Avg original activation: 21.8420
+
+Top Overall Feature 5 (Feature 79784):
+  Avg change in hidden state: 7.1743
+  Avg original activation: 0.0503
+
+Intervening top x-axis features...
+
+Top X Feature 1 (Feature 72601):
+  Avg change in hidden state: 7.1687
+  Avg original activation: 0.0661
+
+Top X Feature 2 (Feature 110911):
+  Avg change in hidden state: 13.9943
+  Avg original activation: 22.8823
+
+Top X Feature 3 (Feature 105559):
+  Avg change in hidden state: 7.1617
+  Avg original activation: 0.0636
+
+Intervening top y-axis features...
+
+Top Y Feature 1 (Feature 12648):
+  Avg change in hidden state: 7.4208
+  Avg original activation: 4.0512
+
+Top Y Feature 2 (Feature 88367):
+  Avg change in hidden state: 15.1347
+  Avg original activation: 21.8420
+
+Top Y Feature 3 (Feature 20499):
+  Avg change in hidden state: 7.3470
+  Avg original activation: 4.0354
+
+Intervening top z-axis features...
+
+Top Z Feature 1 (Feature 79784):
+  Avg change in hidden state: 7.1743
+  Avg original activation: 0.0503
+
+Top Z Feature 2 (Feature 110911):
+  Avg change in hidden state: 13.9943
+  Avg original activation: 22.8823
+
+Top Z Feature 3 (Feature 12463):
+  Avg change in hidden state: 7.1491
+  Avg original activation: 1.2514
+
+==================================================
+Experiment 2: Random Feature Baseline
+==================================================
+
+Random Feature (Feature 35072):
+  Avg change in hidden state: 7.1438
+  Avg original activation: 0.0000
+
+Random Feature (Feature 100853):
+  Avg change in hidden state: 7.1454
+  Avg original activation: 0.0000
+
+Random Feature (Feature 69972):
+  Avg change in hidden state: 7.1445
+  Avg original activation: 0.0000
+
+Random Feature (Feature 19732):
+  Avg change in hidden state: 7.1468
+  Avg original activation: 0.0000
+
+Random Feature (Feature 52977):
+  Avg change in hidden state: 7.1436
+  Avg original activation: 0.0000
+
+Random Feature (Feature 64499):
+  Avg change in hidden state: 7.1616
+  Avg original activation: 0.0000
+
+Random Feature (Feature 102503):
+  Avg change in hidden state: 7.1482
+  Avg original activation: 0.0000
+
+Random Feature (Feature 41086):
+  Avg change in hidden state: 7.1449
+  Avg original activation: 0.0000
+
+Random Feature (Feature 12258):
+  Avg change in hidden state: 7.1451
+  Avg original activation: 0.0000
+
+Random Feature (Feature 65147):
+  Avg change in hidden state: 7.1463
+  Avg original activation: 0.0000
+
+==================================================
+Saving Results
+==================================================
+Results saved to ./outputs_20260105_222431/sae_intervention/intervention_results_layer20.json
+
+Generating visualizations...
+Visualizations saved to ./outputs_20260105_222431/sae_intervention
+
+==================================================
+SAE Feature Intervention Complete!
+==================================================
+Intervention results saved at: ./outputs_20260105_222431/sae_intervention/intervention_results_layer20.json
+
+Step 5: Generating visualizations...
+==========================================
+==================================================
+SAE Results Visualization
+==================================================
+
+Loading analysis results...
+Loading intervention results...
+
+Generating performance comparison...
+
+Generating sparsity analysis...
+
+Generating top features details...
+
+Generating importance vs frequency scatter...
+
+Generating intervention results...
+
+Generating text report...
+
+Report saved to ./outputs_20260105_222431/sae_visualizations/analysis_report.txt
+
+======================================================================
+SAE ANALYSIS REPORT - Layer 20
+======================================================================
+
+MODEL CONFIGURATION
+----------------------------------------------------------------------
+Layer: 20
+SAE Dimension: 114688
+
+PERFORMANCE METRICS
+----------------------------------------------------------------------
+Ridge Regression:
+  - R²: 0.0458
+  - MAE: 0.6748
+  - R²(X): -0.0174
+  - R²(Y): 0.1461
+  - R²(Z): 0.0086
+
+Lasso Regression (Sparse):
+  - R²: -0.0051
+  - MAE: 0.6294
+  - Non-zero features: 5/114688 (0.00%)
+
+TOP 10 MOST IMPORTANT FEATURES
+----------------------------------------------------------------------
+ 1. Feature 110911 | Importance: 1.218147 | Freq: 1.0000
+ 2. Feature 12648 | Importance: 1.105093 | Freq: 1.0000
+ 3. Feature 42676 | Importance: 1.000998 | Freq: 0.0380
+ 4. Feature 88367 | Importance: 0.988492 | Freq: 1.0000
+ 5. Feature 79784 | Importance: 0.970766 | Freq: 0.3710
+ 6. Feature 105559 | Importance: 0.926907 | Freq: 0.7325
+ 7. Feature 72601 | Importance: 0.868023 | Freq: 0.7090
+ 8. Feature 20499 | Importance: 0.862012 | Freq: 1.0000
+ 9. Feature 83851 | Importance: 0.801346 | Freq: 1.0000
+10. Feature 95555 | Importance: 0.783154 | Freq: 1.0000
+
+TOP FEATURES PER DIMENSION
+----------------------------------------------------------------------
+
+X-axis:
+  1. Feature 72601 | Coefficient: 1.441013
+  2. Feature 110911 | Coefficient: 1.263445
+  3. Feature 105559 | Coefficient: 1.100110
+  4. Feature 60945 | Coefficient: 1.043115
+  5. Feature 38348 | Coefficient: 1.039027
+
+Y-axis:
+  1. Feature 12648 | Coefficient: 2.465292
+  2. Feature 88367 | Coefficient: 2.197583
+  3. Feature 20499 | Coefficient: 1.859602
+  4. Feature 83851 | Coefficient: 1.324909
+  5. Feature 42676 | Coefficient: 1.293329
+
+Z-axis:
+  1. Feature 79784 | Coefficient: 1.597192
+  2. Feature 110911 | Coefficient: 1.400145
+  3. Feature 12463 | Coefficient: 1.130844
+  4. Feature 11816 | Coefficient: 1.108984
+  5. Feature 42676 | Coefficient: 1.040401
+
+
+INTERVENTION EXPERIMENT RESULTS
+----------------------------------------------------------------------
+Random Baseline (avg change): 7.1470
+
+
+Overall Features:
+  Feature 110911 | Change: 13.9943 | Orig Activation: 22.8823
+  Feature 12648 | Change: 7.4208 | Orig Activation: 4.0512
+  Feature 42676 | Change: 7.2222 | Orig Activation: 0.0048
+  Feature 88367 | Change: 15.1347 | Orig Activation: 21.8420
+  Feature 79784 | Change: 7.1743 | Orig Activation: 0.0503
+
+X-axis Features:
+  Feature 72601 | Change: 7.1687 | Orig Activation: 0.0661
+  Feature 110911 | Change: 13.9943 | Orig Activation: 22.8823
+  Feature 105559 | Change: 7.1617 | Orig Activation: 0.0636
+
+Y-axis Features:
+  Feature 12648 | Change: 7.4208 | Orig Activation: 4.0512
+  Feature 88367 | Change: 15.1347 | Orig Activation: 21.8420
+  Feature 20499 | Change: 7.3470 | Orig Activation: 4.0354
+
+Z-axis Features:
+  Feature 79784 | Change: 7.1743 | Orig Activation: 0.0503
+  Feature 110911 | Change: 13.9943 | Orig Activation: 22.8823
+  Feature 12463 | Change: 7.1491 | Orig Activation: 1.2514
+
+======================================================================
+End of Report
+======================================================================
+
+==================================================
+Visualization Complete!
+All outputs saved to: ./outputs_20260105_222431/sae_visualizations
+==================================================
+Visualizations saved at: ./outputs_20260105_222431/sae_visualizations
+
+==========================================
+Pipeline Complete!
+==========================================
+All outputs saved to: ./outputs_20260105_222431
+
+Key outputs:
+  - SAE checkpoint: ./outputs_20260105_222431/sae_checkpoints/sae_layer20_exp32_20260105_222452/sae_final.pt
+  - Analysis results: ./outputs_20260105_222431/sae_analysis/sae_analysis_layer20.json
+  - Gradient attribution: ./outputs_20260105_222431/gradient_attribution
+  - Intervention results: ./outputs_20260105_222431/sae_intervention/intervention_results_layer20.json
+  - Visualizations: ./outputs_20260105_222431/sae_visualizations
+==========================================

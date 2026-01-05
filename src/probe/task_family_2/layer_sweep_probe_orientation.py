@@ -40,70 +40,6 @@ torch.manual_seed(SEED)
 np.random.seed(SEED)
 
 # =========================
-# 1.5 Prompt 模板
-# =========================
-SYSTEM_PROMPT = """You are a spatial orientation reasoning assistant."""
-
-INSTRUCTION_TEMPLATE = """You are given a series of turning actions.
-Starting from an initial direction, you need to track the direction changes and determine the final direction.
-
-Initial direction and actions:
-{statements}
-
-Question:
-{question}
-
-Options:
-A. {option_A}
-B. {option_B}
-C. {option_C}
-D. {option_D}
-
-Instruction:
-Output ONLY the letter of the correct option (A, B, C, or D).
-Do NOT provide any explanation, reasoning steps, or additional text.
-"""
-
-def parse_question(question_text):
-    """从 question 字段中解析出 statements 和 question"""
-    lines = question_text.strip().split('\n')
-    statements_lines = []
-    question_line = ""
-    
-    for line in lines:
-        if line.startswith("Which direction"):
-            question_line = line
-        else:
-            statements_lines.append(line)
-    
-    statements = '\n'.join(statements_lines)
-    return statements, question_line
-
-def construct_prompt(sample):
-    """构造完整的 prompt"""
-    # 解析 question 字段
-    statements, question = parse_question(sample['question'])
-    
-    # 获取选项
-    options = sample['options']
-    option_A = options[0]
-    option_B = options[1]
-    option_C = options[2]
-    option_D = options[3]
-    
-    # 构造 prompt
-    prompt = INSTRUCTION_TEMPLATE.format(
-        statements=statements,
-        question=question, 
-        option_A=option_A, 
-        option_B=option_B, 
-        option_C=option_C, 
-        option_D=option_D
-    )
-    
-    return prompt
-
-# =========================
 # 2. 加载模型
 # =========================
 print("Loading model...")
@@ -155,7 +91,7 @@ with open(TRAIN_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample["prompt"]
         train_data.append({
             "prompt": prompt,
             "target": np.array(sample["target"])  # [cos(θ), sin(θ)]
@@ -166,7 +102,7 @@ with open(TEST_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample["prompt"]
         test_data.append({
             "prompt": prompt,
             "target": np.array(sample["target"])  # [cos(θ), sin(θ)]
