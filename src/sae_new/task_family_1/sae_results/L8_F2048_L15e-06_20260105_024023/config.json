@@ -1,0 +1,13 @@
+{
+  "model_name": "Qwen/Qwen2.5-7B-Instruct",
+  "layer": 8,
+  "n_features": 2048,
+  "l1_coefficient": 5e-06,
+  "lr": 0.0003,
+  "num_tokens": 500000,
+  "train_samples": 2000,
+  "test_samples": 200,
+  "d_mlp": 3584,
+  "timestamp": "20260105_024023",
+  "saelens_version": "official"
+}

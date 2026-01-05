@@ -1,0 +1,29 @@
+{
+  "X_positive": [],
+  "X_negative": [],
+  "Y_positive": [],
+  "Y_negative": [
+    {
+      "feature_idx": 1169,
+      "correlation": -0.21121485061352502,
+      "activation_freq": 1.0
+    },
+    {
+      "feature_idx": 1492,
+      "correlation": -0.1777603779254274,
+      "activation_freq": 1.0
+    },
+    {
+      "feature_idx": 1304,
+      "correlation": -0.17379222619962834,
+      "activation_freq": 1.0
+    },
+    {
+      "feature_idx": 1011,
+      "correlation": -0.16083702504617586,
+      "activation_freq": 1.0
+    }
+  ],
+  "Z_positive": [],
+  "Z_negative": []
+}

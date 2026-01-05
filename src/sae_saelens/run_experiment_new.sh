@@ -14,8 +14,8 @@ echo ""
 
 # 配置参数
 MODEL_NAME="Qwen/Qwen2.5-7B-Instruct"
-TRAIN_DATA="/home/s202507009/workspace/SA-of-LLM/SA-of-LLM/src/data_generation/spatial_reasoning_dataset_EN_with_prompt.json"
-TEST_DATA="/home/s202507009/workspace/SA-of-LLM/SA-of-LLM/src/data_generation/spatial_reasoning_dataset_EN_test_with_prompt.json"
+TRAIN_DATA="/home/s202507009/workspace/SA-of-LLM/SA-of-LLM/src/data_generation/task_family_1/spatial_procedure_dataset_EN_with_prompt.json"
+TEST_DATA="/home/s202507009/workspace/SA-of-LLM/SA-of-LLM/src/data_generation/task_family_1/spatial_procedure_dataset_EN_test_with_prompt.json"
 OUTPUT_DIR="./sae_results_new"
 LAYER=8
 N_FEATURES=2048 #16384  # 4x 扩展 (d_mlp=3584, expansion=4x)

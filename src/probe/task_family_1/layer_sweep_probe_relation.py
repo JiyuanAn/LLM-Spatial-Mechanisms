@@ -10,7 +10,7 @@ import argparse
 import numpy as np
 from tqdm import tqdm
 from sklearn.linear_model import Ridge
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformer_lens import HookedTransformer
 
@@ -38,70 +38,6 @@ SEED = 42
 
 torch.manual_seed(SEED)
 np.random.seed(SEED)
-
-# =========================
-# 1.5 Prompt 模板
-# =========================
-SYSTEM_PROMPT = """You are a spatial reasoning assistant."""
-
-INSTRUCTION_TEMPLATE = """You are given several statements describing the relative positions of objects in a 3D space.
-Each statement describes a relative position with EXACTLY ONE UNIT of distance along a single axis. (Objects may occupy the same position in space.)
-
-Statements:
-{statements}
-
-Question:
-{question}
-
-Options:
-A. {option_A}
-B. {option_B}
-C. {option_C}
-D. {option_D}
-
-Instruction:
-Output ONLY the letter of the correct option (A, B, C, or D).
-Do NOT provide any explanation, reasoning steps, or additional text.
-"""
-
-def parse_question(question_text):
-    """从 question 字段中解析出 statements 和 question"""
-    lines = question_text.strip().split('\n')
-    statements_lines = []
-    question_line = ""
-    
-    for line in lines:
-        if line.startswith("Where is"):
-            question_line = line
-        else:
-            statements_lines.append(line)
-    
-    statements = '\n'.join(statements_lines)
-    return statements, question_line
-
-def construct_prompt(sample):
-    """构造完整的 prompt"""
-    # 解析 question 字段
-    statements, question = parse_question(sample['question'])
-    
-    # 获取选项
-    options = sample['options']
-    option_A = options[0]
-    option_B = options[1]
-    option_C = options[2]
-    option_D = options[3]
-    
-    # 构造 prompt
-    prompt = INSTRUCTION_TEMPLATE.format(
-        statements=statements, 
-        question=question, 
-        option_A=option_A, 
-        option_B=option_B, 
-        option_C=option_C, 
-        option_D=option_D
-    )
-    
-    return prompt
 
 # =========================
 # 2. 加载模型
@@ -155,7 +91,7 @@ with open(TRAIN_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample['prompt']
         train_data.append({
             "prompt": prompt,
             "target": np.array(sample["target"])
@@ -166,7 +102,7 @@ with open(TEST_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample['prompt']
         test_data.append({
             "prompt": prompt,
             "target": np.array(sample["target"])
@@ -207,6 +143,9 @@ def collect_hidden_states(data, layer_idx):
 # =========================
 print("\n===== Starting Layer Sweep =====")
 layer_r2 = []
+layer_mae = []
+layer_rmse = []
+layer_r2_per_component = []  # 每个分量的R²
 
 for layer in range(n_layers):
     print(f"\nProcessing Layer {layer}/{n_layers-1}...")
@@ -220,10 +159,25 @@ for layer in range(n_layers):
 
     Y_pred = probe.predict(X_test)
 
+    # 计算整体指标
     r2 = r2_score(Y_test, Y_pred, multioutput="uniform_average")
+    mae = mean_absolute_error(Y_test, Y_pred)
+    rmse = np.sqrt(mean_squared_error(Y_test, Y_pred))
+    
+    # 计算每个分量的R²
+    r2_per_component = []
+    component_names = ['x', 'y', 'z']
+    for i in range(Y_test.shape[1]):
+        r2_comp = r2_score(Y_test[:, i], Y_pred[:, i])
+        r2_per_component.append(r2_comp)
+    
     layer_r2.append(r2)
+    layer_mae.append(mae)
+    layer_rmse.append(rmse)
+    layer_r2_per_component.append(r2_per_component)
 
-    print(f"Layer {layer:02d} | R² = {r2:.4f}")
+    print(f"Layer {layer:02d} | R² = {r2:.4f} | MAE = {mae:.4f} | RMSE = {rmse:.4f}")
+    print(f"           | R²(x) = {r2_per_component[0]:.4f}, R²(y) = {r2_per_component[1]:.4f}, R²(z) = {r2_per_component[2]:.4f}")
 
 # =========================
 # 6. 结果输出
@@ -233,11 +187,14 @@ print("===== Layer Sweep Result =====")
 print("="*50)
 for i, r2 in enumerate(layer_r2):
     marker = " <<<" if i == np.argmax(layer_r2) else ""
-    print(f"Layer {i:02d}: R² = {r2:.4f}{marker}")
+    print(f"Layer {i:02d}: R² = {r2:.4f} | MAE = {layer_mae[i]:.4f} | RMSE = {layer_rmse[i]:.4f}{marker}")
+    print(f"           | R²(x) = {layer_r2_per_component[i][0]:.4f}, R²(y) = {layer_r2_per_component[i][1]:.4f}, R²(z) = {layer_r2_per_component[i][2]:.4f}")
 
 best_layer = int(np.argmax(layer_r2))
 print("\n" + "="*50)
-print(f">>> Best layer: {best_layer} (R²={layer_r2[best_layer]:.4f})")
+print(f">>> Best layer: {best_layer}")
+print(f"    R² = {layer_r2[best_layer]:.4f}, MAE = {layer_mae[best_layer]:.4f}, RMSE = {layer_rmse[best_layer]:.4f}")
+print(f"    R²(x) = {layer_r2_per_component[best_layer][0]:.4f}, R²(y) = {layer_r2_per_component[best_layer][1]:.4f}, R²(z) = {layer_r2_per_component[best_layer][2]:.4f}")
 print("="*50)
 
 # =========================
@@ -245,7 +202,18 @@ print("="*50)
 # =========================
 results = {
     'layer_r2': layer_r2,
+    'layer_mae': layer_mae,
+    'layer_rmse': layer_rmse,
+    'layer_r2_per_component': layer_r2_per_component,
     'best_layer': best_layer,
+    'best_layer_metrics': {
+        'r2': layer_r2[best_layer],
+        'mae': layer_mae[best_layer],
+        'rmse': layer_rmse[best_layer],
+        'r2_x': layer_r2_per_component[best_layer][0],
+        'r2_y': layer_r2_per_component[best_layer][1],
+        'r2_z': layer_r2_per_component[best_layer][2],
+    },
     'n_layers': n_layers,
     'd_model': d_model,
 }

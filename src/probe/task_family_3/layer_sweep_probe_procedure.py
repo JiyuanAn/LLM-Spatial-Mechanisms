@@ -40,67 +40,6 @@ torch.manual_seed(SEED)
 np.random.seed(SEED)
 
 # =========================
-# 1.5 Prompt 模板
-# =========================
-SYSTEM_PROMPT = """You are a spatial reasoning assistant."""
-
-INSTRUCTION_TEMPLATE = """You are given a starting position and a sequence of spatial operations.
-Each operation transforms the position in 3D space.
-
-{procedure}
-
-Question:
-{question}
-
-Options:
-A. {option_A}
-B. {option_B}
-C. {option_C}
-D. {option_D}
-
-Instruction:
-Output ONLY the letter of the correct option (A, B, C, or D).
-Do NOT provide any explanation, reasoning steps, or additional text.
-"""
-
-def construct_prompt(sample):
-    """构造完整的 prompt"""
-    # 从 question 字段解析 procedure 和 question
-    question_text = sample['question']
-    lines = question_text.strip().split('\n')
-    
-    # 找到 "What is the final position?" 这一行
-    question_line = ""
-    procedure_lines = []
-    
-    for line in lines:
-        if line.strip().startswith("What is"):
-            question_line = line.strip()
-        elif line.strip():  # 非空行
-            procedure_lines.append(line)
-    
-    procedure = '\n'.join(procedure_lines)
-    
-    # 获取选项
-    options = sample['options']
-    option_A = options[0]
-    option_B = options[1]
-    option_C = options[2]
-    option_D = options[3]
-    
-    # 构造 prompt
-    prompt = INSTRUCTION_TEMPLATE.format(
-        procedure=procedure,
-        question=question_line,
-        option_A=option_A,
-        option_B=option_B,
-        option_C=option_C,
-        option_D=option_D
-    )
-    
-    return prompt
-
-# =========================
 # 2. 加载模型
 # =========================
 print("Loading model...")
@@ -152,7 +91,7 @@ with open(TRAIN_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample['prompt']
         train_data.append({
             "prompt": prompt,
             "target": np.array(sample["target"], dtype=np.float32)
@@ -163,7 +102,7 @@ with open(TEST_DATA_FILE_PATH, "r") as f:
     data = json.load(f)
     for sample in data:
         # 构造完整的 prompt
-        prompt = construct_prompt(sample)
+        prompt = sample['prompt']
         test_data.append({
             "prompt": prompt,
             "target": np.array(sample["target"], dtype=np.float32)
