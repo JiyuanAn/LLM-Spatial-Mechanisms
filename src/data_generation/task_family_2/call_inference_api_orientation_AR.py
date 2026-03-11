@@ -134,3 +134,6 @@ if __name__ == "__main__":
     
     print(f"\nتم حفظ النتائج في {output_path}")
 
+
+
+

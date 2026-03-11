@@ -10,6 +10,11 @@ plt.rcParams['axes.unicode_minus'] = False
 sns.set_style("whitegrid")
 sns.set_context("paper", font_scale=1.3)
 
+# 路径配置：保证从任意工作目录运行都能正确读写
+BASE_DIR = Path(__file__).parent
+OUT_DIR = BASE_DIR / "visualization"
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+
 # 定义实验配置
 experiments = {
     'Qwen2.5-7B-Instruct': {
@@ -47,7 +52,7 @@ data = {}
 for model, langs in experiments.items():
     data[model] = {}
     for lang, filename in langs.items():
-        filepath = Path(__file__).parent / filename
+        filepath = BASE_DIR / filename
         with open(filepath, 'r') as f:
             raw_data = json.load(f)
             # 提取最佳层的指标
@@ -58,10 +63,6 @@ for model, langs in experiments.items():
                 'rmse': raw_data['layer_rmse'][best_layer]
             }
             data[model][lang] = raw_data
-
-# 创建可视化输出目录
-output_dir = Path(__file__).parent / 'visualization'
-output_dir.mkdir(exist_ok=True)
 
 # 图1: 各层R²变化 - 按模型分组
 fig, axes = plt.subplots(1, 3, figsize=(18, 5))
@@ -83,8 +84,38 @@ for idx, model in enumerate(experiments.keys()):
                  max([max(data[model][lang]['layer_r2']) for lang in ['English', 'Chinese', 'Arabic']]) + 0.05])
 
 plt.tight_layout()
-plt.savefig(output_dir / 'layer_r2_by_model.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'layer_r2_by_model.png', dpi=300, bbox_inches='tight')
 print("Saved: layer_r2_by_model.png")
+plt.close()
+
+# 图1b: 各层R²变化 - 全部合并到一张图（颜色=模型，线型=语言）
+fig, ax = plt.subplots(1, 1, figsize=(6, 6))
+for model in experiments.keys():
+    for lang in ['English', 'Chinese', 'Arabic']:
+        layer_r2 = data[model][lang]['layer_r2']
+        layers = list(range(len(layer_r2)))
+        ax.plot(
+            layers,
+            layer_r2,
+            label=f"{model} | {lang}",
+            linestyle=line_styles[lang],
+            linewidth=2.2 if lang == 'English' else 2.0,
+            color=colors[model],
+            alpha=0.85 if lang == 'English' else 0.65,
+        )
+
+ax.set_xlabel('Layer Index', fontsize=12)
+ax.set_ylabel('R² Score', fontsize=12)
+ax.grid(True, alpha=0.3)
+ax.axhline(y=0, color='red', linestyle='--', linewidth=1, alpha=0.5)
+
+# 图例放到左上角，避免遮挡
+ax.legend(fontsize=8, ncol=1, loc='upper left', bbox_to_anchor=(0.02, 1.0), frameon=True)
+# 设置大小
+fig.set_size_inches(6, 6)
+plt.tight_layout()
+plt.savefig(OUT_DIR / 'layer_r2_all_in_one.png', dpi=300, bbox_inches='tight')
+print("Saved: layer_r2_all_in_one.png")
 plt.close()
 
 # 图2: 各层R²变化 - 按语言分组
@@ -108,7 +139,7 @@ for idx, lang in enumerate(['English', 'Chinese', 'Arabic']):
     ax.set_ylim([min(-0.05, y_min), y_max + 0.05])
 
 plt.tight_layout()
-plt.savefig(output_dir / 'layer_r2_by_language.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'layer_r2_by_language.png', dpi=300, bbox_inches='tight')
 print("Saved: layer_r2_by_language.png")
 plt.close()
 
@@ -154,7 +185,7 @@ for metric_idx, (metric, label) in enumerate(zip(metrics_names, metrics_labels))
     ax.grid(True, alpha=0.3, axis='y')
 
 plt.tight_layout()
-plt.savefig(output_dir / 'best_layer_metrics.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'best_layer_metrics.png', dpi=300, bbox_inches='tight')
 print("Saved: best_layer_metrics.png")
 plt.close()
 
@@ -175,7 +206,7 @@ for idx, model in enumerate(experiments.keys()):
     ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig(output_dir / 'layer_mae_by_model.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'layer_mae_by_model.png', dpi=300, bbox_inches='tight')
 print("Saved: layer_mae_by_model.png")
 plt.close()
 
@@ -196,7 +227,7 @@ for idx, model in enumerate(experiments.keys()):
     ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig(output_dir / 'layer_rmse_by_model.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'layer_rmse_by_model.png', dpi=300, bbox_inches='tight')
 print("Saved: layer_rmse_by_model.png")
 plt.close()
 
@@ -235,7 +266,7 @@ for metric_idx, (metric, label) in enumerate(zip(metrics_names, metrics_labels))
     plt.colorbar(im, ax=ax)
 
 plt.tight_layout()
-plt.savefig(output_dir / 'performance_heatmap.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'performance_heatmap.png', dpi=300, bbox_inches='tight')
 print("Saved: performance_heatmap.png")
 plt.close()
 
@@ -276,7 +307,7 @@ ax.legend(fontsize=11)
 ax.grid(True, alpha=0.3, axis='y')
 
 plt.tight_layout()
-plt.savefig(output_dir / 'best_layer_position.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'best_layer_position.png', dpi=300, bbox_inches='tight')
 print("Saved: best_layer_position.png")
 plt.close()
 
@@ -323,7 +354,7 @@ for lang_idx, lang in enumerate(['English', 'Chinese', 'Arabic']):
     ax.grid(True)
 
 plt.tight_layout()
-plt.savefig(output_dir / 'radar_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'radar_comparison.png', dpi=300, bbox_inches='tight')
 print("Saved: radar_comparison.png")
 plt.close()
 
@@ -369,7 +400,7 @@ for model_idx, model in enumerate(experiments.keys()):
         ax.legend(lines, labels, loc='upper left', fontsize=8)
 
 plt.tight_layout()
-plt.savefig(output_dir / 'comprehensive_layer_metrics.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'comprehensive_layer_metrics.png', dpi=300, bbox_inches='tight')
 print("Saved: comprehensive_layer_metrics.png")
 plt.close()
 
@@ -414,6 +445,6 @@ for lang in ['English', 'Chinese', 'Arabic']:
 
 print("\n" + "="*80)
 print("All plots have been generated successfully!")
-print(f"Output directory: {output_dir}")
+print(f"Output directory: {OUT_DIR}")
 print("="*80)
 

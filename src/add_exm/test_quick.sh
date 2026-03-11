@@ -74,3 +74,6 @@ echo "Now you can run the full experiments with more samples:"
 echo "  bash run_all_experiments.sh \"$SAE_DIR\" 200"
 echo ""
 
+
+
+

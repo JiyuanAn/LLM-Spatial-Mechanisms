@@ -10,6 +10,11 @@ plt.rcParams['axes.unicode_minus'] = False
 sns.set_style("whitegrid")
 sns.set_context("paper", font_scale=1.3)
 
+# 路径配置：保证从任意工作目录运行都能正确读写
+BASE_DIR = Path(__file__).parent
+OUT_DIR = BASE_DIR / "visualization"
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+
 # 定义实验配置
 experiments = {
     'Qwen2.5-7B-Instruct': {
@@ -47,7 +52,7 @@ data = {}
 for model, langs in experiments.items():
     data[model] = {}
     for lang, filename in langs.items():
-        filepath = Path(__file__).parent / filename
+        filepath = BASE_DIR / filename
         with open(filepath, 'r') as f:
             data[model][lang] = json.load(f)
 
@@ -69,8 +74,39 @@ for idx, model in enumerate(experiments.keys()):
     ax.set_ylim([-0.2, 0.5])
 
 plt.tight_layout()
-plt.savefig('./visualization/layer_r2_by_model.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'layer_r2_by_model.png', dpi=300, bbox_inches='tight')
 print("Saved: layer_r2_by_model.png")
+plt.close()
+
+# 图1b: 各层R²变化 - 全部合并到一张图（颜色=模型，线型=语言）
+fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+for model in experiments.keys():
+    for lang in ['English', 'Chinese', 'Arabic']:
+        layer_r2 = data[model][lang]['layer_r2']
+        layers = list(range(len(layer_r2)))
+        ax.plot(
+            layers,
+            layer_r2,
+            label=f"{model} | {lang}",
+            linestyle=line_styles[lang],
+            linewidth=2.2 if lang == 'English' else 2.0,
+            color=colors[model],
+            alpha=0.85 if lang == 'English' else 0.65,
+        )
+
+ax.set_xlabel('Layer Index', fontsize=12)
+ax.set_ylabel('R² Score', fontsize=12)
+# ax.set_title('Layer-wise R² (All Models & Languages)', fontsize=14, fontweight='bold')
+ax.grid(True, alpha=0.3)
+ax.set_ylim([-0.2, 0.5])
+
+# 图例放到左角，避免遮挡
+ax.legend(fontsize=8, ncol=1, loc='upper left', bbox_to_anchor=(0.02, 1.0), frameon=True)
+# 设置大小
+fig.set_size_inches(6, 6)
+plt.tight_layout()
+plt.savefig(OUT_DIR / 'layer_r2_all_in_one.png', dpi=300, bbox_inches='tight')
+print("Saved: layer_r2_all_in_one.png")
 plt.close()
 
 # 图2: 各层R²变化 - 按语言分组
@@ -91,7 +127,7 @@ for idx, lang in enumerate(['English', 'Chinese', 'Arabic']):
     ax.set_ylim([-0.2, 0.5])
 
 plt.tight_layout()
-plt.savefig('./visualization/layer_r2_by_language.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'layer_r2_by_language.png', dpi=300, bbox_inches='tight')
 print("Saved: layer_r2_by_language.png")
 plt.close()
 
@@ -137,7 +173,7 @@ for metric_idx, (metric, label) in enumerate(zip(metrics_names, metrics_labels))
     ax.grid(True, alpha=0.3, axis='y')
 
 plt.tight_layout()
-plt.savefig('./visualization/best_layer_metrics.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'best_layer_metrics.png', dpi=300, bbox_inches='tight')
 print("Saved: best_layer_metrics.png")
 plt.close()
 
@@ -179,7 +215,7 @@ ax.legend(fontsize=11)
 ax.grid(True, alpha=0.3, axis='y')
 
 plt.tight_layout()
-plt.savefig('./visualization/component_r2_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'component_r2_comparison.png', dpi=300, bbox_inches='tight')
 print("Saved: component_r2_comparison.png")
 plt.close()
 
@@ -218,7 +254,7 @@ for metric_idx, (metric, label) in enumerate(zip(metrics_names, metrics_labels))
     plt.colorbar(im, ax=ax)
 
 plt.tight_layout()
-plt.savefig('./visualization/performance_heatmap.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'performance_heatmap.png', dpi=300, bbox_inches='tight')
 print("Saved: performance_heatmap.png")
 plt.close()
 
@@ -259,7 +295,7 @@ ax.legend(fontsize=11)
 ax.grid(True, alpha=0.3, axis='y')
 
 plt.tight_layout()
-plt.savefig('./visualization/best_layer_position.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'best_layer_position.png', dpi=300, bbox_inches='tight')
 print("Saved: best_layer_position.png")
 plt.close()
 
@@ -301,7 +337,7 @@ for lang_idx, lang in enumerate(['English', 'Chinese', 'Arabic']):
     ax.grid(True)
 
 plt.tight_layout()
-plt.savefig('./visualization/radar_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUT_DIR / 'radar_comparison.png', dpi=300, bbox_inches='tight')
 print("Saved: radar_comparison.png")
 plt.close()
 
