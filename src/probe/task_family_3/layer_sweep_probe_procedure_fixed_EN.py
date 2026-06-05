@@ -1,3 +1,12 @@
+"""
+Task Family 3: Layer sweep probe (procedure / 3D position).
+
+Llama 上 best_layer 常出现在最后一层（R² 随层单调递增），而 Qwen 常出现在中间，可能原因：
+1) 尺度效应：Llama 的 resid_post 在深层范数更大，Ridge 在更大范数特征上更容易拟合，R² 虚高。
+   解决：用 --standardize_features_only 重跑，对每层 hidden 做标准化后再拟合，若 best_layer 移到中间则支持该解释。
+2) 表示几何：Llama 可能确实在最后一层仍持续编码任务信息；Qwen 在后期层转向 next-token，线性 probe 在中间层更优。
+本脚本会输出每层 layer_hidden_norms；当 best_layer==最后一层时提示用 --standardize_features_only 验证。
+"""
 import sys
 sys.path.append("./")
 sys.path.append("../../")
@@ -22,6 +31,8 @@ parser.add_argument("--test_data_file_path", "-te", type=str)
 parser.add_argument("--output_file_path", "-o", type=str, default=f"probe_procedure_results_fixed_{time.strftime('%Y%m%d_%H%M%S')}.json")
 parser.add_argument("--ridge_alpha", type=float, default=10.0, help="Ridge regularization strength (default: 10.0)")
 parser.add_argument("--standardize", action="store_true", help="Standardize features and targets")
+parser.add_argument("--standardize_features_only", action="store_true",
+                    help="Per-layer: standardize hidden states only (no Y). Use to check if best_layer=last is a scale artifact (e.g. Llama).")
 args = parser.parse_args()
 
 MODEL_NAME = args.model_name
@@ -38,6 +49,7 @@ DTYPE = torch.float16
 BATCH_SIZE = 4
 RIDGE_ALPHA = args.ridge_alpha  # 增加正则化强度
 USE_STANDARDIZATION = args.standardize
+USE_STANDARDIZE_FEATURES_ONLY = getattr(args, "standardize_features_only", False)
 SEED = 42
 
 torch.manual_seed(SEED)
@@ -50,6 +62,7 @@ print("FIXED VERSION: Layer Sweep Probe with Standardization")
 print("=" * 70)
 print(f"Ridge Alpha: {RIDGE_ALPHA} (原版: 1.0)")
 print(f"Standardization: {USE_STANDARDIZATION}")
+print(f"Standardize features only (diagnostic): {USE_STANDARDIZE_FEATURES_ONLY}")
 print(f"Random Seed: {SEED}")
 
 # =========================
@@ -227,12 +240,16 @@ print("\n===== Starting Layer Sweep =====")
 layer_r2 = []
 layer_mae = []
 layer_rmse = []
+layer_hidden_norms = []  # 每层 hidden 的均方 L2 范数，用于诊断 Llama 是否因尺度单调上升
 
 for layer in range(n_layers):
     print(f"\nProcessing Layer {layer}/{n_layers-1}...")
     
     X_train, Y_train = collect_hidden_states(train_data, layer)
     X_test, Y_test = collect_hidden_states(test_data, layer)
+
+    # 记录该层 hidden 的均值 L2 范数（诊断：若深层范数明显更大，R² 可能受尺度影响）
+    layer_hidden_norms.append(float(np.mean(np.linalg.norm(X_train, axis=1))))
 
     # 标准化（如果启用）
     if USE_STANDARDIZATION:
@@ -249,6 +266,14 @@ for layer in range(n_layers):
         
         Y_pred_scaled = probe.predict(X_test_scaled)
         Y_pred = scaler_Y.inverse_transform(Y_pred_scaled)
+    elif USE_STANDARDIZE_FEATURES_ONLY:
+        # 仅对特征做 per-layer 标准化，排除「深层尺度更大」导致的 R² 虚高
+        scaler_X = StandardScaler()
+        X_train_scaled = scaler_X.fit_transform(X_train)
+        X_test_scaled = scaler_X.transform(X_test)
+        probe = Ridge(alpha=RIDGE_ALPHA)
+        probe.fit(X_train_scaled, Y_train)
+        Y_pred = probe.predict(X_test_scaled)
     else:
         # 不标准化（原版）
         probe = Ridge(alpha=RIDGE_ALPHA)
@@ -279,6 +304,14 @@ for i, (r2, mae, rmse) in enumerate(zip(layer_r2, layer_mae, layer_rmse)):
 best_layer = int(np.argmax(layer_r2))
 print("\n" + "="*50)
 print(f">>> Best layer: {best_layer} (R²={layer_r2[best_layer]:.4f})")
+# 诊断：若 best 在最后一层，检查是否与 hidden 范数随层增长有关（Llama 常见）
+if layer_hidden_norms and best_layer == n_layers - 1 and n_layers > 1:
+    norm_first = layer_hidden_norms[0]
+    norm_last = layer_hidden_norms[-1]
+    ratio = norm_last / (norm_first + 1e-12)
+    print(f">>> Hidden norm: layer0={norm_first:.2f}, layer{n_layers-1}={norm_last:.2f}, ratio={ratio:.3f}")
+    if ratio > 1.2:
+        print(f">>> 深层范数明显更大，R² 单调可能受尺度影响。建议用 --standardize_features_only 重跑以验证。")
 print("="*50)
 
 # 对比原版结果（如果有）
@@ -301,11 +334,13 @@ results = {
     'layer_r2': layer_r2,
     'layer_mae': layer_mae,
     'layer_rmse': layer_rmse,
+    'layer_hidden_norms': layer_hidden_norms,
     'best_layer': best_layer,
     'n_layers': n_layers,
     'd_model': d_model,
     'ridge_alpha': RIDGE_ALPHA,
     'use_standardization': USE_STANDARDIZATION,
+    'use_standardize_features_only': USE_STANDARDIZE_FEATURES_ONLY,
     'task_type': 'spatial_procedure_execution',
     'train_samples': len(train_data),
     'test_samples': len(test_data),
