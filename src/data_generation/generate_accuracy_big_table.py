@@ -51,6 +51,9 @@ LANG_ORDER = ["English", "Chinese", "Arabic"]
 # Models to include (can be extended when more models are added)
 MODELS = [
     "Qwen2.5-7B-Instruct",
+    "Qwen2.5-7B-Base",
+    "Llama3-8B-Instruct",
+    "Llama3-8B-Base",
 ]
 
 

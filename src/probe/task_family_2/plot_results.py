@@ -31,6 +31,11 @@ experiments = {
         'English': 'probe_results_orientation_20260106_030223.json',
         'Chinese': 'probe_results_orientation_20260106_035547.json',
         'Arabic': 'probe_results_orientation_20260106_044856.json',
+    },
+    'Llama3-8B-Base': {
+        'English': 'probe_results_orientation_Llama3-8B-Base_EN.json',
+        'Chinese': 'probe_results_orientation_Llama3-8B-Base_CN.json',
+        'Arabic': 'probe_results_orientation_Llama3-8B-Base_AR.json',
     }
 }
 
@@ -39,6 +44,7 @@ colors = {
     'Qwen2.5-7B-Instruct': '#2E86AB',
     'Llama3-8B-Instruct': '#A23B72',
     'Qwen2.5-7B-Base': '#F18F01',
+    'Llama3-8B-Base': '#6C5B7B',
 }
 
 line_styles = {
@@ -46,6 +52,10 @@ line_styles = {
     'Chinese': '--',
     'Arabic': ':',
 }
+
+LANGUAGES = ['English', 'Chinese', 'Arabic']
+N_MODELS = len(experiments)
+N_LANGS = len(LANGUAGES)
 
 # 读取所有数据
 data = {}
@@ -61,17 +71,19 @@ for model, langs in experiments.items():
             continue
 
 # 图1: 各层R²变化 - 按模型分组
-fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+fig, axes = plt.subplots(1, N_MODELS, figsize=(6 * N_MODELS, 5))
+if N_MODELS == 1:
+    axes = [axes]
 for idx, model in enumerate(experiments.keys()):
     ax = axes[idx]
-    for lang in ['English', 'Chinese', 'Arabic']:
+    for lang in LANGUAGES:
         if lang not in data[model]:
             continue
         layer_r2 = data[model][lang]['layer_r2']
         layers = list(range(len(layer_r2)))
-        ax.plot(layers, layer_r2, label=lang, linestyle=line_styles[lang], 
+        ax.plot(layers, layer_r2, label=lang, linestyle=line_styles[lang],
                 linewidth=2, color=colors[model], alpha=0.7 if lang != 'English' else 1.0)
-    
+
     ax.set_xlabel('Layer Index', fontsize=12)
     ax.set_ylabel('R² Score', fontsize=12)
     ax.set_title(model, fontsize=14, fontweight='bold')
@@ -87,7 +99,7 @@ plt.close()
 # 图1b: 各层R²变化 - 全部合并到一张图（颜色=模型，线型=语言）
 fig, ax = plt.subplots(1, 1, figsize=(6, 6))
 for model in experiments.keys():
-    for lang in ['English', 'Chinese', 'Arabic']:
+    for lang in LANGUAGES:
         if lang not in data[model]:
             continue
         layer_r2 = data[model][lang]['layer_r2']
@@ -117,17 +129,19 @@ print("Saved: layer_r2_all_in_one.png")
 plt.close()
 
 # 图2: 各层R²变化 - 按语言分组
-fig, axes = plt.subplots(1, 3, figsize=(18, 5))
-for idx, lang in enumerate(['English', 'Chinese', 'Arabic']):
+fig, axes = plt.subplots(1, N_LANGS, figsize=(6 * N_LANGS, 5))
+if N_LANGS == 1:
+    axes = [axes]
+for idx, lang in enumerate(LANGUAGES):
     ax = axes[idx]
     for model in experiments.keys():
         if lang not in data[model]:
             continue
         layer_r2 = data[model][lang]['layer_r2']
         layers = list(range(len(layer_r2)))
-        ax.plot(layers, layer_r2, label=model, color=colors[model], 
+        ax.plot(layers, layer_r2, label=model, color=colors[model],
                 linestyle=line_styles[lang], linewidth=2.5)
-    
+
     ax.set_xlabel('Layer Index', fontsize=12)
     ax.set_ylabel('R² Score', fontsize=12)
     ax.set_title(f'{lang}', fontsize=14, fontweight='bold')
@@ -156,13 +170,13 @@ for model in experiments.keys():
         english_values.append(data[model]['English']['layer_r2'][best_layer])
     else:
         english_values.append(0)
-    
+
     if 'Chinese' in data[model]:
         best_layer = data[model]['Chinese']['best_layer']
         chinese_values.append(data[model]['Chinese']['layer_r2'][best_layer])
     else:
         chinese_values.append(0)
-    
+
     if 'Arabic' in data[model]:
         best_layer = data[model]['Arabic']['best_layer']
         arabic_values.append(data[model]['Arabic']['layer_r2'][best_layer])
@@ -211,12 +225,12 @@ for model in experiments.keys():
         english_layers.append(data[model]['English']['best_layer'])
     else:
         english_layers.append(0)
-    
+
     if 'Chinese' in data[model]:
         chinese_layers.append(data[model]['Chinese']['best_layer'])
     else:
         chinese_layers.append(0)
-    
+
     if 'Arabic' in data[model]:
         arabic_layers.append(data[model]['Arabic']['best_layer'])
     else:
@@ -256,7 +270,7 @@ fig, ax = plt.subplots(figsize=(8, 6))
 matrix_data = []
 for model in experiments.keys():
     row = []
-    for lang in ['English', 'Chinese', 'Arabic']:
+    for lang in LANGUAGES:
         if lang in data[model]:
             best_layer = data[model][lang]['best_layer']
             row.append(data[model][lang]['layer_r2'][best_layer])
@@ -270,14 +284,14 @@ matrix_data = np.array(matrix_data)
 im = ax.imshow(matrix_data, cmap='RdYlGn', aspect='auto', vmin=-0.1, vmax=0.1)
 
 # 设置刻度
-ax.set_xticks(np.arange(3))
-ax.set_yticks(np.arange(3))
-ax.set_xticklabels(['English', 'Chinese', 'Arabic'])
+ax.set_xticks(np.arange(N_LANGS))
+ax.set_yticks(np.arange(N_MODELS))
+ax.set_xticklabels(LANGUAGES)
 ax.set_yticklabels([m.split('-')[0] for m in experiments.keys()])
 
 # 添加数值标签
-for i in range(len(experiments)):
-    for j in range(3):
+for i in range(N_MODELS):
+    for j in range(N_LANGS):
         text = ax.text(j, i, f'{matrix_data[i, j]:.4f}',
                       ha="center", va="center", color="black", fontsize=11)
 
@@ -293,16 +307,16 @@ plt.close()
 fig, ax = plt.subplots(figsize=(14, 8))
 
 for model in experiments.keys():
-    for lang in ['English', 'Chinese', 'Arabic']:
+    for lang in LANGUAGES:
         if lang not in data[model]:
             continue
         layer_r2 = data[model][lang]['layer_r2']
         layers = list(range(len(layer_r2)))
-        
+
         # 使用模型颜色和语言线型
         label = f"{model.split('-')[0]} - {lang[:3]}"
-        ax.plot(layers, layer_r2, label=label, 
-                color=colors[model], linestyle=line_styles[lang], 
+        ax.plot(layers, layer_r2, label=label,
+                color=colors[model], linestyle=line_styles[lang],
                 linewidth=1.8, alpha=0.8)
 
 ax.set_xlabel('Layer Index', fontsize=13)
@@ -323,23 +337,25 @@ fig, ax = plt.subplots(figsize=(12, 6))
 for model in experiments.keys():
     lang_max_r2 = []
     lang_labels = []
-    
-    for lang in ['English', 'Chinese', 'Arabic']:
+
+    for lang in LANGUAGES:
         if lang in data[model]:
             best_layer = data[model][lang]['best_layer']
             max_r2 = data[model][lang]['layer_r2'][best_layer]
             lang_max_r2.append(max_r2)
             lang_labels.append(lang)
-    
+
+    if not lang_max_r2:
+        continue
     x_pos = np.arange(len(lang_labels))
-    ax.plot(x_pos, lang_max_r2, 'o-', label=model, color=colors[model], 
+    ax.plot(x_pos, lang_max_r2, 'o-', label=model, color=colors[model],
             linewidth=2.5, markersize=10)
 
 ax.set_xlabel('Language', fontsize=12)
 ax.set_ylabel('Maximum R² Score', fontsize=12)
 ax.set_title('Maximum R² Score by Language and Model', fontsize=14, fontweight='bold')
-ax.set_xticks(range(3))
-ax.set_xticklabels(['English', 'Chinese', 'Arabic'])
+ax.set_xticks(range(N_LANGS))
+ax.set_xticklabels(LANGUAGES)
 ax.legend(fontsize=11)
 ax.grid(True, alpha=0.3)
 ax.axhline(y=0, color='red', linestyle='--', linewidth=1, alpha=0.5)
@@ -356,19 +372,18 @@ print("="*70)
 
 for model in experiments.keys():
     print(f"\n{model}:")
-    for lang in ['English', 'Chinese', 'Arabic']:
+    for lang in LANGUAGES:
         if lang not in data[model]:
             print(f"  {lang:10s}: No data available")
             continue
-        
+
         best_layer = data[model][lang]['best_layer']
         best_r2 = data[model][lang]['layer_r2'][best_layer]
         n_layers = data[model][lang]['n_layers']
-        
+
         print(f"  {lang:10s}: Best Layer={best_layer:2d}/{n_layers} | R²={best_r2:.6f}")
 
 print("\n" + "="*70)
 print("All plots have been generated successfully!")
 print(f"Output directory: {OUT_DIR}")
 print("="*70)
-

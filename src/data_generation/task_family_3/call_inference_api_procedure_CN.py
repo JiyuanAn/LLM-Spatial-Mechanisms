@@ -8,7 +8,7 @@ MODEL_NAME = "Qwen2.5-7B-Instruct"
 
 # 初始化模型
 client = OpenAI(
-    base_url='http://202.112.194.78:8010/v1',
+    base_url=os.environ.get("INFERENCE_API_BASE", "http://127.0.0.1:8010/v1"),
     api_key='EMPTY'
 )
 
